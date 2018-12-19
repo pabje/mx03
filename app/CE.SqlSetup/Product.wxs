@@ -6,7 +6,7 @@
   <Product Id="8E040966-CF0D-4629-BE31-0AFCE9C95FF8"
            Name="GP Contabilidad Electrónica 1.3 Sql Setup"
            Language="1033"
-           Version="4.2.3.0"
+           Version="4.2.3"
            Manufacturer="JCF"
            UpgradeCode="8E607B01-0D14-4C3E-B135-53631A6B44FF">
     <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine"/>
@@ -33,14 +33,16 @@
         </sql:SqlDatabase>
       </Component>-->
 
-      <Component Id="SqlComponent" Guid="7c32cf65-e060-4c7f-b5dd-d85c181da89c" KeyPath="yes">
+      <Component Id="SqlComponentContaE" Guid="7c32cf65-e060-4c7f-b5dd-d85c181da89c" KeyPath="yes">
         <sql:SqlDatabase Id="SqlDatabase" User="SQLUser" Server="[SQLSERVER]" Database="[SQLDATABASE]" CreateOnInstall="no" DropOnUninstall="no" ContinueOnError="yes" >
           <sql:SqlScript Id="CreateBaseView02" BinaryKey="CreateBaseView02" ExecuteOnInstall="yes" Sequence="02" ExecuteOnReinstall="yes"/>
           <sql:SqlScript Id="CreateBaseView04" BinaryKey="CreateBaseView04" ExecuteOnInstall="yes" Sequence="04" ExecuteOnReinstall="yes"/>
           <sql:SqlScript Id="CreateBaseView06" BinaryKey="CreateBaseView06" ExecuteOnInstall="yes" Sequence="06" ExecuteOnReinstall="yes"/>
+          <sql:SqlScript Id="CreateBaseView07" BinaryKey="CreateBaseView07" ExecuteOnInstall="yes" Sequence="07" ExecuteOnReinstall="yes"/>
           <sql:SqlScript Id="CreateBaseView08" BinaryKey="CreateBaseView08" ExecuteOnInstall="yes" Sequence="08" ExecuteOnReinstall="yes"/>          
           <sql:SqlScript Id="CreateBaseView10" BinaryKey="CreateBaseView10" ExecuteOnInstall="yes" Sequence="10" ExecuteOnReinstall="yes"/>          
           <sql:SqlScript Id="CreateBaseView12" BinaryKey="CreateBaseView12" ExecuteOnInstall="yes" Sequence="12" ExecuteOnReinstall="yes"/>          
+          <sql:SqlScript Id="CreateBaseView22" BinaryKey="CreateBaseView22" ExecuteOnInstall="yes" Sequence="22" ExecuteOnReinstall="yes"/>          
           
           <sql:SqlScript Id="CreateObj010" BinaryKey="CreateObj010" ExecuteOnInstall="yes" Sequence="010" ExecuteOnReinstall="yes"/>
           <sql:SqlScript Id="CreateObj013" BinaryKey="CreateObj013" ExecuteOnInstall="yes" Sequence="013" ExecuteOnReinstall="yes"/>
@@ -84,11 +86,48 @@
           <sql:SqlScript Id="CreateObj127" BinaryKey="CreateObj127" ExecuteOnInstall="yes" Sequence="127" ExecuteOnReinstall="yes"/>
           <sql:SqlScript Id="CreateObj130" BinaryKey="CreateObj130" ExecuteOnInstall="yes" Sequence="130" ExecuteOnReinstall="yes"/>
           <sql:SqlScript Id="CreateObj133" BinaryKey="CreateObj133" ExecuteOnInstall="yes" Sequence="133" ExecuteOnReinstall="yes"/>
-          <sql:SqlScript Id="CreateObj136" BinaryKey="CreateObj136" ExecuteOnInstall="yes" Sequence="136" ExecuteOnReinstall="yes"/>
+          <sql:SqlScript Id="CreateObj135" BinaryKey="CreateObj135" ExecuteOnInstall="yes" Sequence="133" ExecuteOnReinstall="yes"/>
+          <sql:SqlScript Id="CreateObj138" BinaryKey="CreateObj138" ExecuteOnInstall="yes" Sequence="133" ExecuteOnReinstall="yes"/>
+          <sql:SqlScript Id="CreateObj141" BinaryKey="CreateObj141" ExecuteOnInstall="yes" Sequence="133" ExecuteOnReinstall="yes"/>
+          <sql:SqlScript Id="CreateObj143" BinaryKey="CreateObj143" ExecuteOnInstall="yes" Sequence="133" ExecuteOnReinstall="yes"/>
+          <sql:SqlScript Id="CreateObj145" BinaryKey="CreateObj145" ExecuteOnInstall="yes" Sequence="133" ExecuteOnReinstall="yes"/>
+          <sql:SqlScript Id="CreateObj199" BinaryKey="CreateObj199" ExecuteOnInstall="yes" Sequence="136" ExecuteOnReinstall="yes"/>
 
       </sql:SqlDatabase>
       </Component>
 
+      <Component Id="SqlComponentReclasificaI" Guid="BDDC4637-6BC9-424E-A1A1-712E0620CAA7" KeyPath="yes">
+        <sql:SqlDatabase Id="SqlDatabase20" User="SQLUser" Server="[SQLSERVER]" Database="[SQLDATABASE]" CreateOnInstall="no" DropOnUninstall="no" ContinueOnError="yes" >
+          <sql:SqlScript Id="CreateObj201" BinaryKey="CreateObj201" ExecuteOnInstall="yes" Sequence="201" ExecuteOnReinstall="yes"/>
+          <sql:SqlScript Id="CreateObj210" BinaryKey="CreateObj210" ExecuteOnInstall="yes" Sequence="210" ExecuteOnReinstall="yes"/>
+          <sql:SqlScript Id="CreateObj220" BinaryKey="CreateObj220" ExecuteOnInstall="yes" Sequence="220" ExecuteOnReinstall="yes"/>
+          <sql:SqlScript Id="CreateObj230" BinaryKey="CreateObj230" ExecuteOnInstall="yes" Sequence="230" ExecuteOnReinstall="yes"/>
+          <sql:SqlScript Id="CreateObj240" BinaryKey="CreateObj240" ExecuteOnInstall="yes" Sequence="240" ExecuteOnReinstall="yes"/>
+          <sql:SqlScript Id="CreateObj250" BinaryKey="CreateObj250" ExecuteOnInstall="yes" Sequence="250" ExecuteOnReinstall="yes"/>
+          <sql:SqlScript Id="CreateObj260" BinaryKey="CreateObj260" ExecuteOnInstall="yes" Sequence="260" ExecuteOnReinstall="yes"/>
+          <sql:SqlScript Id="CreateObj270" BinaryKey="CreateObj270" ExecuteOnInstall="yes" Sequence="270" ExecuteOnReinstall="yes"/>
+          <sql:SqlScript Id="CreateObj275" BinaryKey="CreateObj275" ExecuteOnInstall="yes" Sequence="275" ExecuteOnReinstall="yes"/>
+          <sql:SqlScript Id="CreateObj280" BinaryKey="CreateObj280" ExecuteOnInstall="yes" Sequence="280" ExecuteOnReinstall="yes"/>
+          <sql:SqlScript Id="CreateObj285" BinaryKey="CreateObj285" ExecuteOnInstall="yes" Sequence="285" ExecuteOnReinstall="yes"/>
+          <sql:SqlScript Id="CreateObj299" BinaryKey="CreateObj299" ExecuteOnInstall="yes" Sequence="299" ExecuteOnReinstall="yes"/>
+        </sql:SqlDatabase>
+      </Component>
+
+      <Component Id="SqlComponentReportesI" Guid="FED027E6-B5F3-41B5-8A57-B9C19C4DED4F" KeyPath="yes">
+        <sql:SqlDatabase Id="SqlDatabase30" User="SQLUser" Server="[SQLSERVER]" Database="[SQLDATABASE]" CreateOnInstall="no" DropOnUninstall="no" ContinueOnError="yes" >
+          <sql:SqlScript Id="CreateObj310" BinaryKey="CreateObj310" ExecuteOnInstall="yes" Sequence="310" ExecuteOnReinstall="yes"/>
+          <sql:SqlScript Id="CreateObj311" BinaryKey="CreateObj311" ExecuteOnInstall="yes" Sequence="311" ExecuteOnReinstall="yes"/>
+          <sql:SqlScript Id="CreateObj320" BinaryKey="CreateObj320" ExecuteOnInstall="yes" Sequence="320" ExecuteOnReinstall="yes"/>
+          <sql:SqlScript Id="CreateObj330" BinaryKey="CreateObj330" ExecuteOnInstall="yes" Sequence="330" ExecuteOnReinstall="yes"/>
+          <sql:SqlScript Id="CreateObj340" BinaryKey="CreateObj340" ExecuteOnInstall="yes" Sequence="340" ExecuteOnReinstall="yes"/>
+          <sql:SqlScript Id="CreateObj345" BinaryKey="CreateObj345" ExecuteOnInstall="yes" Sequence="345" ExecuteOnReinstall="yes"/>
+          <sql:SqlScript Id="CreateObj350" BinaryKey="CreateObj350" ExecuteOnInstall="yes" Sequence="350" ExecuteOnReinstall="yes"/>
+          <sql:SqlScript Id="CreateObj360" BinaryKey="CreateObj360" ExecuteOnInstall="yes" Sequence="360" ExecuteOnReinstall="yes"/>
+          <sql:SqlScript Id="CreateObj370" BinaryKey="CreateObj370" ExecuteOnInstall="yes" Sequence="370" ExecuteOnReinstall="yes"/>
+          <sql:SqlScript Id="CreateObj380" BinaryKey="CreateObj380" ExecuteOnInstall="yes" Sequence="380" ExecuteOnReinstall="yes"/>
+          <sql:SqlScript Id="CreateObj399" BinaryKey="CreateObj399" ExecuteOnInstall="yes" Sequence="399" ExecuteOnReinstall="yes"/>
+        </sql:SqlDatabase>
+      </Component>
     </ComponentGroup>
 
     <!--Install-->
@@ -98,66 +137,107 @@
         <ComponentGroupRef Id="ProductComponents" />
       </Feature>-->
 
-      <Feature Id="SqlFeature" Title="Objetos Sql Compañía" Description="Tablas, vistas y procedimientos almacenados de la Compañía." Level="1">
-        <ComponentRef Id="SqlComponent" />
+      <Feature Id="SqlFeatureContaE" Title="Contabilidad Electrónica - Objetos Sql" Description="Tablas, vistas y procedimientos almacenados de la Compañía." Level="1">
+        <ComponentRef Id="SqlComponentContaE" />
         <ComponentGroupRef Id="ProductComponents" />
       </Feature>
 
+      <Feature Id="SqlFeatureReclasificaI" Title="Reclasifica Impuestos - Objetos Sql" Description="Tablas, vistas y procedimientos almacenados de la Compañía." Level="1">
+        <ComponentRef Id="SqlComponentReclasificaI" />
+        <ComponentGroupRef Id="ProductComponents" />
+      </Feature>
+
+      <Feature Id="SqlFeatureReportesI" Title="Reportes de Impuestos - Objetos Sql" Description="Tablas, vistas y procedimientos almacenados de la Compañía." Level="1">
+        <ComponentRef Id="SqlComponentReportesI" />
+        <ComponentGroupRef Id="ProductComponents" />
+      </Feature>
     </Feature>
 
+    <!--Contabilidad electrónica-->
     <Binary Id="CreateBaseView02" SourceFile="C:\jcTii\GPRelational\pmVwPmAplicados.view.sql"/>
     <Binary Id="CreateBaseView04" SourceFile="C:\jcTii\GPRelational\pmVwTransaccionesTodas.view.sql"/>
     <Binary Id="CreateBaseView06" SourceFile="C:\jcTii\GPRelational\popVwPopRecepcionesHdr.view.sql"/>
+    <Binary Id="CreateBaseView07" SourceFile="C:\jcTii\GPRelational\pmVwPmAplicadosExtendido.view.sql"/>
     <Binary Id="CreateBaseView08" SourceFile="C:\jcTii\GPRelational\rmvwRmTransaccionesTodas.view.sql"/>
     <Binary Id="CreateBaseView10" SourceFile="C:\jcTii\GPRelational\popvwPopPmDocumentosDeCompraLoteAbieHist.view.sql"/>
     <Binary Id="CreateBaseView12" SourceFile="C:\jcTii\GPRelational\cmFnGetDatosDeChequera.function.sql"/>
+    <Binary Id="CreateBaseView22" SourceFile="C:\jcTii\GPRelational\glVwDetalleAsientosTodos.views.sql"/>
 
-    <Binary Id="CreateObj010" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mxContaME\sql\01_dcemPoliza.table.sql"/>
-    <Binary Id="CreateObj013" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mxContaME\sql\02_dcemFnParametros.function.sql"/>
-    <Binary Id="CreateObj016" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mxContaME\sql\07_dcemFnGetSegmento2.sql"/>
-    <Binary Id="CreateObj019" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mxContaME\sql\08_dcemFnGetDatosBancoDelProveedor.function.sql"/>
-    <Binary Id="CreateObj022" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mxContaME\sql\09_dcemFnGetDatosBancarios.function.sql"/>
-    <Binary Id="CreateObj025" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mxContaME\sql\10_dcemFnGetMCP.function_con_mcp.sql"/>
-    <Binary Id="CreateObj028" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mxContaME\sql\14_dcemFnGetMetodosPagoPM.function.sql"/>
-    <Binary Id="CreateObj031" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mxContaME\sql\16_dcemFnGetMetodosPagoRM.function.sql"/>
-    <Binary Id="CreateObj034" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mxContaME\sql\18_dcemFnGetPMtrx.function.sql"/>
-    <Binary Id="CreateObj037" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mxContaME\sql\20_dcemFnGetRMtrx.function.sql"/>
-    <Binary Id="CreateObj040" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mxContaME\sql\21_DcemFcnGetFolioFiscalDeDocs.function.sql"/>
-    <Binary Id="CreateObj043" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mxContaME\sql\22_dcemFnGetDocumentoOriginal.function.sql"/>
-    <Binary Id="CreateObj046" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mxContaME\sql\50_dcemFcnReplace.function.sql"/>
-    <Binary Id="CreateObj049" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mxContaME\sql\59_DcemFcnCatalogoCtasXML.function.sql"/>
-    <Binary Id="CreateObj052" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mxContaME\sql\60_DcemFcnCatalogoXML.function.sql"/>
-    <Binary Id="CreateObj055" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mxContaME\sql\61_dcemvwSaldos.view.sql"/>
-    <Binary Id="CreateObj058" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mxContaME\sql\62_DcemFcnObtieneSaldo.function.sql"/>
-    <Binary Id="CreateObj061" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mxContaME\sql\62_DcemFcnObtieneSaldoTab.function.sql"/>
-    <Binary Id="CreateObj064" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mxContaME\sql\63_dcemfcnctas.function.sql"/>
-    <Binary Id="CreateObj067" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mxContaME\sql\65_DcemFcnBalance.function.sql"/>
-    <Binary Id="CreateObj070" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mxContaME\sql\70_dcemvwtransaccion.view.sql"/>
-    <Binary Id="CreateObj073" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mxContaME\sql\74_DcemFcnDocNac.function.sql"/>
-    <Binary Id="CreateObj076" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mxContaME\sql\75_dcemFcnDocExt.function.sql"/>
-    <Binary Id="CreateObj079" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mxContaME\sql\76_DcemFcnCheque.function.sql"/>
-    <Binary Id="CreateObj082" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mxContaME\sql\77_DcemFcnTransferencia.function.sql"/>
-    <Binary Id="CreateObj085" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mxContaME\sql\78_dcemFcnOtro.function.sql"/>
-    <Binary Id="CreateObj088" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mxContaME\sql\79_DcemFcnTransaccion.function.sql"/>
-    <Binary Id="CreateObj091" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mxContaME\sql\80_DcemFcnGetPolizaDesdeTabla.sql"/>
-    <Binary Id="CreateObj094" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mxContaME\sql\80_dcemFcnPoliza.function.sql"/>
-    <Binary Id="CreateObj097" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mxContaME\sql\81_dcemFcnPolizas.function.sql"/>
-    <Binary Id="CreateObj100" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mxContaME\sql\82_DcemFcnDocNacFolio.function.sql"/>
-    <Binary Id="CreateObj103" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mxContaME\sql\83_DcemFcnDocExtFolio.function.sql"/>
-    <Binary Id="CreateObj106" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mxContaME\sql\84_DcemFcnDetFolios.function.sql"/>
-    <Binary Id="CreateObj109" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mxContaME\sql\85_DcemFcnAuxiliarFolios.function.sql"/>
-    <Binary Id="CreateObj112" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mxContaME\sql\86_dcemFcnObtieneSaldo.function.sql"/>
-    <Binary Id="CreateObj115" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mxContaME\sql\87_DcemFcnDetalleAux.function.sql"/>
-    <Binary Id="CreateObj118" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mxContaME\sql\88_dcemfcnctasblz.function.sql"/>
-    <Binary Id="CreateObj121" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mxContaME\sql\89_DcemFcnAuxiliarCtas.function.sql"/>
-    <Binary Id="CreateObj124" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mxContaME\sql\90_DcemVwContabilidad.view.sql"/>
-    <Binary Id="CreateObj127" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mxContaME\sql\91_dcemCorrigePoliza.sprocedure.sql"/>
-    <Binary Id="CreateObj130" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mxContaME\sql\91_dcemMarcarPolizasConError.sprocedure.sql"/>
-    <Binary Id="CreateObj133" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mxContaME\sql\92_PreprocesaArchivosDeContaElectronica.sprocedure.sql"/>
-    <Binary Id="CreateObj135" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mxContaME\sql\94_dcemContabilidadExportados.table.sql"/>
-    <Binary Id="CreateObj136" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mxContaME\sql\195_DaPermisosContaElectronica.grant.sql"/>
+    <Binary Id="CreateObj010" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\01_dcemPoliza.table.sql"/>
+    <Binary Id="CreateObj013" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\02_dcemFnParametros.function.sql"/>
+    <Binary Id="CreateObj016" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\07_dcemFnGetSegmento2.sql"/>
+    <Binary Id="CreateObj019" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\08_dcemFnGetDatosBancoDelProveedor.function.sql"/>
+    <Binary Id="CreateObj022" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\09_dcemFnGetDatosBancarios.function.sql"/>
+    <Binary Id="CreateObj025" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\10_dcemFnGetMCP.function_con_mcp.sql"/>
+    <Binary Id="CreateObj028" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\14_dcemFnGetMetodosPagoPM.function.sql"/>
+    <Binary Id="CreateObj031" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\16_dcemFnGetMetodosPagoRM.function.sql"/>
+    <Binary Id="CreateObj034" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\18_dcemFnGetPMtrx.function.sql"/>
+    <Binary Id="CreateObj037" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\20_dcemFnGetRMtrx.function.sql"/>
+    <Binary Id="CreateObj040" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\21_DcemFcnGetFolioFiscalDeDocs.function.sql"/>
+    <Binary Id="CreateObj043" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\22_dcemFnGetDocumentoOriginal.function.sql"/>
+    <Binary Id="CreateObj046" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\50_dcemFcnReplace.function.sql"/>
+    <Binary Id="CreateObj049" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\59_DcemFcnCatalogoCtasXML.function.sql"/>
+    <Binary Id="CreateObj052" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\60_DcemFcnCatalogoXML.function.sql"/>
+    <Binary Id="CreateObj055" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\61_dcemvwSaldos.view.sql"/>
+    <Binary Id="CreateObj058" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\62_DcemFcnObtieneSaldo.function.sql"/>
+    <Binary Id="CreateObj061" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\62_DcemFcnObtieneSaldoTab.function.sql"/>
+    <Binary Id="CreateObj064" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\63_dcemfcnctas.function.sql"/>
+    <Binary Id="CreateObj067" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\65_DcemFcnBalance.function.sql"/>
+    <Binary Id="CreateObj070" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\70_dcemvwtransaccion.view.sql"/>
+    <Binary Id="CreateObj073" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\74_DcemFcnDocNac.function.sql"/>
+    <Binary Id="CreateObj076" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\75_dcemFcnDocExt.function.sql"/>
+    <Binary Id="CreateObj079" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\76_DcemFcnCheque.function.sql"/>
+    <Binary Id="CreateObj082" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\77_DcemFcnTransferencia.function.sql"/>
+    <Binary Id="CreateObj085" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\78_dcemFcnOtro.function.sql"/>
+    <Binary Id="CreateObj088" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\79_DcemFcnTransaccion.function.sql"/>
+    <Binary Id="CreateObj091" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\80_DcemFcnGetPolizaDesdeTabla.sql"/>
+    <Binary Id="CreateObj094" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\80_dcemFcnPoliza.function.sql"/>
+    <Binary Id="CreateObj097" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\81_dcemFcnPolizas.function.sql"/>
+    <Binary Id="CreateObj100" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\82_DcemFcnDocNacFolio.function.sql"/>
+    <Binary Id="CreateObj103" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\83_DcemFcnDocExtFolio.function.sql"/>
+    <Binary Id="CreateObj106" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\84_DcemFcnDetFolios.function.sql"/>
+    <Binary Id="CreateObj109" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\85_DcemFcnAuxiliarFolios.function.sql"/>
+    <Binary Id="CreateObj112" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\86_dcemFcnObtieneSaldo.function.sql"/>
+    <Binary Id="CreateObj115" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\87_DcemFcnDetalleAux.function.sql"/>
+    <Binary Id="CreateObj118" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\88_dcemfcnctasblz.function.sql"/>
+    <Binary Id="CreateObj121" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\89_DcemFcnAuxiliarCtas.function.sql"/>
+    <Binary Id="CreateObj124" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\90_DcemVwContabilidad.view.sql"/>
+    <Binary Id="CreateObj127" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\91_dcemCorrigePoliza.sprocedure.sql"/>
+    <Binary Id="CreateObj130" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\91_dcemMarcarPolizasConError.sprocedure.sql"/>
+    <Binary Id="CreateObj133" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\92_PreprocesaArchivosDeContaElectronica.sprocedure.sql"/>
+    <Binary Id="CreateObj135" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\94_dcemContabilidadExportados.table.sql"/>
+    <Binary Id="CreateObj138" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\97_daceComprobantesCFDI.table.sql"/>
+    <Binary Id="CreateObj141" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\99_daceSpComprobanteCfdiInsDel.sprocedures.sql"/>
+    <Binary Id="CreateObj143" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\110_fun_DACE_ValidarAplica.function.sql"/>
+    <Binary Id="CreateObj145" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\112_vw_dace_smartlist1.view.sql"/>
+    <Binary Id="CreateObj199" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\195_DaPermisosContaElectronica.grant.sql"/>
 
-    
+    <!--Reclasificación de impuestos-->
+    <Binary Id="CreateObj201" SourceFile="C:\jcTii\Desarrollo\MEX_ReclasificaImpuestos\mx04\GP2013\sql\01 trgins_pm20000_aplicaIetu.trigger.OPCIONAL.sql"/>
+    <Binary Id="CreateObj210" SourceFile="C:\jcTii\Desarrollo\MEX_ReclasificaImpuestos\mx04\GP2013\sql\10_ACA_RID_FillTempTable_PM.sprocedure.sql"/>
+    <Binary Id="CreateObj220" SourceFile="C:\jcTii\Desarrollo\MEX_ReclasificaImpuestos\mx04\GP2013\sql\20_ACA_RID_FillTempTable_RM.sprocedure.sql"/>
+    <Binary Id="CreateObj230" SourceFile="C:\jcTii\Desarrollo\MEX_ReclasificaImpuestos\mx04\GP2013\sql\30_ACA_RID_PM_Revertir.sprocedure.sql"/>
+    <Binary Id="CreateObj240" SourceFile="C:\jcTii\Desarrollo\MEX_ReclasificaImpuestos\mx04\GP2013\sql\40_ACA_RID_Reimputacion_Impuestos.sprocedure.sql"/>
+    <Binary Id="CreateObj250" SourceFile="C:\jcTii\Desarrollo\MEX_ReclasificaImpuestos\mx04\GP2013\sql\50_ACA_RID_Reimputacion_Impuestos_PM_OPEN_HIST.sprocedure.sql"/>
+    <Binary Id="CreateObj260" SourceFile="C:\jcTii\Desarrollo\MEX_ReclasificaImpuestos\mx04\GP2013\sql\60_ACA_RID_Reimputacion_Impuestos_RM.sprocedure.sql"/>
+    <Binary Id="CreateObj270" SourceFile="C:\jcTii\Desarrollo\MEX_ReclasificaImpuestos\mx04\GP2013\sql\70_ACA_RID_PM_Process.sprocedure.sql"/>
+    <Binary Id="CreateObj275" SourceFile="C:\jcTii\Desarrollo\MEX_ReclasificaImpuestos\mx04\GP2013\sql\75_ACA_RID_Reimputacion_Impuestos_RM_OPEN_HIST.sprocedure.sql"/>
+    <Binary Id="CreateObj280" SourceFile="C:\jcTii\Desarrollo\MEX_ReclasificaImpuestos\mx04\GP2013\sql\80_ACA_RID_RM_Revertir.sprocedure.sql"/>
+    <Binary Id="CreateObj285" SourceFile="C:\jcTii\Desarrollo\MEX_ReclasificaImpuestos\mx04\GP2013\sql\85_ACA_RID_RM_Process.sprocedure.sql"/>
+    <Binary Id="CreateObj299" SourceFile="C:\jcTii\Desarrollo\MEX_ReclasificaImpuestos\mx04\GP2013\sql\99_rid.grant.sql"/>
+
+    <!--Reportes de Impuestos-->
+    <Binary Id="CreateObj310" SourceFile="C:\jcTii\Desarrollo\MEX_ReclasificaImpuestos\mx04\Reportes\sql\310_OPTIONAL_ACA_IETU00400.createSP.sql"/>
+    <Binary Id="CreateObj311" SourceFile="C:\jcTii\Desarrollo\MEX_ReclasificaImpuestos\mx04\Reportes\sql\311_OPTIONAL_DYN_FUNC_Account_Category_Number.function.sql"/>
+    <Binary Id="CreateObj320" SourceFile="C:\jcTii\Desarrollo\MEX_ReclasificaImpuestos\mx04\Reportes\sql\320_OPTIONAL_DYN_FUNC_Series_GL_Trx.function.sql"/>
+    <Binary Id="CreateObj330" SourceFile="C:\jcTii\Desarrollo\MEX_ReclasificaImpuestos\mx04\Reportes\sql\330_fnPorcentajeImpuesto.function.sql"/>
+    <Binary Id="CreateObj340" SourceFile="C:\jcTii\Desarrollo\MEX_ReclasificaImpuestos\mx04\Reportes\sql\340_fnAplicaIETU.function.sql"/>
+    <Binary Id="CreateObj345" SourceFile="C:\jcTii\Desarrollo\MEX_ReclasificaImpuestos\mx04\Reportes\sql\345_index_aca_rid10000.create.sql"/>
+    <Binary Id="CreateObj350" SourceFile="C:\jcTii\Desarrollo\MEX_ReclasificaImpuestos\mx04\Reportes\sql\350_fnIetuGetPagosPM.function.sql"/>
+    <Binary Id="CreateObj360" SourceFile="C:\jcTii\Desarrollo\MEX_ReclasificaImpuestos\mx04\Reportes\sql\360_fnIetuGetCobrosRM.function.sql"/>
+    <Binary Id="CreateObj370" SourceFile="C:\jcTii\Desarrollo\MEX_ReclasificaImpuestos\mx04\Reportes\sql\370_fnGetDocumentoOriginal.function.sql"/>
+    <Binary Id="CreateObj380" SourceFile="C:\jcTii\Desarrollo\MEX_ReclasificaImpuestos\mx04\Reportes\sql\380_vwGlTransaccionesIetu.view.sql"/>
+    <Binary Id="CreateObj399" SourceFile="C:\jcTii\Desarrollo\MEX_ReclasificaImpuestos\mx04\Reportes\sql\399_DaPermisosAImpuestosMex.grant.sql"/>
 
     <util:User Id="SQLUser" Name="[SQLUSER]" Password="[SQLPASSWORD]"></util:User>
     <!--Variables SQL-->

@@ -25,6 +25,6 @@ END;
 GO
 
 
-GRANT  SELECT  ON [dbo].[fun_DACE_ValidarAplica]  TO [DYNGRP] 
+GRANT  execute  ON [dbo].[fun_DACE_ValidarAplica]  TO [DYNGRP] 
 GO 
 

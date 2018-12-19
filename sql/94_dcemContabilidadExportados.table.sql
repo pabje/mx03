@@ -1,7 +1,7 @@
-ï»¿--Contabilidad electrÃ³nica
---PropÃ³sito. Guarda el log de los archivos exportados de contabilidad electrÃ³nica
+--Contabilidad electrónica
+--Propósito. Guarda el log de los archivos exportados de contabilidad electrónica
 --Usado por. App
---2015 abecker CreaciÃ³n
+--2015 abecker Creación
 --
 IF not EXISTS (SELECT 1 FROM dbo.sysobjects WHERE id = OBJECT_ID(N'dbo.DcemContabilidadExportados') AND OBJECTPROPERTY(id,N'IsTable') = 1)
 begin

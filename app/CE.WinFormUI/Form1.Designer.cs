@@ -41,6 +41,13 @@
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.grid = new System.Windows.Forms.DataGridView();
             this.gridVista = new System.Windows.Forms.DataGridView();
+            this.Marcar = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.col2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TipoSolicitud = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.NumOrden = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NumTramite = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel5 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -98,13 +105,6 @@
             this.bindingSource3 = new System.Windows.Forms.BindingSource(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tsProgressBar = new System.Windows.Forms.ToolStripProgressBar();
-            this.Marcar = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.col2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TipoSolicitud = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.NumOrden = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NumTramite = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -179,8 +179,8 @@
             // versión10ToolStripMenuItem
             // 
             this.versión10ToolStripMenuItem.Name = "versión10ToolStripMenuItem";
-            this.versión10ToolStripMenuItem.Size = new System.Drawing.Size(295, 22);
-            this.versión10ToolStripMenuItem.Text = "Contabilidad Electrónica 1.3 v4.2.3-release";
+            this.versión10ToolStripMenuItem.Size = new System.Drawing.Size(254, 22);
+            this.versión10ToolStripMenuItem.Text = "Contabilidad Electrónica 1.3 v4.2.3";
             // 
             // tableLayoutPanel1
             // 
@@ -277,6 +277,58 @@
             this.gridVista.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridVista_CellContentClick);
             this.gridVista.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.gridVista_CellFormatting);
             this.gridVista.SelectionChanged += new System.EventHandler(this.gridVista_SelectionChanged);
+            // 
+            // Marcar
+            // 
+            this.Marcar.FalseValue = "0";
+            this.Marcar.Frozen = true;
+            this.Marcar.HeaderText = "C";
+            this.Marcar.IndeterminateValue = "-1";
+            this.Marcar.Name = "Marcar";
+            this.Marcar.TrueValue = "1";
+            // 
+            // col2
+            // 
+            this.col2.DataPropertyName = "year1";
+            this.col2.HeaderText = "Año";
+            this.col2.Name = "col2";
+            this.col2.ReadOnly = true;
+            // 
+            // col3
+            // 
+            this.col3.DataPropertyName = "periodid";
+            this.col3.HeaderText = "Mes";
+            this.col3.Name = "col3";
+            this.col3.ReadOnly = true;
+            // 
+            // col4
+            // 
+            this.col4.DataPropertyName = "tipodoc";
+            this.col4.HeaderText = "Tipo";
+            this.col4.Name = "col4";
+            this.col4.ReadOnly = true;
+            // 
+            // TipoSolicitud
+            // 
+            this.TipoSolicitud.HeaderText = "Tipo Solicitud";
+            this.TipoSolicitud.Items.AddRange(new object[] {
+            "AF - Acto de Fiscalización",
+            "FC - Fiscalización Compulsa",
+            "DE - Devolución",
+            "CO - Compensación"});
+            this.TipoSolicitud.Name = "TipoSolicitud";
+            // 
+            // NumOrden
+            // 
+            this.NumOrden.HeaderText = "N. Orden";
+            this.NumOrden.MaxInputLength = 13;
+            this.NumOrden.Name = "NumOrden";
+            // 
+            // NumTramite
+            // 
+            this.NumTramite.HeaderText = "N. Trámite";
+            this.NumTramite.MaxInputLength = 14;
+            this.NumTramite.Name = "NumTramite";
             // 
             // panel5
             // 
@@ -876,58 +928,6 @@
             // 
             this.tsProgressBar.Name = "tsProgressBar";
             this.tsProgressBar.Size = new System.Drawing.Size(100, 16);
-            // 
-            // Marcar
-            // 
-            this.Marcar.FalseValue = "0";
-            this.Marcar.Frozen = true;
-            this.Marcar.HeaderText = "C";
-            this.Marcar.IndeterminateValue = "-1";
-            this.Marcar.Name = "Marcar";
-            this.Marcar.TrueValue = "1";
-            // 
-            // col2
-            // 
-            this.col2.DataPropertyName = "year1";
-            this.col2.HeaderText = "Año";
-            this.col2.Name = "col2";
-            this.col2.ReadOnly = true;
-            // 
-            // col3
-            // 
-            this.col3.DataPropertyName = "periodid";
-            this.col3.HeaderText = "Mes";
-            this.col3.Name = "col3";
-            this.col3.ReadOnly = true;
-            // 
-            // col4
-            // 
-            this.col4.DataPropertyName = "tipodoc";
-            this.col4.HeaderText = "Tipo";
-            this.col4.Name = "col4";
-            this.col4.ReadOnly = true;
-            // 
-            // TipoSolicitud
-            // 
-            this.TipoSolicitud.HeaderText = "Tipo Solicitud";
-            this.TipoSolicitud.Items.AddRange(new object[] {
-            "AF - Acto de Fiscalización",
-            "FC - Fiscalización Compulsa",
-            "DE - Devolución",
-            "CO - Compensación"});
-            this.TipoSolicitud.Name = "TipoSolicitud";
-            // 
-            // NumOrden
-            // 
-            this.NumOrden.HeaderText = "N. Orden";
-            this.NumOrden.MaxInputLength = 13;
-            this.NumOrden.Name = "NumOrden";
-            // 
-            // NumTramite
-            // 
-            this.NumTramite.HeaderText = "N. Trámite";
-            this.NumTramite.MaxInputLength = 14;
-            this.NumTramite.Name = "NumTramite";
             // 
             // Form1
             // 

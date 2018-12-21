@@ -1,0 +1,1348 @@
+<TABLE>
+<NAME>SLB_SmartLists</NAME>
+<PRODUCT>3830</PRODUCT>
+<SEPARATOR>-</SEPARATOR>
+<RECORD>
+<FIELD>
+<NAME>'SmartList ID'</NAME>
+<VALUE>DACE_CFDICOMPRA</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'SmartList Name'</NAME>
+<VALUE>Control de facturas y pagos de compras con Folio Fiscal</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'SmartList Item Name'</NAME>
+<VALUE>Control de facturas y pagos de compras con Folio Fiscal</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'SmartList Number'</NAME>
+<VALUE>3</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'GoTo Number'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Series Number'</NAME>
+<VALUE>3</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Note Index'</NAME>
+<VALUE>104673.00000</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Created Date'</NAME>
+<VALUE>12/20/2018</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Created User ID'</NAME>
+<VALUE>sa</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Modified Date'</NAME>
+<VALUE>12/20/2018</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Modified User ID'</NAME>
+<VALUE>sa</VALUE>
+</FIELD>
+</RECORD>
+</TABLE>
+<TABLE>
+<NAME>SLB_Tables</NAME>
+<PRODUCT>3830</PRODUCT>
+<SEPARATOR>-</SEPARATOR>
+<RECORD>
+<FIELD>
+<NAME>'SmartList ID'</NAME>
+<VALUE>DACE_CFDICOMPRA</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Table Number'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'External Table'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Table Physical Name'</NAME>
+<VALUE>vw_dace_smartlist1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'SQL Database Name'</NAME>
+<VALUE>MMMEX</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Use Current Company'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Object Type'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+</RECORD>
+</TABLE>
+<TABLE>
+<NAME>SLB_Keys</NAME>
+<PRODUCT>3830</PRODUCT>
+<SEPARATOR>-</SEPARATOR>
+<RECORD>
+<FIELD>
+<NAME>'SmartList ID'</NAME>
+<VALUE>DACE_CFDICOMPRA</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'SmartList Field Name'</NAME>
+<VALUE>CNTRLNUM</VALUE>
+</FIELD>
+</RECORD>
+<RECORD>
+<FIELD>
+<NAME>'SmartList ID'</NAME>
+<VALUE>DACE_CFDICOMPRA</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'SmartList Field Name'</NAME>
+<VALUE>CNTRLTYP</VALUE>
+</FIELD>
+</RECORD>
+<RECORD>
+<FIELD>
+<NAME>'SmartList ID'</NAME>
+<VALUE>DACE_CFDICOMPRA</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'SmartList Field Name'</NAME>
+<VALUE>DOCNUMBR</VALUE>
+</FIELD>
+</RECORD>
+<RECORD>
+<FIELD>
+<NAME>'SmartList ID'</NAME>
+<VALUE>DACE_CFDICOMPRA</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'SmartList Field Name'</NAME>
+<VALUE>DOCTYPE</VALUE>
+</FIELD>
+</RECORD>
+<RECORD>
+<FIELD>
+<NAME>'SmartList ID'</NAME>
+<VALUE>DACE_CFDICOMPRA</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'SmartList Field Name'</NAME>
+<VALUE>VENDORID</VALUE>
+</FIELD>
+</RECORD>
+</TABLE>
+<TABLE>
+<NAME>SLB_Links</NAME>
+<PRODUCT>3830</PRODUCT>
+<SEPARATOR>-</SEPARATOR>
+</TABLE>
+<TABLE>
+<NAME>SLB_List_Items</NAME>
+<PRODUCT>3830</PRODUCT>
+<SEPARATOR>-</SEPARATOR>
+</TABLE>
+<TABLE>
+<NAME>SLB_GoTos</NAME>
+<PRODUCT>3830</PRODUCT>
+<SEPARATOR>-</SEPARATOR>
+<RECORD>
+<FIELD>
+<NAME>'SmartList ID'</NAME>
+<VALUE>DACE_CFDICOMPRA</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'GoTo Number'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'GoTo Description'</NAME>
+<VALUE>Consulta de transacciones ctas. por pagar por proveedor</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'GoTo Type'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Form Name'</NAME>
+<VALUE>PM_Transaction_Inquiry</VALUE>
+</FIELD>
+</RECORD>
+</TABLE>
+<TABLE>
+<NAME>SLB_Goto_Tasks</NAME>
+<PRODUCT>3830</PRODUCT>
+<SEPARATOR>-</SEPARATOR>
+<RECORD>
+<FIELD>
+<NAME>'SmartList ID'</NAME>
+<VALUE>DACE_CFDICOMPRA</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'GoTo Number'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Task Number'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Task Sequence'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'SmartList Task Type'</NAME>
+<VALUE>4</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'SmartList Field Name'</NAME>
+<VALUE>Vendor ID</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Field Value From'</NAME>
+<VALUE>2</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Table Number'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Field Number'</NAME>
+<VALUE>6</VALUE>
+</FIELD>
+</RECORD>
+</TABLE>
+<TABLE>
+<NAME>SLB_GoTo_Parameters</NAME>
+<PRODUCT>3830</PRODUCT>
+<SEPARATOR>-</SEPARATOR>
+</TABLE>
+<TABLE>
+<NAME>SLB_Restrictions</NAME>
+<PRODUCT>3830</PRODUCT>
+<SEPARATOR>-</SEPARATOR>
+</TABLE>
+<TABLE>
+<NAME>SLB_Restriction_Values</NAME>
+<PRODUCT>3830</PRODUCT>
+<SEPARATOR>-</SEPARATOR>
+</TABLE>
+<TABLE>
+<NAME>SLB_Restriction_Users</NAME>
+<PRODUCT>3830</PRODUCT>
+<SEPARATOR>-</SEPARATOR>
+</TABLE>
+<TABLE>
+<NAME>SLB_Additional_Tables</NAME>
+<PRODUCT>3830</PRODUCT>
+<SEPARATOR>-</SEPARATOR>
+</TABLE>
+<TABLE>
+<NAME>SLB_Additional_Table_Fields</NAME>
+<PRODUCT>3830</PRODUCT>
+<SEPARATOR>-</SEPARATOR>
+</TABLE>
+<TABLE>
+<NAME>SLB_Fields</NAME>
+<PRODUCT>3830</PRODUCT>
+<SEPARATOR>-</SEPARATOR>
+<RECORD>
+<FIELD>
+<NAME>'SmartList ID'</NAME>
+<VALUE>DACE_CFDICOMPRA</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Table Number'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Field Number'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'SmartList Field Name'</NAME>
+<VALUE>CNTRLTYP</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'SmartList Display Name'</NAME>
+<VALUE>Tipo Documento</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Display Field'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Field Type'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'SmartList Field String Format'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Decimal Places Currency'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Summary Method'</NAME>
+<VALUE>2</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Table Physical Name'</NAME>
+<VALUE>CNTRLTYP</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Date Display Option'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Decimal Places Method'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+</RECORD>
+<RECORD>
+<FIELD>
+<NAME>'SmartList ID'</NAME>
+<VALUE>DACE_CFDICOMPRA</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Table Number'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Field Number'</NAME>
+<VALUE>2</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'SmartList Field Name'</NAME>
+<VALUE>DOCTYPE</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'SmartList Display Name'</NAME>
+<VALUE>DOCTYPE</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Default Display'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Display Field'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Field Type'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'SmartList Field String Format'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Decimal Places Currency'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Summary Method'</NAME>
+<VALUE>2</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Table Physical Name'</NAME>
+<VALUE>DOCTYPE</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Date Display Option'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Decimal Places Method'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+</RECORD>
+<RECORD>
+<FIELD>
+<NAME>'SmartList ID'</NAME>
+<VALUE>DACE_CFDICOMPRA</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Table Number'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Field Number'</NAME>
+<VALUE>3</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'SmartList Field Name'</NAME>
+<VALUE>CNTRLNUM</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'SmartList Display Name'</NAME>
+<VALUE>Núm. comprobante</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Default Display'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Display Field'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Field Type'</NAME>
+<VALUE>5</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'SmartList Field String Format'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Decimal Places Currency'</NAME>
+<VALUE>3</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Show Currency Symbol'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Show Thousands Separator'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Summary Method'</NAME>
+<VALUE>3</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Table Physical Name'</NAME>
+<VALUE>CNTRLNUM</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Date Display Option'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Decimal Places Method'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+</RECORD>
+<RECORD>
+<FIELD>
+<NAME>'SmartList ID'</NAME>
+<VALUE>DACE_CFDICOMPRA</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Table Number'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Field Number'</NAME>
+<VALUE>4</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'SmartList Field Name'</NAME>
+<VALUE>DOCNUMBR</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'SmartList Display Name'</NAME>
+<VALUE>Núm. documento</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Default Display'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Display Field'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Field Type'</NAME>
+<VALUE>5</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'SmartList Field String Format'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Decimal Places Currency'</NAME>
+<VALUE>3</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Show Currency Symbol'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Show Thousands Separator'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Summary Method'</NAME>
+<VALUE>3</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Table Physical Name'</NAME>
+<VALUE>DOCNUMBR</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Date Display Option'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Decimal Places Method'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+</RECORD>
+<RECORD>
+<FIELD>
+<NAME>'SmartList ID'</NAME>
+<VALUE>DACE_CFDICOMPRA</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Table Number'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Field Number'</NAME>
+<VALUE>5</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'SmartList Field Name'</NAME>
+<VALUE>DOCDATE</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'SmartList Display Name'</NAME>
+<VALUE>Fecha</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Default Display'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Display Field'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Field Type'</NAME>
+<VALUE>3</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'SmartList Field String Format'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Decimal Places Currency'</NAME>
+<VALUE>3</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Show Currency Symbol'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Show Thousands Separator'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Summary Method'</NAME>
+<VALUE>3</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Table Physical Name'</NAME>
+<VALUE>DOCDATE</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Date Display Option'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Decimal Places Method'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+</RECORD>
+<RECORD>
+<FIELD>
+<NAME>'SmartList ID'</NAME>
+<VALUE>DACE_CFDICOMPRA</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Table Number'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Field Number'</NAME>
+<VALUE>6</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'SmartList Field Name'</NAME>
+<VALUE>VENDORID</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'SmartList Display Name'</NAME>
+<VALUE>Id. Proveedor</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Default Display'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Display Field'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Field Type'</NAME>
+<VALUE>5</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'SmartList Field String Format'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Decimal Places Currency'</NAME>
+<VALUE>3</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Show Currency Symbol'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Show Thousands Separator'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Summary Method'</NAME>
+<VALUE>3</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Table Physical Name'</NAME>
+<VALUE>VENDORID</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Date Display Option'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Decimal Places Method'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+</RECORD>
+<RECORD>
+<FIELD>
+<NAME>'SmartList ID'</NAME>
+<VALUE>DACE_CFDICOMPRA</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Table Number'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Field Number'</NAME>
+<VALUE>7</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'SmartList Field Name'</NAME>
+<VALUE>DOCAMNT</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'SmartList Display Name'</NAME>
+<VALUE>Monto</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Default Display'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Display Field'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Field Type'</NAME>
+<VALUE>4</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'SmartList Field String Format'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Decimal Places Currency'</NAME>
+<VALUE>3</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Show Currency Symbol'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Show Thousands Separator'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Summary Method'</NAME>
+<VALUE>2</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Table Physical Name'</NAME>
+<VALUE>DOCAMNT</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Date Display Option'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Decimal Places Method'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+</RECORD>
+<RECORD>
+<FIELD>
+<NAME>'SmartList ID'</NAME>
+<VALUE>DACE_CFDICOMPRA</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Table Number'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Field Number'</NAME>
+<VALUE>8</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'SmartList Field Name'</NAME>
+<VALUE>CURNCYID</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'SmartList Display Name'</NAME>
+<VALUE>Moneda</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Default Display'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Display Field'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Field Type'</NAME>
+<VALUE>5</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'SmartList Field String Format'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Decimal Places Currency'</NAME>
+<VALUE>3</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Show Currency Symbol'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Show Thousands Separator'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Summary Method'</NAME>
+<VALUE>3</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Table Physical Name'</NAME>
+<VALUE>CURNCYID</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Date Display Option'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Decimal Places Method'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+</RECORD>
+<RECORD>
+<FIELD>
+<NAME>'SmartList ID'</NAME>
+<VALUE>DACE_CFDICOMPRA</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Table Number'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Field Number'</NAME>
+<VALUE>9</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'SmartList Field Name'</NAME>
+<VALUE>TRXDSCRN</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'SmartList Display Name'</NAME>
+<VALUE>Referencia</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Default Display'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Display Field'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Field Type'</NAME>
+<VALUE>5</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'SmartList Field String Format'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Decimal Places Currency'</NAME>
+<VALUE>3</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Show Currency Symbol'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Show Thousands Separator'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Summary Method'</NAME>
+<VALUE>3</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Table Physical Name'</NAME>
+<VALUE>TRXDSCRN</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Date Display Option'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Decimal Places Method'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+</RECORD>
+<RECORD>
+<FIELD>
+<NAME>'SmartList ID'</NAME>
+<VALUE>DACE_CFDICOMPRA</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Table Number'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Field Number'</NAME>
+<VALUE>10</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'SmartList Field Name'</NAME>
+<VALUE>CFDI_ASOC</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'SmartList Display Name'</NAME>
+<VALUE>Folio Fiscal</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Default Display'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Display Field'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Field Type'</NAME>
+<VALUE>5</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'SmartList Field String Format'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Decimal Places Currency'</NAME>
+<VALUE>3</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Show Currency Symbol'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Show Thousands Separator'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Summary Method'</NAME>
+<VALUE>3</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Table Physical Name'</NAME>
+<VALUE>CFDI_ASOC</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Date Display Option'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Decimal Places Method'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+</RECORD>
+<RECORD>
+<FIELD>
+<NAME>'SmartList ID'</NAME>
+<VALUE>DACE_CFDICOMPRA</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Table Number'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Field Number'</NAME>
+<VALUE>11</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'SmartList Field Name'</NAME>
+<VALUE>CFDI_Apli</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'SmartList Display Name'</NAME>
+<VALUE>CFDI Apli</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Display Field'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Field Type'</NAME>
+<VALUE>5</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'SmartList Field String Format'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Decimal Places Currency'</NAME>
+<VALUE>3</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Show Currency Symbol'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Show Thousands Separator'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Summary Method'</NAME>
+<VALUE>3</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Table Physical Name'</NAME>
+<VALUE>CFDI_Apli</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Date Display Option'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Decimal Places Method'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+</RECORD>
+<RECORD>
+<FIELD>
+<NAME>'SmartList ID'</NAME>
+<VALUE>DACE_CFDICOMPRA</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Table Number'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Field Number'</NAME>
+<VALUE>12</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'SmartList Field Name'</NAME>
+<VALUE>MetodoPago</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'SmartList Display Name'</NAME>
+<VALUE>Metodo De Pago</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Default Display'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Display Field'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Field Type'</NAME>
+<VALUE>5</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'SmartList Field String Format'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Decimal Places Currency'</NAME>
+<VALUE>3</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Show Currency Symbol'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Show Thousands Separator'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Summary Method'</NAME>
+<VALUE>3</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Table Physical Name'</NAME>
+<VALUE>MetodoPago</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Date Display Option'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Decimal Places Method'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+</RECORD>
+<RECORD>
+<FIELD>
+<NAME>'SmartList ID'</NAME>
+<VALUE>DACE_CFDICOMPRA</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Table Number'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Field Number'</NAME>
+<VALUE>13</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'SmartList Field Name'</NAME>
+<VALUE>cfdia_metodopago</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'SmartList Display Name'</NAME>
+<VALUE>cfdia metodopago</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Display Field'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Field Type'</NAME>
+<VALUE>5</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'SmartList Field String Format'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Decimal Places Currency'</NAME>
+<VALUE>3</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Show Currency Symbol'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Show Thousands Separator'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Summary Method'</NAME>
+<VALUE>3</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Table Physical Name'</NAME>
+<VALUE>cfdia_metodopago</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Date Display Option'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Decimal Places Method'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+</RECORD>
+<RECORD>
+<FIELD>
+<NAME>'SmartList ID'</NAME>
+<VALUE>DACE_CFDICOMPRA</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Table Number'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Field Number'</NAME>
+<VALUE>14</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'SmartList Field Name'</NAME>
+<VALUE>OBSERVACIONES</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'SmartList Display Name'</NAME>
+<VALUE>Observaciones</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Default Display'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Display Field'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Field Type'</NAME>
+<VALUE>5</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'SmartList Field String Format'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Decimal Places Currency'</NAME>
+<VALUE>3</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Show Currency Symbol'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Show Thousands Separator'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Summary Method'</NAME>
+<VALUE>3</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Table Physical Name'</NAME>
+<VALUE>OBSERVACIONES</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Date Display Option'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Decimal Places Method'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+</RECORD>
+<RECORD>
+<FIELD>
+<NAME>'SmartList ID'</NAME>
+<VALUE>DACE_CFDICOMPRA</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Table Number'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Field Number'</NAME>
+<VALUE>15</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'SmartList Field Name'</NAME>
+<VALUE>DCSTATUS</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'SmartList Display Name'</NAME>
+<VALUE>DCSTATUS</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Display Field'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Field Type'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'SmartList Field String Format'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Decimal Places Currency'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Summary Method'</NAME>
+<VALUE>2</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Table Physical Name'</NAME>
+<VALUE>DCSTATUS</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Date Display Option'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Decimal Places Method'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+</RECORD>
+<RECORD>
+<FIELD>
+<NAME>'SmartList ID'</NAME>
+<VALUE>DACE_CFDICOMPRA</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Table Number'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Field Number'</NAME>
+<VALUE>16</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'SmartList Field Name'</NAME>
+<VALUE>TXRGNNUM</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'SmartList Display Name'</NAME>
+<VALUE>RFC</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Default Display'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Display Field'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Field Type'</NAME>
+<VALUE>5</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'SmartList Field String Format'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Decimal Places Currency'</NAME>
+<VALUE>3</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Show Currency Symbol'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Show Thousands Separator'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Summary Method'</NAME>
+<VALUE>3</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Table Physical Name'</NAME>
+<VALUE>TXRGNNUM</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Date Display Option'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Decimal Places Method'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+</RECORD>
+<RECORD>
+<FIELD>
+<NAME>'SmartList ID'</NAME>
+<VALUE>DACE_CFDICOMPRA</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Table Number'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Field Number'</NAME>
+<VALUE>17</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'SmartList Field Name'</NAME>
+<VALUE>VENDNAME</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'SmartList Display Name'</NAME>
+<VALUE>Nombre del proveedor</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Default Display'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Display Field'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Field Type'</NAME>
+<VALUE>5</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'SmartList Field String Format'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Decimal Places Currency'</NAME>
+<VALUE>3</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Show Currency Symbol'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Show Thousands Separator'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Summary Method'</NAME>
+<VALUE>3</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Table Physical Name'</NAME>
+<VALUE>VENDNAME</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Date Display Option'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+<FIELD>
+<NAME>'Decimal Places Method'</NAME>
+<VALUE>1</VALUE>
+</FIELD>
+</RECORD>
+</TABLE>
+<TABLE>
+<NAME>SLB_SmartList_Companies</NAME>
+<PRODUCT>3830</PRODUCT>
+<SEPARATOR>-</SEPARATOR>
+</TABLE>
+<TABLE>
+<NAME>SLB_Negative_Values</NAME>
+<PRODUCT>3830</PRODUCT>
+<SEPARATOR>-</SEPARATOR>
+</TABLE>

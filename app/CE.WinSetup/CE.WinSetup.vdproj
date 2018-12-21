@@ -63,12 +63,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_58445EDB444040B089D7CBAB1568CA0A"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_59B46D0C58AF462FBA18CD1790C09E05"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -87,6 +81,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_8368EA01680649A6B8800042B498B0D2"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_8437867AC51F126260FEA9BB1771BA0E"
         "OwnerKey" = "8:_30BE5971B41C949EF074787376AFE318"
         "MsmSig" = "8:_UNDEFINED"
@@ -99,6 +99,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_93ACF95913B844A8A015B09C81942E82"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_AC617B61DA30A90BAAE01A3701D48FED"
         "OwnerKey" = "8:_D845BC1DAE6522874CCEAFFA88047553"
         "MsmSig" = "8:_UNDEFINED"
@@ -107,24 +113,6 @@
         {
         "MsmKey" = "8:_AC617B61DA30A90BAAE01A3701D48FED"
         "OwnerKey" = "8:_64396B01EE954A239AA37AA01638BF58"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_AC623F1C631ADF487FAF7A2954D4F26B"
-        "OwnerKey" = "8:_D845BC1DAE6522874CCEAFFA88047553"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_AC623F1C631ADF487FAF7A2954D4F26B"
-        "OwnerKey" = "8:_64396B01EE954A239AA37AA01638BF58"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_AC623F1C631ADF487FAF7A2954D4F26B"
-        "OwnerKey" = "8:_6E0A4589510A9F9267B0800556189A79"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -183,18 +171,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_E234E6283368FB66B31986DCFE6F9635"
-        "OwnerKey" = "8:_6E0A4589510A9F9267B0800556189A79"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_E234E6283368FB66B31986DCFE6F9635"
-        "OwnerKey" = "8:_64396B01EE954A239AA37AA01638BF58"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_EDF192AEC2A24FDF960101D1BDC17E20"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -208,19 +184,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_30BE5971B41C949EF074787376AFE318"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_8437867AC51F126260FEA9BB1771BA0E"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_CB74883FAE0D9D3191791E544F733968"
+        "OwnerKey" = "8:_AC617B61DA30A90BAAE01A3701D48FED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -232,19 +196,19 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_6E0A4589510A9F9267B0800556189A79"
+        "OwnerKey" = "8:_CB74883FAE0D9D3191791E544F733968"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_0A932FB8DFD2FED44767B98D22189593"
+        "OwnerKey" = "8:_8437867AC51F126260FEA9BB1771BA0E"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_E234E6283368FB66B31986DCFE6F9635"
+        "OwnerKey" = "8:_30BE5971B41C949EF074787376AFE318"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -256,13 +220,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_AC617B61DA30A90BAAE01A3701D48FED"
+        "OwnerKey" = "8:_0A932FB8DFD2FED44767B98D22189593"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_AC623F1C631ADF487FAF7A2954D4F26B"
+        "OwnerKey" = "8:_6E0A4589510A9F9267B0800556189A79"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -273,7 +237,7 @@
         "DisplayName" = "8:Debug"
         "IsDebugOnly" = "11:TRUE"
         "IsReleaseOnly" = "11:FALSE"
-        "OutputFilename" = "8:Debug\\CE.WinSetupGP2015.msi"
+        "OutputFilename" = "8:Debug\\CE.WinSetupGP2010.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -424,14 +388,9 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:CE.Model, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:CE.Model, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86"
                 "ScatterAssemblies"
                 {
-                    "_0A932FB8DFD2FED44767B98D22189593"
-                    {
-                    "Name" = "8:CE.Model.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:CE.Model.dll"
             "TargetName" = "8:"
@@ -498,11 +457,6 @@
             "AssemblyAsmDisplayName" = "8:ClosedXML, Version=0.92.1.0, Culture=neutral, PublicKeyToken=fd1eb21b62ae805b, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_30BE5971B41C949EF074787376AFE318"
-                    {
-                    "Name" = "8:ClosedXML.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:ClosedXML.dll"
             "TargetName" = "8:"
@@ -520,26 +474,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_58445EDB444040B089D7CBAB1568CA0A"
-            {
-            "SourcePath" = "8:..\\..\\Smartlist\\Dace_Smartlist1.xml"
-            "TargetName" = "8:Dace_Smartlist1.xml"
-            "Tag" = "8:"
-            "Folder" = "8:_87DCFEAB723B4D869C1584B8F137EBAB"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_59B46D0C58AF462FBA18CD1790C09E05"
@@ -566,14 +500,9 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:CE.Business, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:CE.Business, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86"
                 "ScatterAssemblies"
                 {
-                    "_6E0A4589510A9F9267B0800556189A79"
-                    {
-                    "Name" = "8:CE.Business.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:CE.Business.dll"
             "TargetName" = "8:"
@@ -593,6 +522,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8368EA01680649A6B8800042B498B0D2"
+            {
+            "SourcePath" = "8:..\\..\\Smartlist\\dace_cfdiCompras_gp2010.xml"
+            "TargetName" = "8:dace_cfdiCompras_gp2010.xml"
+            "Tag" = "8:"
+            "Folder" = "8:_D52C676031E94FD5890D134F4EC0692B"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_8437867AC51F126260FEA9BB1771BA0E"
             {
             "AssemblyRegister" = "3:1"
@@ -600,11 +549,6 @@
             "AssemblyAsmDisplayName" = "8:FastMember.Signed, Version=1.3.0.0, Culture=neutral, PublicKeyToken=9e8f22703bef9a29, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_8437867AC51F126260FEA9BB1771BA0E"
-                    {
-                    "Name" = "8:FastMember.Signed.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:FastMember.Signed.dll"
             "TargetName" = "8:"
@@ -624,6 +568,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_93ACF95913B844A8A015B09C81942E82"
+            {
+            "SourcePath" = "8:..\\..\\Smartlist\\Dace_Smartlist1_gp2013.xml"
+            "TargetName" = "8:Dace_Smartlist1_gp2013.xml"
+            "Tag" = "8:"
+            "Folder" = "8:_11493CCE0161412A898B287C31F5AD18"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_AC617B61DA30A90BAAE01A3701D48FED"
             {
             "AssemblyRegister" = "3:1"
@@ -631,11 +595,6 @@
             "AssemblyAsmDisplayName" = "8:Microsoft.Dynamics.GP.eConnect.MiscRoutines, Version=10.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_AC617B61DA30A90BAAE01A3701D48FED"
-                    {
-                    "Name" = "8:Microsoft.Dynamics.GP.eConnect.MiscRoutines.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:Microsoft.Dynamics.GP.eConnect.MiscRoutines.dll"
             "TargetName" = "8:"
@@ -652,37 +611,6 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_AC623F1C631ADF487FAF7A2954D4F26B"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Microsoft.Dynamics.GP.eConnect, Version=14.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=AMD64"
-                "ScatterAssemblies"
-                {
-                    "_AC623F1C631ADF487FAF7A2954D4F26B"
-                    {
-                    "Name" = "8:Microsoft.Dynamics.GP.eConnect.dll"
-                    "Attributes" = "3:0"
-                    }
-                }
-            "SourcePath" = "8:Microsoft.Dynamics.GP.eConnect.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_F143242872F14F408BC45593C1DD90FD"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:FALSE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:TRUE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:TRUE"
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
@@ -733,11 +661,6 @@
             "AssemblyAsmDisplayName" = "8:ExcelNumberFormat, Version=1.0.3.0, Culture=neutral, PublicKeyToken=23c6f5d73be07eca, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_CB74883FAE0D9D3191791E544F733968"
-                    {
-                    "Name" = "8:ExcelNumberFormat.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:ExcelNumberFormat.dll"
             "TargetName" = "8:"
@@ -781,14 +704,9 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:CE.econn10, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:CE.econn10, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86"
                 "ScatterAssemblies"
                 {
-                    "_D845BC1DAE6522874CCEAFFA88047553"
-                    {
-                    "Name" = "8:CE.econn10.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:CE.econn10.dll"
             "TargetName" = "8:"
@@ -815,11 +733,6 @@
             "AssemblyAsmDisplayName" = "8:DocumentFormat.OpenXml, Version=2.7.2.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_DC91EF38EE352F29B946554C80F85589"
-                    {
-                    "Name" = "8:DocumentFormat.OpenXml.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:DocumentFormat.OpenXml.dll"
             "TargetName" = "8:"
@@ -836,37 +749,6 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_E234E6283368FB66B31986DCFE6F9635"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Microsoft.Dynamics.GP.eConnect.Serialization, Version=14.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=AMD64"
-                "ScatterAssemblies"
-                {
-                    "_E234E6283368FB66B31986DCFE6F9635"
-                    {
-                    "Name" = "8:Microsoft.Dynamics.GP.eConnect.Serialization.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:Microsoft.Dynamics.GP.eConnect.Serialization.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_F143242872F14F408BC45593C1DD90FD"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:TRUE"
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
@@ -928,6 +810,17 @@
             "Property" = "8:TARGETDIR"
                 "Folders"
                 {
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_11493CCE0161412A898B287C31F5AD18"
+                    {
+                    "Name" = "8:AdicionalesGP2013"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_B61F7B0A6F4D49F091888091FAC96E09"
+                        "Folders"
+                        {
+                        }
+                    }
                     "{9EF0B969-E518-4E46-987F-47570745A589}:_87DCFEAB723B4D869C1584B8F137EBAB"
                     {
                     "Name" = "8:AdicionalesGP2015"
@@ -980,7 +873,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:GP MEX Contabilidad Electrónica 1.3"
         "ProductCode" = "8:{2A82DCAA-32FA-4BA2-84CB-6D3CB00E1ADD}"
-        "PackageCode" = "8:{021AD207-22D4-4227-B9C0-CB8FBB8838F9}"
+        "PackageCode" = "8:{9DB48936-5131-44CE-BB04-135A8B4A987B}"
         "UpgradeCode" = "8:{862532C7-C312-45D1-8E48-75CFA1C48A8A}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

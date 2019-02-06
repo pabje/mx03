@@ -12,57 +12,132 @@ GO
 
 SET QUOTED_IDENTIFIER ON
 GO
-
-CREATE VIEW [dbo].[vw_dace_smartlist1]
+--Propósito. Controla la aplicación de cfdis de compras
+--31/12/18 LT Creación
+--05/02/19 jcf Reformulación de consulta
+--
+create VIEW [dbo].[vw_dace_smartlist1]
 AS
-SELECT     m.CNTRLTYP, m.DOCTYPE, m.CNTRLNUM, m.DOCNUMBR, m.DOCDATE, m.VENDORID, a.DOCAMNT, a.CURNCYID, a.TRXDSCRN, 
-                      CASE m.DOCTYPE WHEN 6 THEN CASE WHEN MAX(CFDIA.METODOPAGO) = 'PUE' AND MAX(isnull(asoc.MexFolioFiscal, '')) = '' THEN MAX(APLICADO.MexFolioFiscal) 
-                      ELSE MAX(asoc.MexFolioFiscal) END ELSE MAX(asoc.MexFolioFiscal) END AS CFDI_ASOC, CASE m.DOCTYPE WHEN 1 THEN CASE WHEN (CFDI.METODOPAGO) 
-                      = 'PUE' THEN MAX(asoc.MexFolioFiscal) ELSE MAX(aplicado.MexFolioFiscal) END WHEN 6 THEN CASE WHEN (CFDIa.METODOPAGO) 
-                      = 'PUE' THEN MAX(aplicado.MexFolioFiscal) ELSE MAX(aplicado.MexFolioFiscal) END END AS CFDI_Apli, ISNULL(CFDI.METODOPAGO, '') AS MetodoPago, 
-                      CFDIA.METODOPAGO AS cfdia_metodopago, CASE WHEN CFDI.METODOPAGO = 'PUE' OR
-                      CFDIA.METODOPAGO = 'PUE' THEN CASE WHEN m.DOCTYPE = 1 AND ISNULL(MAX(aplicado.MexFolioFiscal), '') = '' AND MAX(a.DocAplic) IS NOT NULL 
-                      THEN 'CFDI SE APLICO OK' ELSE CASE WHEN m.DOCTYPE = 6 AND ISNULL(MAX(asoc.MexFolioFiscal), '') 
-                      = '' THEN 'CFDI SE APLICO OK' ELSE 'CFDI SE APLICO ERRADO' END END ELSE CASE WHEN MIN(dbo.fun_DACE_ValidarAplica(CASE m.DOCTYPE WHEN 1 THEN aplicado.MexFolioFiscal
-                       WHEN 6 THEN asoc.MexFolioFiscal END, CASE m.DOCTYPE WHEN 1 THEN asoc.MexFolioFiscal WHEN 6 THEN aplicado.MexFolioFiscal END)) 
-                      > 0 THEN 'CFDI SE APLICO OK' ELSE 'CFDI SE APLICO ERRADO' END END AS OBSERVACIONES, m.DCSTATUS,
-					  pm.TXRGNNUM, pm.VENDNAME
-FROM         dbo.PM00400 AS m LEFT OUTER JOIN
-                          (SELECT     o.VCHRNMBR, o.VENDORID, o.DOCTYPE, o.DOCDATE, o.DOCNUMBR, o.DOCAMNT, o.CURTRXAM, o.TRXDSCRN, o.VOIDED, o.CURNCYID, 
-                                                   'OPEN' AS ESTATUS, CASE o.DOCTYPE WHEN 6 THEN B.APTVCHNM WHEN 1 THEN B.VCHRNMBR END AS DocAplic, 
-                                                   CASE o.DOCTYPE WHEN 6 THEN B.APTODCTY WHEN 1 THEN B.DOCTYPE END AS DocTipoAplic
-                            FROM          dbo.PM20000 AS o LEFT OUTER JOIN
-                                                   dbo.PM20100 AS B ON CASE o.DOCTYPE WHEN 6 THEN B.DOCTYPE WHEN 1 THEN B.APTODCTY END = o.DOCTYPE AND 
-                                                   CASE o.DOCTYPE WHEN 6 THEN B.VCHRNMBR WHEN 1 THEN B.APTVCHNM END = o.VCHRNMBR
-                            UNION
-                            SELECT     o.VCHRNMBR, o.VENDORID, o.DOCTYPE, o.DOCDATE, o.DOCNUMBR, o.DOCAMNT, o.CURTRXAM, o.TRXDSCRN, o.VOIDED, o.CURNCYID, 
-                                                  'HIST' AS ESTATUS, CASE o.DOCTYPE WHEN 6 THEN B.APTVCHNM WHEN 1 THEN B.VCHRNMBR END AS Expr1, 
-                                                  CASE o.DOCTYPE WHEN 6 THEN B.APTODCTY WHEN 1 THEN B.DOCTYPE END AS Expr2
-                            FROM         dbo.PM30200 AS o LEFT OUTER JOIN
-                                                  dbo.PM30300 AS B ON CASE o.DOCTYPE WHEN 6 THEN B.DOCTYPE WHEN 1 THEN B.APTODCTY END = o.DOCTYPE AND 
-                                                  CASE o.DOCTYPE WHEN 6 THEN B.VCHRNMBR WHEN 1 THEN B.APTVCHNM END = o.VCHRNMBR
-							) AS a
-							ON m.DOCTYPE = a.DOCTYPE AND 
-							m.CNTRLNUM = a.VCHRNMBR 
-			LEFT OUTER JOIN  dbo.ACA_IETU00400 AS asoc 
-				ON asoc.DOCTYPE = a.DOCTYPE 
-				AND asoc.VCHRNMBR = a.VCHRNMBR 
-			LEFT OUTER JOIN dbo.ACA_IETU00400 AS aplicado 
-				ON aplicado.DOCTYPE = a.DocTipoAplic 
-				AND aplicado.VCHRNMBR = a.DocAplic 
-			LEFT OUTER JOIN dace.ComprobanteCFDI AS CFDI 
-				ON CFDI.TIPOCOMPROBANTE = CASE M.DOCTYPE WHEN 6 THEN 'P' WHEN 1 THEN 'I' END 
-				AND CFDI.UUID = asoc.MexFolioFiscal 
-			LEFT OUTER JOIN dace.ComprobanteCFDI AS CFDIA 
-				ON CFDIA.TIPOCOMPROBANTE = CASE M.DOCTYPE WHEN 6 THEN 'I' END 
-				AND CFDIA.UUID = aplicado.MexFolioFiscal
-			 left join pm00200 pm
-				on pm.VENDORID = a.VENDORID
-WHERE     (a.VOIDED = 0)
-GROUP BY m.DOCTYPE, m.CNTRLNUM, m.DOCNUMBR, m.DOCDATE, m.VENDORID, a.DOCAMNT, a.CURNCYID, a.TRXDSCRN, asoc.MexFolioFiscal, CFDI.METODOPAGO, 
-                      CFDIA.METODOPAGO, m.DCSTATUS, m.CNTRLTYP, pm.TXRGNNUM, pm.VENDNAME
+SELECT     0 CNTRLTYP, m.DOCTYPE, m.VCHRNMBR CNTRLNUM, m.DOCNUMBR, m.DOCDATE, m.VENDORID, isnull(validaciones.DOCAMNT, 0) DOCAMNT, isnull(validaciones.CURNCYID, '') CURNCYID, validaciones.TRXDSCRN,
+		validaciones.CFDI_ASOC, validaciones.MetodoPago, isnull(validaciones.observaciones, '') observaciones, 
+		3 DCSTATUS, m.TXRGNNUM, m.VENDNAME, validaciones.numComprobantesAplicados
+FROM dbo.vwPmTransaccionesTodas m 
+	 cross apply [dbo].[daceFnValidaAplicacionCFDICompra](m.VCHRNMBR, m.DOCTYPE) validaciones  
 
 GO
 
 GRANT  SELECT ON [dbo].[vw_dace_smartlist1] TO [DYNGRP] 
 GO 
+------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------
+--DEPRECATED:
+--SELECT     m.CNTRLTYP, m.DOCTYPE, m.CNTRLNUM, m.DOCNUMBR, m.DOCDATE, m.VENDORID, a.DOCAMNT, a.CURNCYID, a.TRXDSCRN, 
+--           CASE m.DOCTYPE 
+--				WHEN 6 THEN 
+--					CASE WHEN MAX(CFDIA.METODOPAGO) = 'PUE' AND MAX(isnull(asoc.MexFolioFiscal, '')) = '' THEN 
+--							MAX(APLICADO.MexFolioFiscal) 
+--						ELSE MAX(asoc.MexFolioFiscal) 
+--					END 
+--				ELSE 
+--					MAX(asoc.MexFolioFiscal) 
+--			END AS CFDI_ASOC, 
+--			CASE m.DOCTYPE 
+--				WHEN 1 THEN 
+--					CASE WHEN (CFDI.METODOPAGO) = 'PUE' THEN 
+--							MAX(asoc.MexFolioFiscal) 
+--						ELSE MAX(aplicado.MexFolioFiscal) 
+--					END 
+--				WHEN 6 THEN 
+--					CASE WHEN (CFDIa.METODOPAGO) = 'PUE' THEN 
+--							MAX(aplicado.MexFolioFiscal) 
+--						ELSE MAX(aplicado.MexFolioFiscal) 
+--					END 
+--			END AS CFDI_Apli, 
+--			ISNULL(CFDI.METODOPAGO, '') AS MetodoPago, 
+--            CFDIA.METODOPAGO AS cfdia_metodopago, 
+--			CASE WHEN CFDI.METODOPAGO = 'PUE' OR CFDIA.METODOPAGO = 'PUE' THEN 
+--					CASE WHEN m.DOCTYPE = 1 AND ISNULL(MAX(aplicado.MexFolioFiscal), '') = '' AND MAX(a.DocAplic) IS NOT NULL THEN 
+--							'CFDI SE APLICO OK' 
+--						ELSE 
+--							CASE WHEN m.DOCTYPE = 6 AND ISNULL(MAX(asoc.MexFolioFiscal), '') = '' THEN 
+--								'CFDI SE APLICO OK' 
+--								ELSE 'CFDI SE APLICO ERRADO' 
+--							END 
+--					END 
+--				ELSE 
+--					CASE WHEN MIN(dbo.fun_DACE_ValidarAplica(
+--													CASE m.DOCTYPE WHEN 1 THEN aplicado.MexFolioFiscal
+--																	WHEN 6 THEN asoc.MexFolioFiscal 
+--													END, 
+--													CASE m.DOCTYPE WHEN 1 THEN asoc.MexFolioFiscal 
+--																	WHEN 6 THEN aplicado.MexFolioFiscal END)) > 0 THEN 
+--							'CFDI SE APLICO OK' 
+--						ELSE 'CFDI SE APLICO ERRADO' 
+--					END 
+--			END AS OBSERVACIONES, 
+--			m.DCSTATUS, pm.TXRGNNUM, pm.VENDNAME
+--FROM         dbo.PM00400 AS m LEFT OUTER JOIN
+--                          (SELECT   o.VCHRNMBR, o.VENDORID, o.DOCTYPE, o.DOCDATE, o.DOCNUMBR, o.DOCAMNT, o.CURTRXAM, o.TRXDSCRN, o.VOIDED, o.CURNCYID, 
+--                                    'OPEN' AS ESTATUS, 
+--									CASE o.DOCTYPE 
+--										WHEN 6 THEN B.APTVCHNM 
+--										WHEN 1 THEN B.VCHRNMBR 
+--									END AS DocAplic, 
+--                                    CASE o.DOCTYPE 
+--										WHEN 6 THEN B.APTODCTY 
+--										WHEN 1 THEN B.DOCTYPE 
+--									END AS DocTipoAplic
+--                            FROM    dbo.PM20000 AS o 
+--									LEFT OUTER JOIN dbo.PM20100 AS B 
+--									ON CASE o.DOCTYPE 
+--											WHEN 6 THEN B.DOCTYPE 
+--											WHEN 1 THEN B.APTODCTY 
+--										END = o.DOCTYPE 
+--									AND CASE o.DOCTYPE 
+--											WHEN 6 THEN B.VCHRNMBR 
+--											WHEN 1 THEN B.APTVCHNM 
+--										END = o.VCHRNMBR
+--                            UNION
+--                            SELECT  o.VCHRNMBR, o.VENDORID, o.DOCTYPE, o.DOCDATE, o.DOCNUMBR, o.DOCAMNT, o.CURTRXAM, o.TRXDSCRN, o.VOIDED, o.CURNCYID, 
+--                                    'HIST' AS ESTATUS, 
+--									CASE o.DOCTYPE 
+--										WHEN 6 THEN B.APTVCHNM 
+--										WHEN 1 THEN B.VCHRNMBR 
+--									END AS Expr1, 
+--                                    CASE o.DOCTYPE 
+--										WHEN 6 THEN B.APTODCTY 
+--										WHEN 1 THEN B.DOCTYPE 
+--									END AS Expr2
+--                            FROM    dbo.PM30200 AS o 
+--									LEFT OUTER JOIN dbo.PM30300 AS B 
+--									ON CASE o.DOCTYPE 
+--										WHEN 6 THEN B.DOCTYPE 
+--										WHEN 1 THEN B.APTODCTY 
+--									END = o.DOCTYPE 
+--									AND CASE o.DOCTYPE 
+--										WHEN 6 THEN B.VCHRNMBR 
+--										WHEN 1 THEN B.APTVCHNM 
+--									END = o.VCHRNMBR
+--							) AS a
+--							ON m.DOCTYPE = a.DOCTYPE AND 
+--							m.CNTRLNUM = a.VCHRNMBR 
+--			LEFT OUTER JOIN  dbo.ACA_IETU00400 AS asoc 
+--				ON asoc.DOCTYPE = a.DOCTYPE 
+--				AND asoc.VCHRNMBR = a.VCHRNMBR 
+--			LEFT OUTER JOIN dbo.ACA_IETU00400 AS aplicado 
+--				ON aplicado.DOCTYPE = a.DocTipoAplic 
+--				AND aplicado.VCHRNMBR = a.DocAplic 
+--			LEFT OUTER JOIN dace.ComprobanteCFDI AS CFDI 
+--				ON CFDI.TIPOCOMPROBANTE = CASE M.DOCTYPE WHEN 6 THEN 'P' WHEN 1 THEN 'I' END 
+--				AND CFDI.UUID = asoc.MexFolioFiscal 
+--			LEFT OUTER JOIN dace.ComprobanteCFDI AS CFDIA 
+--				ON CFDIA.TIPOCOMPROBANTE = CASE M.DOCTYPE WHEN 6 THEN 'I' END 
+--				AND CFDIA.UUID = aplicado.MexFolioFiscal
+--			 left join pm00200 pm
+--				on pm.VENDORID = a.VENDORID
+--WHERE     (a.VOIDED = 0)
+--GROUP BY m.DOCTYPE, m.CNTRLNUM, m.DOCNUMBR, m.DOCDATE, m.VENDORID, a.DOCAMNT, a.CURNCYID, a.TRXDSCRN, asoc.MexFolioFiscal, CFDI.METODOPAGO, 
+--         CFDIA.METODOPAGO, m.DCSTATUS, m.CNTRLTYP, pm.TXRGNNUM, pm.VENDNAME
+--GO
+
+

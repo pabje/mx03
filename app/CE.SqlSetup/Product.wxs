@@ -99,7 +99,7 @@
 
       <Component Id="SqlComponentReclasificaI" Guid="BDDC4637-6BC9-424E-A1A1-712E0620CAA7" KeyPath="yes">
         <sql:SqlDatabase Id="SqlDatabase20" User="SQLUser" Server="[SQLSERVER]" Database="[SQLDATABASE]" CreateOnInstall="no" DropOnUninstall="no" ContinueOnError="yes" >
-          <sql:SqlScript Id="CreateObj201" BinaryKey="CreateObj201" ExecuteOnInstall="yes" Sequence="201" ExecuteOnReinstall="yes"/>
+          <!--<sql:SqlScript Id="CreateObj201" BinaryKey="CreateObj201" ExecuteOnInstall="yes" Sequence="201" ExecuteOnReinstall="yes"/>-->
           <sql:SqlScript Id="CreateObj210" BinaryKey="CreateObj210" ExecuteOnInstall="yes" Sequence="210" ExecuteOnReinstall="yes"/>
           <sql:SqlScript Id="CreateObj220" BinaryKey="CreateObj220" ExecuteOnInstall="yes" Sequence="220" ExecuteOnReinstall="yes"/>
           <sql:SqlScript Id="CreateObj230" BinaryKey="CreateObj230" ExecuteOnInstall="yes" Sequence="230" ExecuteOnReinstall="yes"/>
@@ -215,7 +215,7 @@
     <Binary Id="CreateObj199" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\195_DaPermisosContaElectronica.grant.sql"/>
 
     <!--Reclasificación de impuestos-->
-    <Binary Id="CreateObj201" SourceFile="C:\jcTii\Desarrollo\MEX_ReclasificaImpuestos\mx04\GP2013\sql\01 trgins_pm20000_aplicaIetu.trigger.OPCIONAL.sql"/>
+    <!--<Binary Id="CreateObj201" SourceFile="C:\jcTii\Desarrollo\MEX_ReclasificaImpuestos\mx04\GP2013\sql\01 trgins_pm20000_aplicaIetu.trigger.OPCIONAL.sql"/>-->
     <Binary Id="CreateObj210" SourceFile="C:\jcTii\Desarrollo\MEX_ReclasificaImpuestos\mx04\GP2013\sql\10_ACA_RID_FillTempTable_PM.sprocedure.sql"/>
     <Binary Id="CreateObj220" SourceFile="C:\jcTii\Desarrollo\MEX_ReclasificaImpuestos\mx04\GP2013\sql\20_ACA_RID_FillTempTable_RM.sprocedure.sql"/>
     <Binary Id="CreateObj230" SourceFile="C:\jcTii\Desarrollo\MEX_ReclasificaImpuestos\mx04\GP2013\sql\30_ACA_RID_PM_Revertir.sprocedure.sql"/>

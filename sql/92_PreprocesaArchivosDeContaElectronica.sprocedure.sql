@@ -20,7 +20,7 @@ CREATE PROCEDURE dcem.PreprocesaArchivosDeContaElectronica
 AS
 	declare @fechaIni datetime, @fechaFin datetime;
 	set @fechaFin = GETDATE();
-	set @fechaIni = @fechaFin - 1000;
+	set @fechaIni = @fechaFin - 30;
 
 	INSERT into dcem.dcemPoliza(jrnentry, trxdate, refrence, nodoTransaccion) 
 	select t.jrnentry, t.trxdate, t.refrence, dbo.dcemfcntransaccion(0, 0, 0, t.jrnentry, t.TRXDATE)

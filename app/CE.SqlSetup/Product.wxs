@@ -86,19 +86,20 @@
           <sql:SqlScript Id="CreateObj127" BinaryKey="CreateObj127" ExecuteOnInstall="yes" Sequence="127" ExecuteOnReinstall="yes"/>
           <sql:SqlScript Id="CreateObj130" BinaryKey="CreateObj130" ExecuteOnInstall="yes" Sequence="130" ExecuteOnReinstall="yes"/>
           <sql:SqlScript Id="CreateObj133" BinaryKey="CreateObj133" ExecuteOnInstall="yes" Sequence="133" ExecuteOnReinstall="yes"/>
-          <sql:SqlScript Id="CreateObj135" BinaryKey="CreateObj135" ExecuteOnInstall="yes" Sequence="133" ExecuteOnReinstall="yes"/>
-          <sql:SqlScript Id="CreateObj138" BinaryKey="CreateObj138" ExecuteOnInstall="yes" Sequence="133" ExecuteOnReinstall="yes"/>
-          <sql:SqlScript Id="CreateObj141" BinaryKey="CreateObj141" ExecuteOnInstall="yes" Sequence="133" ExecuteOnReinstall="yes"/>
-          <sql:SqlScript Id="CreateObj143" BinaryKey="CreateObj143" ExecuteOnInstall="yes" Sequence="133" ExecuteOnReinstall="yes"/>
-          <sql:SqlScript Id="CreateObj145" BinaryKey="CreateObj145" ExecuteOnInstall="yes" Sequence="133" ExecuteOnReinstall="yes"/>
-          <sql:SqlScript Id="CreateObj199" BinaryKey="CreateObj199" ExecuteOnInstall="yes" Sequence="136" ExecuteOnReinstall="yes"/>
+          <sql:SqlScript Id="CreateObj135" BinaryKey="CreateObj135" ExecuteOnInstall="yes" Sequence="135" ExecuteOnReinstall="yes"/>
+          <sql:SqlScript Id="CreateObj138" BinaryKey="CreateObj138" ExecuteOnInstall="yes" Sequence="138" ExecuteOnReinstall="yes"/>
+          <sql:SqlScript Id="CreateObj141" BinaryKey="CreateObj141" ExecuteOnInstall="yes" Sequence="141" ExecuteOnReinstall="yes"/>
+          <sql:SqlScript Id="CreateObj143" BinaryKey="CreateObj143" ExecuteOnInstall="yes" Sequence="143" ExecuteOnReinstall="yes"/>
+          <sql:SqlScript Id="CreateObj144" BinaryKey="CreateObj144" ExecuteOnInstall="yes" Sequence="144" ExecuteOnReinstall="yes"/>
+          <sql:SqlScript Id="CreateObj145" BinaryKey="CreateObj145" ExecuteOnInstall="yes" Sequence="145" ExecuteOnReinstall="yes"/>
+          <sql:SqlScript Id="CreateObj199" BinaryKey="CreateObj199" ExecuteOnInstall="yes" Sequence="199" ExecuteOnReinstall="yes"/>
 
       </sql:SqlDatabase>
       </Component>
 
       <Component Id="SqlComponentReclasificaI" Guid="BDDC4637-6BC9-424E-A1A1-712E0620CAA7" KeyPath="yes">
         <sql:SqlDatabase Id="SqlDatabase20" User="SQLUser" Server="[SQLSERVER]" Database="[SQLDATABASE]" CreateOnInstall="no" DropOnUninstall="no" ContinueOnError="yes" >
-          <sql:SqlScript Id="CreateObj201" BinaryKey="CreateObj201" ExecuteOnInstall="yes" Sequence="201" ExecuteOnReinstall="yes"/>
+          <!--<sql:SqlScript Id="CreateObj201" BinaryKey="CreateObj201" ExecuteOnInstall="yes" Sequence="201" ExecuteOnReinstall="yes"/>-->
           <sql:SqlScript Id="CreateObj210" BinaryKey="CreateObj210" ExecuteOnInstall="yes" Sequence="210" ExecuteOnReinstall="yes"/>
           <sql:SqlScript Id="CreateObj220" BinaryKey="CreateObj220" ExecuteOnInstall="yes" Sequence="220" ExecuteOnReinstall="yes"/>
           <sql:SqlScript Id="CreateObj230" BinaryKey="CreateObj230" ExecuteOnInstall="yes" Sequence="230" ExecuteOnReinstall="yes"/>
@@ -209,11 +210,12 @@
     <Binary Id="CreateObj138" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\97_daceComprobantesCFDI.table.sql"/>
     <Binary Id="CreateObj141" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\99_daceSpComprobanteCfdiInsDel.sprocedures.sql"/>
     <Binary Id="CreateObj143" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\110_fun_DACE_ValidarAplica.function.sql"/>
+    <Binary Id="CreateObj144" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\110_daceFnValidaAplicacionCFDICompra.function.sql"/>
     <Binary Id="CreateObj145" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\112_vw_dace_smartlist1.view.sql"/>
     <Binary Id="CreateObj199" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\195_DaPermisosContaElectronica.grant.sql"/>
 
     <!--Reclasificación de impuestos-->
-    <Binary Id="CreateObj201" SourceFile="C:\jcTii\Desarrollo\MEX_ReclasificaImpuestos\mx04\GP2013\sql\01 trgins_pm20000_aplicaIetu.trigger.OPCIONAL.sql"/>
+    <!--<Binary Id="CreateObj201" SourceFile="C:\jcTii\Desarrollo\MEX_ReclasificaImpuestos\mx04\GP2013\sql\01 trgins_pm20000_aplicaIetu.trigger.OPCIONAL.sql"/>-->
     <Binary Id="CreateObj210" SourceFile="C:\jcTii\Desarrollo\MEX_ReclasificaImpuestos\mx04\GP2013\sql\10_ACA_RID_FillTempTable_PM.sprocedure.sql"/>
     <Binary Id="CreateObj220" SourceFile="C:\jcTii\Desarrollo\MEX_ReclasificaImpuestos\mx04\GP2013\sql\20_ACA_RID_FillTempTable_RM.sprocedure.sql"/>
     <Binary Id="CreateObj230" SourceFile="C:\jcTii\Desarrollo\MEX_ReclasificaImpuestos\mx04\GP2013\sql\30_ACA_RID_PM_Revertir.sprocedure.sql"/>

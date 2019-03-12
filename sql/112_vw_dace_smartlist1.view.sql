@@ -18,9 +18,10 @@ GO
 --
 create VIEW [dbo].[vw_dace_smartlist1]
 AS
-SELECT     0 CNTRLTYP, m.DOCTYPE, m.VCHRNMBR CNTRLNUM, m.DOCNUMBR, m.DOCDATE, m.VENDORID, isnull(validaciones.DOCAMNT, 0) DOCAMNT, isnull(validaciones.CURNCYID, '') CURNCYID, validaciones.TRXDSCRN,
+SELECT  0 CNTRLTYP, m.DOCTYPE [Tipo de documento], m.VCHRNMBR [Num. comprobante], m.DOCNUMBR [Num. documento], m.DOCDATE [Fecha], m.VENDORID [Id. proveedor], 
+		isnull(validaciones.DOCAMNT, 0) [Monto documento], isnull(validaciones.CURNCYID, '') [Moneda], validaciones.TRXDSCRN [Referencia],
 		validaciones.CFDI_ASOC, validaciones.MetodoPago, isnull(validaciones.observaciones, '') observaciones, 
-		3 DCSTATUS, m.TXRGNNUM, m.VENDNAME, validaciones.numComprobantesAplicados
+		3 DCSTATUS, m.TXRGNNUM [RFC], m.VENDNAME [Nombre del proveedor], validaciones.numComprobantesAplicados
 FROM dbo.vwPmTransaccionesTodas m 
 	 cross apply [dbo].[daceFnValidaAplicacionCFDICompra](m.VCHRNMBR, m.DOCTYPE) validaciones  
 

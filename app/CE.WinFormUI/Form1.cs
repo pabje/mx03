@@ -322,7 +322,7 @@ namespace CE.WinFormUI
 
                 foreach (DataGridViewRow row in gridVista.Rows)
                 {
-                    if (row.Cells[0].Value != null && (bool)row.Cells[0].Value)
+                    if (row.Cells[0].Value != null && row.Cells[0].Value.ToString() == "1")
                     {
                         row.DefaultCellStyle.BackColor = Color.Yellow;
                     }

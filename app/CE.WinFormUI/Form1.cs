@@ -735,23 +735,21 @@ namespace CE.WinFormUI
 
         private int FiltrarComprobantes(bool ExisteLista, List<string> ComprobantesABuscar)
         {
+            string efcnstring = System.Configuration.ConfigurationManager.AppSettings[companySelected() + "_UIEFConnString"].ToString();
+            string pcnstring = System.Configuration.ConfigurationManager.ConnectionStrings[companySelected()].ToString();
+
             mainController = new MainDB("");
-            mainController.connectionString = "metadata=res://*/Model1.csdl|res://*/Model1.ssdl|res://*/Model1.msl;provider=System.Data.SqlClient;"+
-                                                "provider connection string='" + 
-                                                "data source = 10.1.1.22; initial catalog = MEX10; User Id = sa; Password = sa22; MultipleActiveResultSets = True; "+
-                                                "application name=EntityFramework'";
+            mainController.connectionString = efcnstring + pcnstring + "application name=EntityFramework'";
+            //mainController.connectionString = "metadata=res://*/Model1.csdl|res://*/Model1.ssdl|res://*/Model1.msl;provider=System.Data.SqlClient;"+
+            //                                    "provider connection string='" + 
+            //                                    "data source = 10.1.1.22; initial catalog = MEX10; User Id = sa; Password = sa22; MultipleActiveResultSets = True; "+
+            //                                    "application name=EntityFramework'";
 
             mainController.eventoErrDB += MainController_eventoErrorDB;
 
             bool cbFechaMarcada = checkBoxFecha.Checked;
             DateTime fini = dtPickerDesde.Value.Date.AddHours(0).AddMinutes(0).AddSeconds(0);
             DateTime ffin = dtPickerHasta.Value.Date.AddHours(23).AddMinutes(59).AddSeconds(59);
-            //if (!checkBoxPacientes_numero_pf.Checked && !checkBoxFecha.Checked && !checkBoxTipoComprobante.Checked && !checkBoxPacientes_nombre_cliente.Checked && !checkBoxPacientes_referencia.Checked && !cboxUUID.Checked)
-            //{
-            //    cbFechaMarcada = true;
-            //    fini = fechaIni;
-            //    ffin = fechaFin;
-            //}
 
             if (cmbBTipoComprobante.SelectedItem == null)
                 cmbBTipoComprobante.SelectedIndex = 0;
@@ -760,8 +758,18 @@ namespace CE.WinFormUI
             if (rBtnAsignados.Checked) asignado = 1;    //asignados
             if (rBtnNoAsignados.Checked) asignado = 2;  //no asignados
 
+            string uuid = tboxUuid.Text;
+            if (cboxUUID.Checked && uuid.Contains("https://") && uuid.Contains("id=") && uuid.Contains("&re="))
+            {
+                int ini = tboxUuid.Text.IndexOf("id=") +3;
+                int fin = tboxUuid.Text.IndexOf("&re=");
+                int len = fin - ini;
+                if (len > 20 && ini > 0)
+                    uuid = uuid.Substring(ini, len);
+            }
+
             listaDeCfdisFiltrados = mainController.getFacturas( asignado,
-                                        cboxUUID.Checked, tboxUuid.Text, string.Empty,
+                                        cboxUUID.Checked, uuid, string.Empty,
                                         cbFechaMarcada, fini, ffin,
                                         checkBoxTipoComprobante.Checked, cmbBTipoComprobante.SelectedItem.ToString(),
                                         cBoxRfcEmisor.Checked, tboxRFCEmisor.Text,
@@ -1198,6 +1206,11 @@ namespace CE.WinFormUI
         {
             InicializaCheckBoxDelGrid(gridFiles, idxChkBox, cBoxMark.Checked);
 
+        }
+
+        private void tboxUuid_TextChanged(object sender, EventArgs e)
+        {
+            cboxUUID.Checked = true;
         }
     }
 }

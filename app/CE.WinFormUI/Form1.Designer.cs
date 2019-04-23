@@ -71,8 +71,22 @@
             this.dataGridView8 = new System.Windows.Forms.DataGridView();
             this.dataGridView9 = new System.Windows.Forms.DataGridView();
             this.gridFiles = new System.Windows.Forms.DataGridView();
+            this.M = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.UUID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TIPOCOMPROBANTE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FECHA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EMISOR_RFC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NOMBREARCHIVO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CARPETAARCHIVO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.VCHRNMBR = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DOCTYPE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.VALIDADO = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.panel6 = new System.Windows.Forms.Panel();
             this.cBoxMark = new System.Windows.Forms.CheckBox();
+            this.gBoxAsignados = new System.Windows.Forms.GroupBox();
+            this.rBtnTodos = new System.Windows.Forms.RadioButton();
+            this.rBtnNoAsignados = new System.Windows.Forms.RadioButton();
+            this.rBtnAsignados = new System.Windows.Forms.RadioButton();
             this.tboxRFCEmisor = new System.Windows.Forms.TextBox();
             this.cBoxRfcEmisor = new System.Windows.Forms.CheckBox();
             this.tboxUuid = new System.Windows.Forms.TextBox();
@@ -98,6 +112,13 @@
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.grid = new System.Windows.Forms.DataGridView();
             this.gridVista = new System.Windows.Forms.DataGridView();
+            this.Marcar = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.col2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TipoSolicitud = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.NumOrden = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NumTramite = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel5 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -113,27 +134,6 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.lblError = new System.Windows.Forms.TextBox();
             this.lblProcesos = new System.Windows.Forms.TextBox();
-            this.rBtnTodos = new System.Windows.Forms.RadioButton();
-            this.rBtnAsignados = new System.Windows.Forms.RadioButton();
-            this.rBtnNoAsignados = new System.Windows.Forms.RadioButton();
-            this.gBoxAsignados = new System.Windows.Forms.GroupBox();
-            this.Marcar = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.col2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TipoSolicitud = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.NumOrden = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NumTramite = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.M = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.UUID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TIPOCOMPROBANTE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FECHA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EMISOR_RFC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NOMBREARCHIVO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CARPETAARCHIVO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.VCHRNMBR = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DOCTYPE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.VALIDADO = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
@@ -159,6 +159,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridFiles)).BeginInit();
             this.panel6.SuspendLayout();
+            this.gBoxAsignados.SuspendLayout();
             this.panel3.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.toolStrip3.SuspendLayout();
@@ -172,7 +173,6 @@
             this.toolStripAccionesXMLOtros.SuspendLayout();
             this.toolStripAccionesXML.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
-            this.gBoxAsignados.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -591,6 +591,75 @@
             this.gridFiles.TabIndex = 9;
             this.gridFiles.SelectionChanged += new System.EventHandler(this.gridFiles_SelectionChanged);
             // 
+            // M
+            // 
+            this.M.Frozen = true;
+            this.M.HeaderText = "M";
+            this.M.Name = "M";
+            this.M.Width = 25;
+            // 
+            // UUID
+            // 
+            this.UUID.DataPropertyName = "UUID";
+            this.UUID.HeaderText = "UUID";
+            this.UUID.Name = "UUID";
+            // 
+            // TIPOCOMPROBANTE
+            // 
+            this.TIPOCOMPROBANTE.DataPropertyName = "TIPOCOMPROBANTE";
+            this.TIPOCOMPROBANTE.HeaderText = "Tipo";
+            this.TIPOCOMPROBANTE.Name = "TIPOCOMPROBANTE";
+            this.TIPOCOMPROBANTE.Width = 50;
+            // 
+            // FECHA
+            // 
+            this.FECHA.DataPropertyName = "FECHA";
+            this.FECHA.HeaderText = "Fecha";
+            this.FECHA.Name = "FECHA";
+            this.FECHA.Width = 60;
+            // 
+            // EMISOR_RFC
+            // 
+            this.EMISOR_RFC.DataPropertyName = "EMISOR_RFC";
+            this.EMISOR_RFC.HeaderText = "RFC";
+            this.EMISOR_RFC.Name = "EMISOR_RFC";
+            // 
+            // NOMBREARCHIVO
+            // 
+            this.NOMBREARCHIVO.DataPropertyName = "NOMBREARCHIVO";
+            this.NOMBREARCHIVO.HeaderText = "Archivo";
+            this.NOMBREARCHIVO.Name = "NOMBREARCHIVO";
+            // 
+            // CARPETAARCHIVO
+            // 
+            this.CARPETAARCHIVO.DataPropertyName = "CARPETAARCHIVO";
+            this.CARPETAARCHIVO.HeaderText = "Carpeta";
+            this.CARPETAARCHIVO.Name = "CARPETAARCHIVO";
+            // 
+            // VCHRNMBR
+            // 
+            this.VCHRNMBR.DataPropertyName = "VCHRNMBR";
+            this.VCHRNMBR.HeaderText = "Comprobante GP";
+            this.VCHRNMBR.Name = "VCHRNMBR";
+            // 
+            // DOCTYPE
+            // 
+            this.DOCTYPE.DataPropertyName = "DOCTYPE";
+            this.DOCTYPE.HeaderText = "Tipo GP";
+            this.DOCTYPE.Name = "DOCTYPE";
+            this.DOCTYPE.Width = 60;
+            // 
+            // VALIDADO
+            // 
+            this.VALIDADO.DataPropertyName = "VALIDADO";
+            this.VALIDADO.FalseValue = "0";
+            this.VALIDADO.HeaderText = "Validado";
+            this.VALIDADO.IndeterminateValue = "0";
+            this.VALIDADO.Name = "VALIDADO";
+            this.VALIDADO.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.VALIDADO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.VALIDADO.TrueValue = "1";
+            // 
             // panel6
             // 
             this.panel6.Controls.Add(this.cBoxMark);
@@ -625,6 +694,52 @@
             this.cBoxMark.UseVisualStyleBackColor = false;
             this.cBoxMark.CheckedChanged += new System.EventHandler(this.cBoxMark_CheckedChanged);
             // 
+            // gBoxAsignados
+            // 
+            this.gBoxAsignados.BackColor = System.Drawing.Color.Transparent;
+            this.gBoxAsignados.Controls.Add(this.rBtnTodos);
+            this.gBoxAsignados.Controls.Add(this.rBtnNoAsignados);
+            this.gBoxAsignados.Controls.Add(this.rBtnAsignados);
+            this.gBoxAsignados.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.gBoxAsignados.Location = new System.Drawing.Point(18, 1);
+            this.gBoxAsignados.Name = "gBoxAsignados";
+            this.gBoxAsignados.Size = new System.Drawing.Size(111, 46);
+            this.gBoxAsignados.TabIndex = 50;
+            this.gBoxAsignados.TabStop = false;
+            this.gBoxAsignados.Text = "Asignados";
+            // 
+            // rBtnTodos
+            // 
+            this.rBtnTodos.AutoSize = true;
+            this.rBtnTodos.Checked = true;
+            this.rBtnTodos.Location = new System.Drawing.Point(6, 13);
+            this.rBtnTodos.Name = "rBtnTodos";
+            this.rBtnTodos.Size = new System.Drawing.Size(55, 17);
+            this.rBtnTodos.TabIndex = 86;
+            this.rBtnTodos.TabStop = true;
+            this.rBtnTodos.Text = "Todos";
+            this.rBtnTodos.UseVisualStyleBackColor = true;
+            // 
+            // rBtnNoAsignados
+            // 
+            this.rBtnNoAsignados.AutoSize = true;
+            this.rBtnNoAsignados.Location = new System.Drawing.Point(61, 28);
+            this.rBtnNoAsignados.Name = "rBtnNoAsignados";
+            this.rBtnNoAsignados.Size = new System.Drawing.Size(39, 17);
+            this.rBtnNoAsignados.TabIndex = 88;
+            this.rBtnNoAsignados.Text = "No";
+            this.rBtnNoAsignados.UseVisualStyleBackColor = true;
+            // 
+            // rBtnAsignados
+            // 
+            this.rBtnAsignados.AutoSize = true;
+            this.rBtnAsignados.Location = new System.Drawing.Point(61, 13);
+            this.rBtnAsignados.Name = "rBtnAsignados";
+            this.rBtnAsignados.Size = new System.Drawing.Size(36, 17);
+            this.rBtnAsignados.TabIndex = 87;
+            this.rBtnAsignados.Text = "Sí";
+            this.rBtnAsignados.UseVisualStyleBackColor = true;
+            // 
             // tboxRFCEmisor
             // 
             this.tboxRFCEmisor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -652,6 +767,7 @@
             this.tboxUuid.Name = "tboxUuid";
             this.tboxUuid.Size = new System.Drawing.Size(401, 20);
             this.tboxUuid.TabIndex = 70;
+            this.tboxUuid.TextChanged += new System.EventHandler(this.tboxUuid_TextChanged);
             // 
             // dtPickerDesde
             // 
@@ -928,6 +1044,59 @@
             this.gridVista.Size = new System.Drawing.Size(662, 358);
             this.gridVista.TabIndex = 14;
             // 
+            // Marcar
+            // 
+            this.Marcar.FalseValue = "0";
+            this.Marcar.Frozen = true;
+            this.Marcar.HeaderText = "C";
+            this.Marcar.IndeterminateValue = "-1";
+            this.Marcar.Name = "Marcar";
+            this.Marcar.TrueValue = "1";
+            this.Marcar.Width = 25;
+            // 
+            // col2
+            // 
+            this.col2.DataPropertyName = "year1";
+            this.col2.HeaderText = "Año";
+            this.col2.Name = "col2";
+            this.col2.ReadOnly = true;
+            // 
+            // col3
+            // 
+            this.col3.DataPropertyName = "periodid";
+            this.col3.HeaderText = "Mes";
+            this.col3.Name = "col3";
+            this.col3.ReadOnly = true;
+            // 
+            // col4
+            // 
+            this.col4.DataPropertyName = "tipodoc";
+            this.col4.HeaderText = "Tipo";
+            this.col4.Name = "col4";
+            this.col4.ReadOnly = true;
+            // 
+            // TipoSolicitud
+            // 
+            this.TipoSolicitud.HeaderText = "Tipo Solicitud";
+            this.TipoSolicitud.Items.AddRange(new object[] {
+            "AF - Acto de Fiscalización",
+            "FC - Fiscalización Compulsa",
+            "DE - Devolución",
+            "CO - Compensación"});
+            this.TipoSolicitud.Name = "TipoSolicitud";
+            // 
+            // NumOrden
+            // 
+            this.NumOrden.HeaderText = "N. Orden";
+            this.NumOrden.MaxInputLength = 13;
+            this.NumOrden.Name = "NumOrden";
+            // 
+            // NumTramite
+            // 
+            this.NumTramite.HeaderText = "N. Trámite";
+            this.NumTramite.MaxInputLength = 14;
+            this.NumTramite.Name = "NumTramite";
+            // 
             // panel5
             // 
             this.panel5.Controls.Add(this.label3);
@@ -1096,174 +1265,6 @@
             this.lblProcesos.Size = new System.Drawing.Size(718, 147);
             this.lblProcesos.TabIndex = 1;
             // 
-            // rBtnTodos
-            // 
-            this.rBtnTodos.AutoSize = true;
-            this.rBtnTodos.Checked = true;
-            this.rBtnTodos.Location = new System.Drawing.Point(6, 13);
-            this.rBtnTodos.Name = "rBtnTodos";
-            this.rBtnTodos.Size = new System.Drawing.Size(55, 17);
-            this.rBtnTodos.TabIndex = 86;
-            this.rBtnTodos.TabStop = true;
-            this.rBtnTodos.Text = "Todos";
-            this.rBtnTodos.UseVisualStyleBackColor = true;
-            // 
-            // rBtnAsignados
-            // 
-            this.rBtnAsignados.AutoSize = true;
-            this.rBtnAsignados.Location = new System.Drawing.Point(61, 13);
-            this.rBtnAsignados.Name = "rBtnAsignados";
-            this.rBtnAsignados.Size = new System.Drawing.Size(36, 17);
-            this.rBtnAsignados.TabIndex = 87;
-            this.rBtnAsignados.Text = "Sí";
-            this.rBtnAsignados.UseVisualStyleBackColor = true;
-            // 
-            // rBtnNoAsignados
-            // 
-            this.rBtnNoAsignados.AutoSize = true;
-            this.rBtnNoAsignados.Location = new System.Drawing.Point(61, 28);
-            this.rBtnNoAsignados.Name = "rBtnNoAsignados";
-            this.rBtnNoAsignados.Size = new System.Drawing.Size(39, 17);
-            this.rBtnNoAsignados.TabIndex = 88;
-            this.rBtnNoAsignados.Text = "No";
-            this.rBtnNoAsignados.UseVisualStyleBackColor = true;
-            // 
-            // gBoxAsignados
-            // 
-            this.gBoxAsignados.BackColor = System.Drawing.Color.Transparent;
-            this.gBoxAsignados.Controls.Add(this.rBtnTodos);
-            this.gBoxAsignados.Controls.Add(this.rBtnNoAsignados);
-            this.gBoxAsignados.Controls.Add(this.rBtnAsignados);
-            this.gBoxAsignados.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.gBoxAsignados.Location = new System.Drawing.Point(18, 1);
-            this.gBoxAsignados.Name = "gBoxAsignados";
-            this.gBoxAsignados.Size = new System.Drawing.Size(111, 46);
-            this.gBoxAsignados.TabIndex = 50;
-            this.gBoxAsignados.TabStop = false;
-            this.gBoxAsignados.Text = "Asignados";
-            // 
-            // Marcar
-            // 
-            this.Marcar.FalseValue = "0";
-            this.Marcar.Frozen = true;
-            this.Marcar.HeaderText = "C";
-            this.Marcar.IndeterminateValue = "-1";
-            this.Marcar.Name = "Marcar";
-            this.Marcar.TrueValue = "1";
-            this.Marcar.Width = 25;
-            // 
-            // col2
-            // 
-            this.col2.DataPropertyName = "year1";
-            this.col2.HeaderText = "Año";
-            this.col2.Name = "col2";
-            this.col2.ReadOnly = true;
-            // 
-            // col3
-            // 
-            this.col3.DataPropertyName = "periodid";
-            this.col3.HeaderText = "Mes";
-            this.col3.Name = "col3";
-            this.col3.ReadOnly = true;
-            // 
-            // col4
-            // 
-            this.col4.DataPropertyName = "tipodoc";
-            this.col4.HeaderText = "Tipo";
-            this.col4.Name = "col4";
-            this.col4.ReadOnly = true;
-            // 
-            // TipoSolicitud
-            // 
-            this.TipoSolicitud.HeaderText = "Tipo Solicitud";
-            this.TipoSolicitud.Items.AddRange(new object[] {
-            "AF - Acto de Fiscalización",
-            "FC - Fiscalización Compulsa",
-            "DE - Devolución",
-            "CO - Compensación"});
-            this.TipoSolicitud.Name = "TipoSolicitud";
-            // 
-            // NumOrden
-            // 
-            this.NumOrden.HeaderText = "N. Orden";
-            this.NumOrden.MaxInputLength = 13;
-            this.NumOrden.Name = "NumOrden";
-            // 
-            // NumTramite
-            // 
-            this.NumTramite.HeaderText = "N. Trámite";
-            this.NumTramite.MaxInputLength = 14;
-            this.NumTramite.Name = "NumTramite";
-            // 
-            // M
-            // 
-            this.M.Frozen = true;
-            this.M.HeaderText = "M";
-            this.M.Name = "M";
-            this.M.Width = 25;
-            // 
-            // UUID
-            // 
-            this.UUID.DataPropertyName = "UUID";
-            this.UUID.HeaderText = "UUID";
-            this.UUID.Name = "UUID";
-            // 
-            // TIPOCOMPROBANTE
-            // 
-            this.TIPOCOMPROBANTE.DataPropertyName = "TIPOCOMPROBANTE";
-            this.TIPOCOMPROBANTE.HeaderText = "Tipo";
-            this.TIPOCOMPROBANTE.Name = "TIPOCOMPROBANTE";
-            this.TIPOCOMPROBANTE.Width = 50;
-            // 
-            // FECHA
-            // 
-            this.FECHA.DataPropertyName = "FECHA";
-            this.FECHA.HeaderText = "Fecha";
-            this.FECHA.Name = "FECHA";
-            this.FECHA.Width = 60;
-            // 
-            // EMISOR_RFC
-            // 
-            this.EMISOR_RFC.DataPropertyName = "EMISOR_RFC";
-            this.EMISOR_RFC.HeaderText = "RFC";
-            this.EMISOR_RFC.Name = "EMISOR_RFC";
-            // 
-            // NOMBREARCHIVO
-            // 
-            this.NOMBREARCHIVO.DataPropertyName = "NOMBREARCHIVO";
-            this.NOMBREARCHIVO.HeaderText = "Archivo";
-            this.NOMBREARCHIVO.Name = "NOMBREARCHIVO";
-            // 
-            // CARPETAARCHIVO
-            // 
-            this.CARPETAARCHIVO.DataPropertyName = "CARPETAARCHIVO";
-            this.CARPETAARCHIVO.HeaderText = "Carpeta";
-            this.CARPETAARCHIVO.Name = "CARPETAARCHIVO";
-            // 
-            // VCHRNMBR
-            // 
-            this.VCHRNMBR.DataPropertyName = "VCHRNMBR";
-            this.VCHRNMBR.HeaderText = "Comprobante GP";
-            this.VCHRNMBR.Name = "VCHRNMBR";
-            // 
-            // DOCTYPE
-            // 
-            this.DOCTYPE.DataPropertyName = "DOCTYPE";
-            this.DOCTYPE.HeaderText = "Tipo GP";
-            this.DOCTYPE.Name = "DOCTYPE";
-            this.DOCTYPE.Width = 60;
-            // 
-            // VALIDADO
-            // 
-            this.VALIDADO.DataPropertyName = "VALIDADO";
-            this.VALIDADO.FalseValue = "0";
-            this.VALIDADO.HeaderText = "Validado";
-            this.VALIDADO.IndeterminateValue = "0";
-            this.VALIDADO.Name = "VALIDADO";
-            this.VALIDADO.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.VALIDADO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.VALIDADO.TrueValue = "1";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1307,6 +1308,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridFiles)).EndInit();
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
+            this.gBoxAsignados.ResumeLayout(false);
+            this.gBoxAsignados.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -1329,8 +1332,6 @@
             this.toolStripAccionesXML.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
-            this.gBoxAsignados.ResumeLayout(false);
-            this.gBoxAsignados.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

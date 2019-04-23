@@ -14,6 +14,7 @@ namespace CE.Business
     {
         String _archivoYCarpeta = String.Empty;
         bool _valida = false;
+        string _uuid = string.Empty;
         String _sxml = String.Empty;
         TransformerXML _plantillaXslt = null;
         XNamespace _nscfdi;
@@ -56,6 +57,8 @@ namespace CE.Business
                 _sxml = value;
             }
         }
+
+        public string Uuid { get => _uuid; set => _uuid = value; }
 
         public Cfdi(String nameSpace, TransformerXML plantillaXslt)
         {

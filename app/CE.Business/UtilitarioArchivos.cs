@@ -13,6 +13,10 @@ namespace CE.Business
     {
         String nscfdi;
         TransformerXML plantillaXslt;
+
+        public string Nscfdi { get => nscfdi; set => nscfdi = value; }
+        public TransformerXML PlantillaXslt { get => plantillaXslt; set => plantillaXslt = value; }
+
         public UtilitarioArchivos(String nameSpace, String rutaXslt)
         {
             nscfdi = nameSpace;

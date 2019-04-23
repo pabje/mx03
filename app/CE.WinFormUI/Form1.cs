@@ -15,16 +15,44 @@ using System.Threading.Tasks;
 using System.Threading;
 using ClosedXML.Excel;
 using System.IO;
+using CE.Data;
 
 namespace CE.WinFormUI
 {
     public partial class Form1 : Form
     {
+        private MainDB mainController;
         UtilitarioArchivos utileria;
+        IList<vwComprobanteCFDI> listaDeCfdisFiltrados = null;
+        short idxChkBox = 0;                    //columna check box del grid
+        short idxTipo = 2;
+        short idxUuid = 1;
+
         private List<ParametrosDeArchivo> lParametros = new List<ParametrosDeArchivo>();
         public Form1()
         {
             InitializeComponent();
+
+            //cmbBEstado.SelectedIndex = 0;
+
+
+            //configuracion = new ParametrosDB();
+            //cargarEmpresas();
+
+            //var empresaDefault = configuracion.Empresas.Where(x => x.Idbd == configuracion.DefaultDB).First();
+            //cmbBxCompannia.SelectedIndex = configuracion.Empresas.IndexOf(empresaDefault);
+
+            //filasActualizadas = new List<int>();
+
+            //lblFecha.Text = DateTime.Now.ToShortDateString();
+            //lblUsuario.Text = Environment.UserName;
+
+            //this.idDetallePrefacturaSeleccionada = new object[2];
+
+        }
+        private void MainController_eventoErrorDB(object sender, ErrorEventArgsEntidadesGP e)
+        {
+            lblProcesos.Text += e.mensajeError + Environment.NewLine;
         }
 
         private string companySelected()
@@ -32,7 +60,7 @@ namespace CE.WinFormUI
             return ((ComboBoxItem)cmbEmpresas.SelectedItem).Value;
         }
 
-        private List<DcemVwContabilidad> listado = null;
+        //private List<DcemVwContabilidad> listado = null;
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -139,11 +167,20 @@ namespace CE.WinFormUI
 
         void InicializaCheckBoxDelGrid(DataGridView dataGrid, short idxChkBox, bool marca)
         {
+            //for (int r = 0; r < dataGrid.RowCount; r++)
+            //{
+            //    dataGrid[idxChkBox, r].Value = !LNoSeleccionados.Exists(x => x.TIPOCOMPROBANTE.Equals(dataGrid[idxTipo, r].Value.ToString())
+            //                                                                && x.UUID.Equals(dataGrid[idxUuid, r].Value.ToString()));
+            //}
+            //dataGrid.EndEdit();
+            //dataGrid.Refresh();
+
             for (int r = 0; r < dataGrid.RowCount; r++)
             {
                 dataGrid[idxChkBox, r].Value = marca;
             }
             dataGrid.EndEdit();
+            dataGrid.Refresh();
         }
 
         private object mostrarContenido(Int16 year1, Int16 periodid, string tipo)
@@ -372,10 +409,8 @@ namespace CE.WinFormUI
                 if (item != null)
                 {
                     System.Type type = item.GetType();
-                    string archivo = (string)type.GetProperty("archivo").GetValue(item, null);
-                    string directorio = (string)type.GetProperty("directorio").GetValue(item, null);
-
-                    string text = System.IO.File.ReadAllText(directorio + "\\" + archivo);
+                    string archivo = (string)type.GetProperty("NOMBREARCHIVO").GetValue(item, null);
+                    string directorio = (string)type.GetProperty("CARPETAARCHIVO").GetValue(item, null);
 
                     XNamespace cfdi = @"http://www.sat.gob.mx/cfd/3";
                     XNamespace pago10 = @"http://www.sat.gob.mx/Pagos";
@@ -383,6 +418,8 @@ namespace CE.WinFormUI
 
                     try
                     {
+                        string text = System.IO.File.ReadAllText(directorio + "\\" + archivo);
+
                         XDocument xdoc = XDocument.Parse(text);
                         string tipoComprobante = GPCompras.AveriguarElTipoDeCfdi(xdoc, cfdi);
                         switch (tipoComprobante)
@@ -464,71 +501,71 @@ namespace CE.WinFormUI
                                 break;
                             case "P":
                                 var comprobanteP = (from c in xdoc.Descendants(cfdi + "Comprobante")
-                                                   select new
-                                                   {
-                                                       folio = c.Attribute("Folio") == null ? "" : c.Attribute("Folio").Value,
-                                                       fecha = c.Attribute("Fecha").Value,
-                                                       tipoDeComprobante = c.Attribute("TipoDeComprobante").Value,
-                                                   }).ToList();
+                                                    select new
+                                                    {
+                                                        folio = c.Attribute("Folio") == null ? "" : c.Attribute("Folio").Value,
+                                                        fecha = c.Attribute("Fecha").Value,
+                                                        tipoDeComprobante = c.Attribute("TipoDeComprobante").Value,
+                                                    }).ToList();
 
 
                                 var emisorP = (from c in xdoc.Descendants(cfdi + "Emisor")
-                                          select new
-                                          {
-                                              Rfc = c.Attribute("Rfc").Value,
-                                              Nombre = c.Attribute("Nombre") == null ? "" : c.Attribute("Nombre").Value,
-                                              Regimen = c.Attribute("RegimenFiscal") == null ? "" : c.Attribute("RegimenFiscal").Value,
-                                          }).ToList();
+                                               select new
+                                               {
+                                                   Rfc = c.Attribute("Rfc").Value,
+                                                   Nombre = c.Attribute("Nombre") == null ? "" : c.Attribute("Nombre").Value,
+                                                   Regimen = c.Attribute("RegimenFiscal") == null ? "" : c.Attribute("RegimenFiscal").Value,
+                                               }).ToList();
 
                                 var receptorP = (from c in xdoc.Descendants(cfdi + "Receptor")
-                                            select new
-                                            {
-                                                Rfc = c.Attribute("Rfc").Value,
-                                                Nombre = c.Attribute("Nombre") == null ? "" : c.Attribute("Nombre").Value,
-                                                UsoCFDI = c.Attribute("UsoCFDI") == null ? "" : c.Attribute("UsoCFDI").Value,
-                                            }).ToList();
-
-                                var conceptoP = (from c in xdoc.Descendants(cfdi + "Concepto")
-                                            select new
-                                            {
-                                                Cantidad = c.Attribute("Cantidad").Value,
-                                                Unidad = c.Attribute("ClaveUnidad").Value,
-                                                Producto = c.Attribute("ClaveProdServ") == null ? "" : c.Attribute("ClaveProdServ").Value,
-                                                Descripcion = c.Attribute("Descripcion").Value,
-                                            }).ToList();
-
-                                var pagoP = (from c in xdoc.Descendants(pago10 + "Pago")
-                                            select new
-                                            {
-                                                CuentaDelBeneficiario = c.Attribute("CtaBeneficiario") == null ? "" : c.Attribute("CtaBeneficiario").Value,
-                                                RFCEmisorCuentaBeneficiario = c.Attribute("RfcEmisorCtaBen") == null ? "" : c.Attribute("RfcEmisorCtaBen").Value,
-                                                CuentaDelOrdenante = c.Attribute("CtaOrdenante") == null ? "" : c.Attribute("CtaOrdenante").Value,
-                                                RFCEmisorCuentaOrdenante = c.Attribute("RfcEmisorCtaOrd") == null ? "" : c.Attribute("RfcEmisorCtaOrd").Value,
-                                                NumeroDeOperacion = c.Attribute("NumOperacion") == null ? "" : c.Attribute("NumOperacion").Value,
-                                                Monto = c.Attribute("Monto").Value,
-                                                MonedaDelPago = c.Attribute("MonedaP").Value,
-                                                FormaDePagoP = c.Attribute("FormaDePagoP").Value,
-                                                FechaDelPago = c.Attribute("FechaPago").Value,
-                                            }).ToList();
-
-                                var docRelacionadoP = (from c in xdoc.Descendants(pago10 + "DoctoRelacionado")
-                                    select new
-                                             {
-                                                SaldoInsoluto = c.Attribute("ImpSaldoInsoluto") == null ? "" : c.Attribute("ImpSaldoInsoluto").Value,
-                                                Pagado = c.Attribute("ImpPagado") == null ? "" : c.Attribute("ImpPagado").Value,
-                                                SaldoAnterior = c.Attribute("ImpSaldoAnt") == null ? "" : c.Attribute("ImpSaldoAnt").Value,
-                                                Parcialidad = c.Attribute("NumParcialidad").Value,
-                                                MetodoDePago = c.Attribute("MetodoDePagoDR").Value,
-                                                TipoDeCambio = c.Attribute("TipoCambioDR") == null ? "" : c.Attribute("TipoCambioDR").Value,
-                                                Moneda = c.Attribute("MonedaDR").Value,
-                                                UUID = c.Attribute("IdDocumento").Value,
-                                    }).ToList();
-
-                                var timbreDigitalP = (from c in xdoc.Descendants(tfd + "TimbreFiscalDigital")
                                                  select new
                                                  {
-                                                     UUID = c.Attribute("UUID").Value
+                                                     Rfc = c.Attribute("Rfc").Value,
+                                                     Nombre = c.Attribute("Nombre") == null ? "" : c.Attribute("Nombre").Value,
+                                                     UsoCFDI = c.Attribute("UsoCFDI") == null ? "" : c.Attribute("UsoCFDI").Value,
                                                  }).ToList();
+
+                                var conceptoP = (from c in xdoc.Descendants(cfdi + "Concepto")
+                                                 select new
+                                                 {
+                                                     Cantidad = c.Attribute("Cantidad").Value,
+                                                     Unidad = c.Attribute("ClaveUnidad").Value,
+                                                     Producto = c.Attribute("ClaveProdServ") == null ? "" : c.Attribute("ClaveProdServ").Value,
+                                                     Descripcion = c.Attribute("Descripcion").Value,
+                                                 }).ToList();
+
+                                var pagoP = (from c in xdoc.Descendants(pago10 + "Pago")
+                                             select new
+                                             {
+                                                 CuentaDelBeneficiario = c.Attribute("CtaBeneficiario") == null ? "" : c.Attribute("CtaBeneficiario").Value,
+                                                 RFCEmisorCuentaBeneficiario = c.Attribute("RfcEmisorCtaBen") == null ? "" : c.Attribute("RfcEmisorCtaBen").Value,
+                                                 CuentaDelOrdenante = c.Attribute("CtaOrdenante") == null ? "" : c.Attribute("CtaOrdenante").Value,
+                                                 RFCEmisorCuentaOrdenante = c.Attribute("RfcEmisorCtaOrd") == null ? "" : c.Attribute("RfcEmisorCtaOrd").Value,
+                                                 NumeroDeOperacion = c.Attribute("NumOperacion") == null ? "" : c.Attribute("NumOperacion").Value,
+                                                 Monto = c.Attribute("Monto").Value,
+                                                 MonedaDelPago = c.Attribute("MonedaP").Value,
+                                                 FormaDePagoP = c.Attribute("FormaDePagoP").Value,
+                                                 FechaDelPago = c.Attribute("FechaPago").Value,
+                                             }).ToList();
+
+                                var docRelacionadoP = (from c in xdoc.Descendants(pago10 + "DoctoRelacionado")
+                                                       select new
+                                                       {
+                                                           SaldoInsoluto = c.Attribute("ImpSaldoInsoluto") == null ? "" : c.Attribute("ImpSaldoInsoluto").Value,
+                                                           Pagado = c.Attribute("ImpPagado") == null ? "" : c.Attribute("ImpPagado").Value,
+                                                           SaldoAnterior = c.Attribute("ImpSaldoAnt") == null ? "" : c.Attribute("ImpSaldoAnt").Value,
+                                                           Parcialidad = c.Attribute("NumParcialidad").Value,
+                                                           MetodoDePago = c.Attribute("MetodoDePagoDR").Value,
+                                                           TipoDeCambio = c.Attribute("TipoCambioDR") == null ? "" : c.Attribute("TipoCambioDR").Value,
+                                                           Moneda = c.Attribute("MonedaDR").Value,
+                                                           UUID = c.Attribute("IdDocumento").Value,
+                                                       }).ToList();
+
+                                var timbreDigitalP = (from c in xdoc.Descendants(tfd + "TimbreFiscalDigital")
+                                                      select new
+                                                      {
+                                                          UUID = c.Attribute("UUID").Value
+                                                      }).ToList();
 
                                 dataGridView1.DataSource = comprobanteP;
                                 dataGridView2.DataSource = emisorP;
@@ -547,13 +584,19 @@ namespace CE.WinFormUI
                                 break;
                         }
                     }
+                    catch (IOException io)
+                    {
+                        lblError.Text += "Excepción al abrir el archivo XML. Es probable que el archivo no exista en la carpeta: " + directorio + Environment.NewLine + io.Message;
+                        lblError.Refresh();
+                    }
                     catch (Exception abr)
                     {
-                        lblError.Text += "Excepción al abrir el archivo. Es probable que el xml no sea válido. Revise el archivo." + Environment.NewLine + abr.Message;
+                        lblError.Text += "Excepción al abrir el archivo XML. Es probable que el xml no sea válido. Revise el archivo." + Environment.NewLine + abr.Message;
                         lblError.Refresh();
                     }
                 }
             }
+
         }
 
         private void oL_ProcesoOkImportarPM(object sender, GPCompras.ProcesoOkImportarPMEventArgs e)
@@ -589,49 +632,42 @@ namespace CE.WinFormUI
             lblError.Refresh();
         }
 
-        private async Task validaArchivosAsync(IProgress<int> prbar, UtilitarioArchivos utileria)
-        {
-            string archivo = String.Empty;
-            string directorio = String.Empty;
+        //private async Task<List<Cfdi>> validaArchivosAsync(IProgress<int> prbar, UtilitarioArchivos utileria, List<Cfdi> listaCfdis)
+        //{
+        //    string archivo = String.Empty;
+        //    string directorio = String.Empty;
 
-            //carga y validar archivos
-            int i = 1;
-            int max = gridFiles.Rows.Count;
-            foreach (DataGridViewRow row in gridFiles.Rows)
-            {
-                try
-                {
-                    var item = row.DataBoundItem;
-                    if (item != null)
-                    {
-                        System.Type type = item.GetType();
-                        archivo = (string)type.GetProperty("archivo").GetValue(item, null);
-                        directorio = (string)type.GetProperty("directorio").GetValue(item, null);
+        //    //carga y valida archivos
+        //    int i = 1;
+        //    int max = listaCfdis.Count;
+        //    foreach (Cfdi row in listaCfdis)
+        //    {
+        //        try
+        //        {
+        //                var cmp = await utileria.CargarArchivoAsync(row.ArchivoYCarpeta);
+        //                row.Valida = cmp.ValidaSelloAsync();
 
-                        var cmp = await utileria.CargarArchivoAsync(directorio + "\\" + archivo);
-                        if (cmp.ValidaSelloAsync())
-                            row.Cells[1].Style.BackColor = Color.LawnGreen;
-                        else
-                            row.Cells[1].Style.BackColor = Color.LightGray;
-
-                        if (prbar != null)
-                        {
-                            prbar.Report(100 * i / max);
-                            //lblProcesos.Text += "Validando : " + archivo + Environment.NewLine ;
-                        }
-                        i++;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    lblError.Text += "Excepción al leer "+ archivo + " " + ex.Message + Environment.NewLine;
-                }
-            }
-            prbar.Report(0);
-        }
+        //                if (prbar != null)
+        //                {
+        //                    prbar.Report(100 * i / max);
+        //                }
+        //                i++;
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            lblError.Text += "Excepción al leer "+ archivo + " " + ex.Message + Environment.NewLine;
+        //        }
+        //    }
+        //    prbar.Report(0);
+        //    return listaCfdis;
+        //}
 
         private async void tsButtonSeleccionarArchivo_Click(object sender, EventArgs e)
         {
+            GPCompras gpCompras = new GPCompras(companySelected());
+            gpCompras.ErrorImportarPM += new EventHandler<GPCompras.ErrorImportarPMEventArgs>(oL_ErrorImportarPM);
+            gpCompras.ProcesoOkImportarPM += new EventHandler<GPCompras.ProcesoOkImportarPMEventArgs>(oL_ProcesoOkImportarPM);
+
             lblError.Text = "";
             lblProcesos.Text = "";
             dataGridView1.DataSource = null;
@@ -651,46 +687,176 @@ namespace CE.WinFormUI
             {
                 string[] filenames = openFileDialog1.FileNames;
 
-                var f = from ff in filenames
+                var archivosSeleccionados = from ff in filenames
                         select new { archivo = System.IO.Path.GetFileName(ff),
                                      directorio = System.IO.Path.GetDirectoryName(ff),
                                      };
 
-                gridFiles.Columns.Clear();
+                //gridFiles.Columns.Clear();
 
-                DataGridViewColumn col = new DataGridViewTextBoxColumn();
-                col.DataPropertyName = "archivo";
-                col.HeaderText = "Archivo";
-                col.Name = "col1";
-                gridFiles.Columns.Add(col);
+                //DataGridViewColumn col = new DataGridViewTextBoxColumn();
+                //col.DataPropertyName = "archivo";
+                //col.HeaderText = "Archivo";
+                //col.Name = "col1";
+                //gridFiles.Columns.Add(col);
 
-                col = new DataGridViewTextBoxColumn();
-                col.DataPropertyName = "selloValido";
-                col.HeaderText = "Sello";
-                col.Name = "selloValido";
-                gridFiles.Columns.Add(col);
+                //col = new DataGridViewTextBoxColumn();
+                //col.DataPropertyName = "selloValido";
+                //col.HeaderText = "Sello";
+                //col.Name = "selloValido";
+                //gridFiles.Columns.Add(col);
 
-                bindingSource3.DataSource = f.ToList();
-                gridFiles.AutoGenerateColumns = false;
-                gridFiles.DataSource = bindingSource3;
-                gridFiles.AutoResizeColumns();
-                gridFiles.Refresh();
+                //bindingSource3.DataSource = archivosSeleccionados.ToList();
+                //gridFiles.AutoGenerateColumns = false;
+                //gridFiles.DataSource = bindingSource3;
+                //gridFiles.AutoResizeColumns();
+                //gridFiles.Refresh();
+
+                var cfdisSeleccionados = archivosSeleccionados.Select(a => new Cfdi(utileria.Nscfdi, utileria.PlantillaXslt)
+                                                   {ArchivoYCarpeta = Path.Combine(a.directorio, a.archivo),
+                                                   Valida = false,
+                                                    } )
+                                             .ToList();
 
                 IProgress<int> prbar = new Progress<int>(p => tsProgressBar.Value = p);
-                await validaArchivosAsync(prbar, utileria);
+                List<Cfdi> cfdisValidados = await gpCompras.validaArchivosAsync(prbar, utileria, cfdisSeleccionados);
                 lblProcesos.Text += "Validaciones finalizadas." + Environment.NewLine;
+
+                List<Cfdi> cfdisCargados = await gpCompras.CargarCfdisEnLogAsync(cfdisValidados);
+                lblProcesos.Text += "Carga de Cfdis en el log finalizada ." + Environment.NewLine;
+
+                FiltrarComprobantes(true, cfdisCargados.Select(s => s.Uuid)
+                                                       .ToList());
+
                 lblProcesos.Text += "Listo para importar a GP."+Environment.NewLine;
             }
 
         }
 
-        private async void tsButtonImportarArchivos_Click(object sender, EventArgs e)
+        private int FiltrarComprobantes(bool ExisteLista, List<string> ComprobantesABuscar)
+        {
+            mainController = new MainDB("");
+            mainController.connectionString = "metadata=res://*/Model1.csdl|res://*/Model1.ssdl|res://*/Model1.msl;provider=System.Data.SqlClient;"+
+                                                "provider connection string='" + 
+                                                "data source = 10.1.1.22; initial catalog = MEX10; User Id = sa; Password = sa22; MultipleActiveResultSets = True; "+
+                                                "application name=EntityFramework'";
+
+            mainController.eventoErrDB += MainController_eventoErrorDB;
+
+            bool cbFechaMarcada = checkBoxFecha.Checked;
+            DateTime fini = dtPickerDesde.Value.Date.AddHours(0).AddMinutes(0).AddSeconds(0);
+            DateTime ffin = dtPickerHasta.Value.Date.AddHours(23).AddMinutes(59).AddSeconds(59);
+            //if (!checkBoxPacientes_numero_pf.Checked && !checkBoxFecha.Checked && !checkBoxTipoComprobante.Checked && !checkBoxPacientes_nombre_cliente.Checked && !checkBoxPacientes_referencia.Checked && !cboxUUID.Checked)
+            //{
+            //    cbFechaMarcada = true;
+            //    fini = fechaIni;
+            //    ffin = fechaFin;
+            //}
+
+            if (cmbBTipoComprobante.SelectedItem == null)
+                cmbBTipoComprobante.SelectedIndex = 0;
+
+            int asignado = 3;                           //todos
+            if (rBtnAsignados.Checked) asignado = 1;    //asignados
+            if (rBtnNoAsignados.Checked) asignado = 2;  //no asignados
+
+            listaDeCfdisFiltrados = mainController.getFacturas( asignado,
+                                        cboxUUID.Checked, tboxUuid.Text, string.Empty,
+                                        cbFechaMarcada, fini, ffin,
+                                        checkBoxTipoComprobante.Checked, cmbBTipoComprobante.SelectedItem.ToString(),
+                                        cBoxRfcEmisor.Checked, tboxRFCEmisor.Text,
+                                        ExisteLista, ComprobantesABuscar,
+                                        false, string.Empty, string.Empty);
+
+            //gridFiles.Columns.Clear();
+
+            //DataGridViewColumn col = new DataGridViewTextBoxColumn();
+            //col.DataPropertyName = "archivo";
+            //col.HeaderText = "Archivo";
+            //col.Name = "col1";
+            //gridFiles.Columns.Add(col);
+
+            //col = new DataGridViewTextBoxColumn();
+            //col.DataPropertyName = "selloValido";
+            //col.HeaderText = "Sello";
+            //col.Name = "selloValido";
+            //gridFiles.Columns.Add(col);
+
+            bindingSource3.DataSource = listaDeCfdisFiltrados;
+            gridFiles.AutoGenerateColumns = false;
+            gridFiles.DataSource = bindingSource3;
+            gridFiles.AutoResizeColumns();
+            gridFiles.Refresh();
+
+            //Restituir las filas marcadas usando la lista de docs no seleccionados
+            InicializaCheckBoxDelGrid(gridFiles, idxChkBox, true);
+
+            return listaDeCfdisFiltrados.Count;
+        }
+
+        /// <summary>
+        /// Filtra las facturas marcadas en el grid y memoriza las filas no marcadas.
+        /// </summary>
+        /// <param name=""></param>
+        /// <returns>bool: True indica que la lista ha sido filtrada exitosamente</returns>
+        public IList<vwComprobanteCFDI> filtraListaSeleccionada(DataGridView dg, ToolStripProgressBar tsp, short idxCheckBox, short idxTipo, short idxUuid, IList<vwComprobanteCFDI> lFacturas)
+        {
+            int i = 1;
+            //object[] llaveDocumento = new object[2];
+            //List<vwComprobanteCFDI> LDocsNoSeleccionados = new List<vwComprobanteCFDI>();
+            dg.EndEdit();
+            tsp.Value = 0;
+            IList<vwComprobanteCFDI> lf = lFacturas;
+            //cargar lista de no seleccionados
+            foreach (DataGridViewRow dgvr in dg.Rows)
+            {
+                bool marca = (dgvr.Cells[idxChkBox].Value != null && (dgvr.Cells[idxChkBox].Value.Equals(true) || dgvr.Cells[idxChkBox].Value.ToString().Equals("1")));
+                lf.Where(x => x.TIPOCOMPROBANTE.Equals(dgvr.Cells[idxTipo].Value.ToString()) && x.UUID.Equals(dgvr.Cells[idxUuid].Value.ToString()))
+                         .First().marcado = marca;
+
+                tsp.Value = Convert.ToInt32(i * 100 / dg.RowCount);
+                i++;
+            }
+
+            tsp.Value = 0;
+            //LDocsNoSeleccionados = lFacturas.Where(x => x.marcado.Equals(false)).ToList();
+            //bool vacio = dg.RowCount == LDocsNoSeleccionados.Count;
+            bool vacio = dg.RowCount == lf.Where(x => x.marcado.Equals(false)).ToList().Count;
+            if (vacio)
+                throw new ArgumentNullException("[filtraListaSeleccionada] No ha marcado ningún documento. Marque al menos una casilla en la primera columna para continuar con el proceso.\r\n");
+
+            var marcadas = lf.Where(x => x.marcado.Equals(true)).ToList();
+            return (marcadas);
+
+        }
+
+        private void tsButtonImportarArchivos_Click(object sender, EventArgs e)
         {
             lblError.Text = "";
             lblProcesos.Text = "";
 
             GPCompras gpCompras = new GPCompras(companySelected());
 
+            IList<vwComprobanteCFDI> archivos = filtraListaSeleccionada(gridFiles, tsProgressBar, idxChkBox, idxTipo, idxUuid, listaDeCfdisFiltrados);
+
+            gpCompras.ErrorImportarPM += new EventHandler<GPCompras.ErrorImportarPMEventArgs>(oL_ErrorImportarPM);
+            gpCompras.ProcesoOkImportarPM += new EventHandler<GPCompras.ProcesoOkImportarPMEventArgs>(oL_ProcesoOkImportarPM);
+
+            int metodo = 1;
+            if (radPOP.Checked)
+                metodo = 2;
+
+            gpCompras.IntegrarDocumentosGP(archivos, metodo);
+
+            if (archivos.Count == 0)
+                MessageBox.Show("Debe seleccionar archivos");
+
+            gridFiles.DataSource = null;
+
+        }
+
+        private List<string> ObtieneListaDeCfdis()
+        {
             List<string> archivos = new List<string>();
 
             foreach (DataGridViewRow row in gridFiles.Rows)
@@ -706,21 +872,7 @@ namespace CE.WinFormUI
                 }
             }
 
-            gpCompras.ErrorImportarPM += new EventHandler<GPCompras.ErrorImportarPMEventArgs>(oL_ErrorImportarPM);
-            gpCompras.ProcesoOkImportarPM += new EventHandler<GPCompras.ProcesoOkImportarPMEventArgs>(oL_ProcesoOkImportarPM);
-
-            int metodo = 1;
-            if (radPOP.Checked)
-                metodo = 2;
-
-            //gpCompras.Importar(archivos, metodo);
-            await gpCompras.IntegrarDocumentosGPAsync(archivos, metodo);
-
-            if (archivos.Count == 0)
-                MessageBox.Show("Debe seleccionar archivos");
-
-            gridFiles.DataSource = null;
-
+            return archivos;
         }
 
 
@@ -1000,6 +1152,51 @@ namespace CE.WinFormUI
         private void gridVista_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex == 0) gridVista.EndEdit();
+
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                lblProcesos.Text = "";
+                var errores = validarFiltrosPreFacturas();
+                if (errores == "")
+                {
+                    var c = FiltrarComprobantes(false, null);
+                    lblProcesos.Text = "";
+                    lblProcesos.AppendText("Total de documentos encontrados: " + c + Environment.NewLine);
+                }
+                else
+                    lblProcesos.Text = errores;
+            }
+            catch (Exception exc)
+            {
+                lblProcesos.Text = string.Concat(exc.Message, Environment.NewLine, exc?.InnerException.ToString(), Environment.NewLine);
+            }
+
+        }
+
+        private string validarFiltrosPreFacturas()
+        {
+            string errores = "";
+            if (checkBoxFecha.Checked)
+            {
+                if (dtPickerDesde.Value > dtPickerHasta.Value)
+                    errores += "El campo fecha inicial debe ser menor que la fecha final." + Environment.NewLine;
+            }
+
+            return errores;
+        }
+
+        private void checkBoxFecha_CheckedChanged(object sender, EventArgs e)
+        {
+            dtPickerDesde.Value = DateTime.Today.AddDays(-365);
+        }
+
+        private void cBoxMark_CheckedChanged(object sender, EventArgs e)
+        {
+            InicializaCheckBoxDelGrid(gridFiles, idxChkBox, cBoxMark.Checked);
 
         }
     }

@@ -100,6 +100,10 @@
     <Compile Include="TransformerXML.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CE.Data\CE.Data.csproj">
+      <Project>{ec1ece94-787f-4754-aeb8-563f8438068a}</Project>
+      <Name>CE.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CE.econn10\CE.econn10.csproj">
       <Project>{C1F2CC43-BEC3-47C1-9744-B5133ACA214B}</Project>
       <Name>CE.econn10</Name>

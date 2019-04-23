@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MEXModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'MEX10.dace.vwComprobanteCFDI' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vwComprobanteCFDI">
+          <Key>
+            <PropertyRef Name="UUID" />
+            <PropertyRef Name="TIPOCOMPROBANTE" />
+          </Key>
+          <Property Name="UUID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TIPOCOMPROBANTE" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="FOLIO" Type="varchar" MaxLength="35" />
+          <Property Name="FECHA" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="TOTAL" Type="numeric" Precision="19" Scale="5" Nullable="false" />
+          <Property Name="MONEDA" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="METODOPAGO" Type="varchar" MaxLength="5" />
+          <Property Name="EMISOR_RFC" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="RESUMENCFDI" Type="varchar" MaxLength="100" />
+          <Property Name="NOMBREARCHIVO" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CARPETAARCHIVO" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="VALIDADO" Type="smallint" Nullable="false" />
+          <Property Name="VCHRNMBR" Type="char" MaxLength="21" Nullable="false" />
+          <Property Name="DOCTYPE" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="MEXModelStoreContainer">
+          <EntitySet Name="vwComprobanteCFDI" EntityType="Self.vwComprobanteCFDI" store:Type="Views" store:Schema="dace">
+            <DefiningQuery>SELECT 
+    [vwComprobanteCFDI].[UUID] AS [UUID], 
+    [vwComprobanteCFDI].[TIPOCOMPROBANTE] AS [TIPOCOMPROBANTE], 
+    [vwComprobanteCFDI].[FOLIO] AS [FOLIO], 
+    [vwComprobanteCFDI].[FECHA] AS [FECHA], 
+    [vwComprobanteCFDI].[TOTAL] AS [TOTAL], 
+    [vwComprobanteCFDI].[MONEDA] AS [MONEDA], 
+    [vwComprobanteCFDI].[METODOPAGO] AS [METODOPAGO], 
+    [vwComprobanteCFDI].[EMISOR_RFC] AS [EMISOR_RFC], 
+    [vwComprobanteCFDI].[RESUMENCFDI] AS [RESUMENCFDI], 
+    [vwComprobanteCFDI].[NOMBREARCHIVO] AS [NOMBREARCHIVO], 
+    [vwComprobanteCFDI].[CARPETAARCHIVO] AS [CARPETAARCHIVO], 
+    [vwComprobanteCFDI].[VALIDADO] AS [VALIDADO], 
+    [vwComprobanteCFDI].[VCHRNMBR] AS [VCHRNMBR], 
+    [vwComprobanteCFDI].[DOCTYPE] AS [DOCTYPE]
+    FROM [dace].[vwComprobanteCFDI] AS [vwComprobanteCFDI]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MEXModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="vwComprobanteCFDI">
+          <Key>
+            <PropertyRef Name="UUID" />
+            <PropertyRef Name="TIPOCOMPROBANTE" />
+          </Key>
+          <Property Name="UUID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TIPOCOMPROBANTE" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FOLIO" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="FECHA" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TOTAL" Type="Decimal" Precision="19" Scale="5" Nullable="false" />
+          <Property Name="MONEDA" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="METODOPAGO" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="EMISOR_RFC" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RESUMENCFDI" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="NOMBREARCHIVO" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CARPETAARCHIVO" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="VALIDADO" Type="Int16" Nullable="false" />
+          <Property Name="VCHRNMBR" Type="String" Nullable="false" MaxLength="21" FixedLength="true" Unicode="false" />
+          <Property Name="DOCTYPE" Type="Int16" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="MexGPEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="vwComprobanteCFDI" EntityType="Self.vwComprobanteCFDI" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MEXModelStoreContainer" CdmEntityContainer="MexGPEntities">
+          <EntitySetMapping Name="vwComprobanteCFDI">
+            <EntityTypeMapping TypeName="MEXModel.vwComprobanteCFDI">
+              <MappingFragment StoreEntitySet="vwComprobanteCFDI">
+                <ScalarProperty Name="DOCTYPE" ColumnName="DOCTYPE" />
+                <ScalarProperty Name="VCHRNMBR" ColumnName="VCHRNMBR" />
+                <ScalarProperty Name="UUID" ColumnName="UUID" />
+                <ScalarProperty Name="TIPOCOMPROBANTE" ColumnName="TIPOCOMPROBANTE" />
+                <ScalarProperty Name="FOLIO" ColumnName="FOLIO" />
+                <ScalarProperty Name="FECHA" ColumnName="FECHA" />
+                <ScalarProperty Name="TOTAL" ColumnName="TOTAL" />
+                <ScalarProperty Name="MONEDA" ColumnName="MONEDA" />
+                <ScalarProperty Name="METODOPAGO" ColumnName="METODOPAGO" />
+                <ScalarProperty Name="EMISOR_RFC" ColumnName="EMISOR_RFC" />
+                <ScalarProperty Name="RESUMENCFDI" ColumnName="RESUMENCFDI" />
+                <ScalarProperty Name="NOMBREARCHIVO" ColumnName="NOMBREARCHIVO" />
+                <ScalarProperty Name="CARPETAARCHIVO" ColumnName="CARPETAARCHIVO" />
+                <ScalarProperty Name="VALIDADO" ColumnName="VALIDADO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

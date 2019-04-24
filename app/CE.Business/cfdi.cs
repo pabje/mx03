@@ -13,6 +13,7 @@ namespace CE.Business
     public class Cfdi
     {
         String _archivoYCarpeta = String.Empty;
+        String _archivoYCarpetaDestino = String.Empty;
         bool _valida = false;
         string _uuid = string.Empty;
         String _sxml = String.Empty;
@@ -59,6 +60,7 @@ namespace CE.Business
         }
 
         public string Uuid { get => _uuid; set => _uuid = value; }
+        public string ArchivoYCarpetaDestino { get => _archivoYCarpetaDestino; set => _archivoYCarpetaDestino = value; }
 
         public Cfdi(String nameSpace, TransformerXML plantillaXslt)
         {

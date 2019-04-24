@@ -75,10 +75,12 @@ namespace CE.Business
                                                   UUID = c.Attribute("UUID").Value
                                               }).FirstOrDefault();
 
-                                await CargaComprobanteCfdiAsync(xdoc, ns_cfdi, ns_tfd, comprobante.ArchivoYCarpeta, Helper.Izquierda(resumenI, 100), timbreI.UUID, Convert.ToInt16(comprobante.Valida));
+                                await CargaComprobanteCfdiAsync(xdoc, ns_cfdi, ns_tfd, comprobante.ArchivoYCarpetaDestino, Helper.Izquierda(resumenI, 100), timbreI.UUID, Convert.ToInt16(comprobante.Valida));
                                 comprobante.Uuid = timbreI.UUID;
                                 argsOK.Archivo = comprobante.ArchivoYCarpeta;
                                 argsOK.Msg = "CFDI de Ingreso guardado en log.";
+                                OnProcesoOkImportarPM(argsOK);
+
                                 break;
                             case "P":
                                 var pagoP = (from c in xdoc.Descendants(ns_pago10 + "Pago")
@@ -104,11 +106,10 @@ namespace CE.Business
                                                   UUID = c.Attribute("UUID").Value
                                               }).FirstOrDefault();
 
-                                await CargaComprobanteCfdiAsync(xdoc, ns_cfdi, ns_tfd, comprobante.ArchivoYCarpeta, Helper.Izquierda(resumenP, 100), timbreP.UUID, Convert.ToInt16(comprobante.Valida));
+                                await CargaComprobanteCfdiAsync(xdoc, ns_cfdi, ns_tfd, comprobante.ArchivoYCarpetaDestino, Helper.Izquierda(resumenP, 100), timbreP.UUID, Convert.ToInt16(comprobante.Valida));
                                 comprobante.Uuid = timbreP.UUID;
                                 argsOK.Archivo = comprobante.ArchivoYCarpeta;
                                 argsOK.Msg = "CFDI de Pago guardado en log.";
-
                                 OnProcesoOkImportarPM(argsOK);
 
                                 break;

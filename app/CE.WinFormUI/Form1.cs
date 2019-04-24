@@ -33,22 +33,6 @@ namespace CE.WinFormUI
         {
             InitializeComponent();
 
-            //cmbBEstado.SelectedIndex = 0;
-
-
-            //configuracion = new ParametrosDB();
-            //cargarEmpresas();
-
-            //var empresaDefault = configuracion.Empresas.Where(x => x.Idbd == configuracion.DefaultDB).First();
-            //cmbBxCompannia.SelectedIndex = configuracion.Empresas.IndexOf(empresaDefault);
-
-            //filasActualizadas = new List<int>();
-
-            //lblFecha.Text = DateTime.Now.ToShortDateString();
-            //lblUsuario.Text = Environment.UserName;
-
-            //this.idDetallePrefacturaSeleccionada = new object[2];
-
         }
         private void MainController_eventoErrorDB(object sender, ErrorEventArgsEntidadesGP e)
         {
@@ -59,8 +43,6 @@ namespace CE.WinFormUI
         {
             return ((ComboBoxItem)cmbEmpresas.SelectedItem).Value;
         }
-
-        //private List<DcemVwContabilidad> listado = null;
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -613,16 +595,16 @@ namespace CE.WinFormUI
             //el archivo quizas ya se movio cuando se exporto la factura, y vuelve a entrar porque se asigno folio
             if (!System.IO.File.Exists(directorio + "\\" + System.IO.Path.GetFileName(e.Archivo)))
                 System.IO.File.Move(e.Archivo, directorio + "\\" + System.IO.Path.GetFileName(e.Archivo));
-            else
-            {
-                try
-                {
-                    System.IO.File.Delete(e.Archivo);
-                }
-                catch
-                {
-                }
-            }
+            //else
+            //{
+            //    try
+            //    {
+            //        System.IO.File.Delete(e.Archivo);
+            //    }
+            //    catch
+            //    {
+            //    }
+            //}
         }
 
         private void oL_ErrorImportarPM(object sender, GPCompras.ErrorImportarPMEventArgs e)
@@ -711,10 +693,12 @@ namespace CE.WinFormUI
                 //gridFiles.DataSource = bindingSource3;
                 //gridFiles.AutoResizeColumns();
                 //gridFiles.Refresh();
+                string carpetaDestino = System.Configuration.ConfigurationManager.AppSettings[companySelected() + "_directorioDestino"].ToString();
 
                 var cfdisSeleccionados = archivosSeleccionados.Select(a => new Cfdi(utileria.Nscfdi, utileria.PlantillaXslt)
                                                    {ArchivoYCarpeta = Path.Combine(a.directorio, a.archivo),
-                                                   Valida = false,
+                                                    ArchivoYCarpetaDestino = Path.Combine(carpetaDestino, a.archivo),
+                                                    Valida = false,
                                                     } )
                                              .ToList();
 
@@ -810,8 +794,6 @@ namespace CE.WinFormUI
         public IList<vwComprobanteCFDI> filtraListaSeleccionada(DataGridView dg, ToolStripProgressBar tsp, short idxCheckBox, short idxTipo, short idxUuid, IList<vwComprobanteCFDI> lFacturas)
         {
             int i = 1;
-            //object[] llaveDocumento = new object[2];
-            //List<vwComprobanteCFDI> LDocsNoSeleccionados = new List<vwComprobanteCFDI>();
             dg.EndEdit();
             tsp.Value = 0;
             IList<vwComprobanteCFDI> lf = lFacturas;
@@ -827,8 +809,6 @@ namespace CE.WinFormUI
             }
 
             tsp.Value = 0;
-            //LDocsNoSeleccionados = lFacturas.Where(x => x.marcado.Equals(false)).ToList();
-            //bool vacio = dg.RowCount == LDocsNoSeleccionados.Count;
             bool vacio = dg.RowCount == lf.Where(x => x.marcado.Equals(false)).ToList().Count;
             if (vacio)
                 throw new ArgumentNullException("[filtraListaSeleccionada] No ha marcado ningún documento. Marque al menos una casilla en la primera columna para continuar con el proceso.\r\n");
@@ -859,7 +839,7 @@ namespace CE.WinFormUI
             if (archivos.Count == 0)
                 MessageBox.Show("Debe seleccionar archivos");
 
-            gridFiles.DataSource = null;
+            gridFiles.Refresh();
 
         }
 
@@ -1211,6 +1191,19 @@ namespace CE.WinFormUI
         private void tboxUuid_TextChanged(object sender, EventArgs e)
         {
             cboxUUID.Checked = true;
+        }
+
+        private void cmbEmpresas_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            dataGridView1.DataSource = null;
+            dataGridView2.DataSource = null;
+            dataGridView3.DataSource = null;
+            dataGridView4.DataSource = null;
+            dataGridView5.DataSource = null;
+            dataGridView6.DataSource = null;
+            dataGridView7.DataSource = null;
+            gridFiles.DataSource = null;
+
         }
     }
 }

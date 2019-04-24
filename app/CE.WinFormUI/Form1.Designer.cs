@@ -243,6 +243,7 @@
             this.cmbEmpresas.Name = "cmbEmpresas";
             this.cmbEmpresas.Size = new System.Drawing.Size(188, 21);
             this.cmbEmpresas.TabIndex = 6;
+            this.cmbEmpresas.SelectedIndexChanged += new System.EventHandler(this.cmbEmpresas_SelectedIndexChanged_1);
             // 
             // lblUsuario
             // 

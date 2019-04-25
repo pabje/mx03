@@ -646,6 +646,8 @@ namespace CE.WinFormUI
 
         private async void tsButtonSeleccionarArchivo_Click(object sender, EventArgs e)
         {
+            LecturaContabilidadFactory contae = new LecturaContabilidadFactory(companySelected());
+
             GPCompras gpCompras = new GPCompras(companySelected());
             gpCompras.ErrorImportarPM += new EventHandler<GPCompras.ErrorImportarPMEventArgs>(oL_ErrorImportarPM);
             gpCompras.ProcesoOkImportarPM += new EventHandler<GPCompras.ProcesoOkImportarPMEventArgs>(oL_ProcesoOkImportarPM);
@@ -706,7 +708,7 @@ namespace CE.WinFormUI
                 List<Cfdi> cfdisValidados = await gpCompras.validaArchivosAsync(prbar, utileria, cfdisSeleccionados);
                 lblProcesos.Text += "Validaciones finalizadas." + Environment.NewLine;
 
-                List<Cfdi> cfdisCargados = await gpCompras.CargarCfdisEnLogAsync(cfdisValidados);
+                List<Cfdi> cfdisCargados = await gpCompras.CargarCfdisEnLogAsync(cfdisValidados, contae.GetRFC());
                 lblProcesos.Text += "Carga de Cfdis en el log finalizada ." + Environment.NewLine;
 
                 FiltrarComprobantes(true, cfdisCargados.Select(s => s.Uuid)
@@ -724,11 +726,6 @@ namespace CE.WinFormUI
 
             mainController = new MainDB("");
             mainController.connectionString = efcnstring + pcnstring + "application name=EntityFramework'";
-            //mainController.connectionString = "metadata=res://*/Model1.csdl|res://*/Model1.ssdl|res://*/Model1.msl;provider=System.Data.SqlClient;"+
-            //                                    "provider connection string='" + 
-            //                                    "data source = 10.1.1.22; initial catalog = MEX10; User Id = sa; Password = sa22; MultipleActiveResultSets = True; "+
-            //                                    "application name=EntityFramework'";
-
             mainController.eventoErrDB += MainController_eventoErrorDB;
 
             bool cbFechaMarcada = checkBoxFecha.Checked;
@@ -742,14 +739,12 @@ namespace CE.WinFormUI
             if (rBtnAsignados.Checked) asignado = 1;    //asignados
             if (rBtnNoAsignados.Checked) asignado = 2;  //no asignados
 
-            string uuid = tboxUuid.Text;
-            if (cboxUUID.Checked && uuid.Contains("https://") && uuid.Contains("id=") && uuid.Contains("&re="))
+            string uuid = text.Text;
+            if (cboxUUID.Checked)
             {
-                int ini = tboxUuid.Text.IndexOf("id=") +3;
-                int fin = tboxUuid.Text.IndexOf("&re=");
-                int len = fin - ini;
-                if (len > 20 && ini > 0)
-                    uuid = uuid.Substring(ini, len);
+                Tuple<string, string> codQRyUuid = ObtieneContenidoQRCorrecto(text.Text);
+                text.Text = codQRyUuid.Item1;
+                uuid = codQRyUuid.Item2;
             }
 
             listaDeCfdisFiltrados = mainController.getFacturas( asignado,
@@ -780,11 +775,43 @@ namespace CE.WinFormUI
             gridFiles.AutoResizeColumns();
             gridFiles.Refresh();
 
-            //Restituir las filas marcadas usando la lista de docs no seleccionados
             InicializaCheckBoxDelGrid(gridFiles, idxChkBox, true);
 
             return listaDeCfdisFiltrados.Count;
         }
+
+        private Tuple<string, string> ObtieneContenidoQRCorrecto(string text)
+        {
+            string cadenaQR = text;
+            string uuid = text;
+            if (cadenaQR.Contains("https") && cadenaQR.Contains("id=") && cadenaQR.Contains("&re="))
+            {
+                uuid = ObtieneUuidDeCadenaQR(cadenaQR);
+            }
+
+            if (cadenaQR.Contains("https") && cadenaQR.Contains("id¿") && cadenaQR.Contains("/re¿"))
+            {
+                cadenaQR = cadenaQR.Replace('¿', '=').Replace('/', '&').Replace('_', '?').Replace('\'', '-');
+                cadenaQR = cadenaQR.Remove(0, 8);
+                cadenaQR = string.Concat("https://", cadenaQR);
+
+                uuid = ObtieneUuidDeCadenaQR(cadenaQR);
+            }
+
+            return new Tuple<string, string>(cadenaQR, uuid);
+        }
+
+        private static string ObtieneUuidDeCadenaQR(string cadenaQR)
+        {
+            int ini = cadenaQR.IndexOf("id=") + 3;
+            int fin = cadenaQR.IndexOf("&re=");
+            int len = fin - ini;
+            if (len > 20 && ini > 0)
+                return cadenaQR.Substring(ini, len);
+            else
+                return cadenaQR;
+        }
+
 
         /// <summary>
         /// Filtra las facturas marcadas en el grid y memoriza las filas no marcadas.

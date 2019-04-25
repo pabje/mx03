@@ -71,16 +71,6 @@
             this.dataGridView8 = new System.Windows.Forms.DataGridView();
             this.dataGridView9 = new System.Windows.Forms.DataGridView();
             this.gridFiles = new System.Windows.Forms.DataGridView();
-            this.M = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.UUID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TIPOCOMPROBANTE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FECHA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EMISOR_RFC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NOMBREARCHIVO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CARPETAARCHIVO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.VCHRNMBR = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DOCTYPE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.VALIDADO = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.panel6 = new System.Windows.Forms.Panel();
             this.cBoxMark = new System.Windows.Forms.CheckBox();
             this.gBoxAsignados = new System.Windows.Forms.GroupBox();
@@ -89,7 +79,7 @@
             this.rBtnAsignados = new System.Windows.Forms.RadioButton();
             this.tboxRFCEmisor = new System.Windows.Forms.TextBox();
             this.cBoxRfcEmisor = new System.Windows.Forms.CheckBox();
-            this.tboxUuid = new System.Windows.Forms.TextBox();
+            this.text = new System.Windows.Forms.TextBox();
             this.dtPickerDesde = new System.Windows.Forms.DateTimePicker();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
@@ -134,6 +124,16 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.lblError = new System.Windows.Forms.TextBox();
             this.lblProcesos = new System.Windows.Forms.TextBox();
+            this.M = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.UUID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TIPOCOMPROBANTE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FECHA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EMISOR_RFC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NOMBREARCHIVO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CARPETAARCHIVO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.VCHRNMBR = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DOCTYPE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.VALIDADO = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
@@ -213,7 +213,7 @@
             // 
             this.versión10ToolStripMenuItem.Name = "versión10ToolStripMenuItem";
             this.versión10ToolStripMenuItem.Size = new System.Drawing.Size(330, 22);
-            this.versión10ToolStripMenuItem.Text = "Carga CFDIs y Contabilidad Electrónica 1.3 v5.0.0";
+            this.versión10ToolStripMenuItem.Text = "Carga CFDIs y Contabilidad Electrónica 1.3 v5.1.0";
             // 
             // openFileDialog1
             // 
@@ -592,82 +592,13 @@
             this.gridFiles.TabIndex = 9;
             this.gridFiles.SelectionChanged += new System.EventHandler(this.gridFiles_SelectionChanged);
             // 
-            // M
-            // 
-            this.M.Frozen = true;
-            this.M.HeaderText = "M";
-            this.M.Name = "M";
-            this.M.Width = 25;
-            // 
-            // UUID
-            // 
-            this.UUID.DataPropertyName = "UUID";
-            this.UUID.HeaderText = "UUID";
-            this.UUID.Name = "UUID";
-            // 
-            // TIPOCOMPROBANTE
-            // 
-            this.TIPOCOMPROBANTE.DataPropertyName = "TIPOCOMPROBANTE";
-            this.TIPOCOMPROBANTE.HeaderText = "Tipo";
-            this.TIPOCOMPROBANTE.Name = "TIPOCOMPROBANTE";
-            this.TIPOCOMPROBANTE.Width = 50;
-            // 
-            // FECHA
-            // 
-            this.FECHA.DataPropertyName = "FECHA";
-            this.FECHA.HeaderText = "Fecha";
-            this.FECHA.Name = "FECHA";
-            this.FECHA.Width = 60;
-            // 
-            // EMISOR_RFC
-            // 
-            this.EMISOR_RFC.DataPropertyName = "EMISOR_RFC";
-            this.EMISOR_RFC.HeaderText = "RFC";
-            this.EMISOR_RFC.Name = "EMISOR_RFC";
-            // 
-            // NOMBREARCHIVO
-            // 
-            this.NOMBREARCHIVO.DataPropertyName = "NOMBREARCHIVO";
-            this.NOMBREARCHIVO.HeaderText = "Archivo";
-            this.NOMBREARCHIVO.Name = "NOMBREARCHIVO";
-            // 
-            // CARPETAARCHIVO
-            // 
-            this.CARPETAARCHIVO.DataPropertyName = "CARPETAARCHIVO";
-            this.CARPETAARCHIVO.HeaderText = "Carpeta";
-            this.CARPETAARCHIVO.Name = "CARPETAARCHIVO";
-            // 
-            // VCHRNMBR
-            // 
-            this.VCHRNMBR.DataPropertyName = "VCHRNMBR";
-            this.VCHRNMBR.HeaderText = "Comprobante GP";
-            this.VCHRNMBR.Name = "VCHRNMBR";
-            // 
-            // DOCTYPE
-            // 
-            this.DOCTYPE.DataPropertyName = "DOCTYPE";
-            this.DOCTYPE.HeaderText = "Tipo GP";
-            this.DOCTYPE.Name = "DOCTYPE";
-            this.DOCTYPE.Width = 60;
-            // 
-            // VALIDADO
-            // 
-            this.VALIDADO.DataPropertyName = "VALIDADO";
-            this.VALIDADO.FalseValue = "0";
-            this.VALIDADO.HeaderText = "Validado";
-            this.VALIDADO.IndeterminateValue = "0";
-            this.VALIDADO.Name = "VALIDADO";
-            this.VALIDADO.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.VALIDADO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.VALIDADO.TrueValue = "1";
-            // 
             // panel6
             // 
             this.panel6.Controls.Add(this.cBoxMark);
             this.panel6.Controls.Add(this.gBoxAsignados);
             this.panel6.Controls.Add(this.tboxRFCEmisor);
             this.panel6.Controls.Add(this.cBoxRfcEmisor);
-            this.panel6.Controls.Add(this.tboxUuid);
+            this.panel6.Controls.Add(this.text);
             this.panel6.Controls.Add(this.dtPickerDesde);
             this.panel6.Controls.Add(this.btnBuscar);
             this.panel6.Controls.Add(this.label12);
@@ -761,14 +692,14 @@
             this.cBoxRfcEmisor.Text = "RFC del emisor";
             this.cBoxRfcEmisor.UseVisualStyleBackColor = true;
             // 
-            // tboxUuid
+            // text
             // 
-            this.tboxUuid.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tboxUuid.Location = new System.Drawing.Point(203, 4);
-            this.tboxUuid.Name = "tboxUuid";
-            this.tboxUuid.Size = new System.Drawing.Size(401, 20);
-            this.tboxUuid.TabIndex = 70;
-            this.tboxUuid.TextChanged += new System.EventHandler(this.tboxUuid_TextChanged);
+            this.text.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.text.Location = new System.Drawing.Point(203, 4);
+            this.text.Name = "text";
+            this.text.Size = new System.Drawing.Size(401, 20);
+            this.text.TabIndex = 70;
+            this.text.TextChanged += new System.EventHandler(this.tboxUuid_TextChanged);
             // 
             // dtPickerDesde
             // 
@@ -1266,6 +1197,75 @@
             this.lblProcesos.Size = new System.Drawing.Size(718, 147);
             this.lblProcesos.TabIndex = 1;
             // 
+            // M
+            // 
+            this.M.Frozen = true;
+            this.M.HeaderText = "M";
+            this.M.Name = "M";
+            this.M.Width = 25;
+            // 
+            // UUID
+            // 
+            this.UUID.DataPropertyName = "UUID";
+            this.UUID.HeaderText = "UUID";
+            this.UUID.Name = "UUID";
+            // 
+            // TIPOCOMPROBANTE
+            // 
+            this.TIPOCOMPROBANTE.DataPropertyName = "TIPOCOMPROBANTE";
+            this.TIPOCOMPROBANTE.HeaderText = "Tipo";
+            this.TIPOCOMPROBANTE.Name = "TIPOCOMPROBANTE";
+            this.TIPOCOMPROBANTE.Width = 50;
+            // 
+            // FECHA
+            // 
+            this.FECHA.DataPropertyName = "FECHA";
+            this.FECHA.HeaderText = "Fecha";
+            this.FECHA.Name = "FECHA";
+            this.FECHA.Width = 60;
+            // 
+            // EMISOR_RFC
+            // 
+            this.EMISOR_RFC.DataPropertyName = "EMISOR_RFC";
+            this.EMISOR_RFC.HeaderText = "RFC";
+            this.EMISOR_RFC.Name = "EMISOR_RFC";
+            // 
+            // NOMBREARCHIVO
+            // 
+            this.NOMBREARCHIVO.DataPropertyName = "NOMBREARCHIVO";
+            this.NOMBREARCHIVO.HeaderText = "Archivo";
+            this.NOMBREARCHIVO.Name = "NOMBREARCHIVO";
+            // 
+            // CARPETAARCHIVO
+            // 
+            this.CARPETAARCHIVO.DataPropertyName = "CARPETAARCHIVO";
+            this.CARPETAARCHIVO.HeaderText = "Carpeta";
+            this.CARPETAARCHIVO.Name = "CARPETAARCHIVO";
+            // 
+            // VCHRNMBR
+            // 
+            this.VCHRNMBR.DataPropertyName = "VCHRNMBR";
+            this.VCHRNMBR.HeaderText = "Comprobante GP";
+            this.VCHRNMBR.Name = "VCHRNMBR";
+            // 
+            // DOCTYPE
+            // 
+            this.DOCTYPE.DataPropertyName = "DOCTYPE";
+            this.DOCTYPE.HeaderText = "Tipo GP";
+            this.DOCTYPE.Name = "DOCTYPE";
+            this.DOCTYPE.Width = 60;
+            // 
+            // VALIDADO
+            // 
+            this.VALIDADO.DataPropertyName = "VALIDADO";
+            this.VALIDADO.FalseValue = "0";
+            this.VALIDADO.HeaderText = "Validado";
+            this.VALIDADO.IndeterminateValue = "0";
+            this.VALIDADO.Name = "VALIDADO";
+            this.VALIDADO.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.VALIDADO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.VALIDADO.TrueValue = "1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1385,7 +1385,7 @@
         private System.Windows.Forms.CheckBox cBoxMark;
         private System.Windows.Forms.TextBox tboxRFCEmisor;
         private System.Windows.Forms.CheckBox cBoxRfcEmisor;
-        private System.Windows.Forms.TextBox tboxUuid;
+        private System.Windows.Forms.TextBox text;
         private System.Windows.Forms.DateTimePicker dtPickerDesde;
         protected System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.Label label12;

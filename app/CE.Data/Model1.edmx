@@ -51,29 +51,29 @@ warning 6002: The table/view 'MEX10.dace.vwComprobanteCFDI' does not have a prim
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MEXModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="MexGPEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="vwComprobanteCFDI" EntityType="MEXModel.vwComprobanteCFDI" />
+        </EntityContainer>
         <EntityType Name="vwComprobanteCFDI">
           <Key>
             <PropertyRef Name="UUID" />
             <PropertyRef Name="TIPOCOMPROBANTE" />
           </Key>
-          <Property Name="UUID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="TIPOCOMPROBANTE" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UUID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TIPOCOMPROBANTE" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
           <Property Name="FOLIO" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
-          <Property Name="FECHA" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="TOTAL" Type="Decimal" Precision="19" Scale="5" Nullable="false" />
-          <Property Name="MONEDA" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FECHA" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="TOTAL" Type="Decimal" Nullable="false" Precision="19" Scale="5" />
+          <Property Name="MONEDA" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="METODOPAGO" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
-          <Property Name="EMISOR_RFC" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EMISOR_RFC" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="RESUMENCFDI" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="NOMBREARCHIVO" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="CARPETAARCHIVO" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NOMBREARCHIVO" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CARPETAARCHIVO" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="VALIDADO" Type="Int16" Nullable="false" />
           <Property Name="VCHRNMBR" Type="String" Nullable="false" MaxLength="21" FixedLength="true" Unicode="false" />
           <Property Name="DOCTYPE" Type="Int16" Nullable="false" />
         </EntityType>
-        <EntityContainer Name="MexGPEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="vwComprobanteCFDI" EntityType="Self.vwComprobanteCFDI" />
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -85,18 +85,18 @@ warning 6002: The table/view 'MEX10.dace.vwComprobanteCFDI' does not have a prim
               <MappingFragment StoreEntitySet="vwComprobanteCFDI">
                 <ScalarProperty Name="DOCTYPE" ColumnName="DOCTYPE" />
                 <ScalarProperty Name="VCHRNMBR" ColumnName="VCHRNMBR" />
-                <ScalarProperty Name="UUID" ColumnName="UUID" />
-                <ScalarProperty Name="TIPOCOMPROBANTE" ColumnName="TIPOCOMPROBANTE" />
-                <ScalarProperty Name="FOLIO" ColumnName="FOLIO" />
-                <ScalarProperty Name="FECHA" ColumnName="FECHA" />
-                <ScalarProperty Name="TOTAL" ColumnName="TOTAL" />
-                <ScalarProperty Name="MONEDA" ColumnName="MONEDA" />
-                <ScalarProperty Name="METODOPAGO" ColumnName="METODOPAGO" />
-                <ScalarProperty Name="EMISOR_RFC" ColumnName="EMISOR_RFC" />
-                <ScalarProperty Name="RESUMENCFDI" ColumnName="RESUMENCFDI" />
-                <ScalarProperty Name="NOMBREARCHIVO" ColumnName="NOMBREARCHIVO" />
-                <ScalarProperty Name="CARPETAARCHIVO" ColumnName="CARPETAARCHIVO" />
                 <ScalarProperty Name="VALIDADO" ColumnName="VALIDADO" />
+                <ScalarProperty Name="CARPETAARCHIVO" ColumnName="CARPETAARCHIVO" />
+                <ScalarProperty Name="NOMBREARCHIVO" ColumnName="NOMBREARCHIVO" />
+                <ScalarProperty Name="RESUMENCFDI" ColumnName="RESUMENCFDI" />
+                <ScalarProperty Name="EMISOR_RFC" ColumnName="EMISOR_RFC" />
+                <ScalarProperty Name="METODOPAGO" ColumnName="METODOPAGO" />
+                <ScalarProperty Name="MONEDA" ColumnName="MONEDA" />
+                <ScalarProperty Name="TOTAL" ColumnName="TOTAL" />
+                <ScalarProperty Name="FECHA" ColumnName="FECHA" />
+                <ScalarProperty Name="FOLIO" ColumnName="FOLIO" />
+                <ScalarProperty Name="TIPOCOMPROBANTE" ColumnName="TIPOCOMPROBANTE" />
+                <ScalarProperty Name="UUID" ColumnName="UUID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

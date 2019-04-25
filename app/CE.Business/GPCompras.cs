@@ -42,7 +42,7 @@ namespace CE.Business
         /// </summary>
         /// <param name="comprobantes"></param>
         /// <returns></returns>
-        public async Task<List<Cfdi>> CargarCfdisEnLogAsync(List<Cfdi> comprobantes)
+        public async Task<List<Cfdi>> CargarCfdisEnLogAsync(List<Cfdi> comprobantes, string rfcCompania)
         {
             Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
 
@@ -52,9 +52,14 @@ namespace CE.Business
                 {
                     if (System.IO.File.Exists(comprobante.ArchivoYCarpeta))
                     {
-                        //string xml = System.IO.File.ReadAllText(comprobante.ArchivoYCarpeta);
                         string xml = comprobante.Sxml;
                         XDocument xdoc = XDocument.Parse(xml);
+                        var receptor = (from c in xdoc.Descendants(ns_cfdi + "Receptor")
+                                        select new
+                                        {
+                                            rfc = c.Attribute("Rfc").Value,
+                                            nombre = c.Attribute("Nombre") == null ? "" : c.Attribute("Nombre").Value
+                                        }).FirstOrDefault();
 
                         string tipoComprobante = AveriguarElTipoDeCfdi(xdoc, ns_cfdi);
                         ProcesoOkImportarPMEventArgs argsOK = new ProcesoOkImportarPMEventArgs();
@@ -75,13 +80,18 @@ namespace CE.Business
                                                   UUID = c.Attribute("UUID").Value
                                               }).FirstOrDefault();
 
-                                await CargaComprobanteCfdiAsync(xdoc, ns_cfdi, ns_tfd, comprobante.ArchivoYCarpetaDestino, Helper.Izquierda(resumenI, 100), timbreI.UUID, Convert.ToInt16(comprobante.Valida));
-                                comprobante.Uuid = timbreI.UUID;
-                                argsOK.Archivo = comprobante.ArchivoYCarpeta;
-                                argsOK.Msg = "CFDI de Ingreso guardado en log.";
-                                OnProcesoOkImportarPM(argsOK);
-
+                                if (receptor.rfc.ToUpper().Equals(rfcCompania))
+                                {
+                                    await CargaComprobanteCfdiAsync(xdoc, ns_cfdi, ns_tfd, comprobante.ArchivoYCarpetaDestino, Helper.Izquierda(resumenI, 100), timbreI.UUID, Convert.ToInt16(comprobante.Valida));
+                                    comprobante.Uuid = timbreI.UUID;
+                                    argsOK.Archivo = comprobante.ArchivoYCarpeta;
+                                    argsOK.Msg = "CFDI de Ingreso guardado en log.";
+                                    OnProcesoOkImportarPM(argsOK);
+                                }
+                                else
+                                    throw new InvalidOperationException("No corresponde cargar el comprobante en la compañía actual. Debería cargarse en " + receptor.nombre);
                                 break;
+
                             case "P":
                                 var pagoP = (from c in xdoc.Descendants(ns_pago10 + "Pago")
                                              select new
@@ -106,11 +116,16 @@ namespace CE.Business
                                                   UUID = c.Attribute("UUID").Value
                                               }).FirstOrDefault();
 
-                                await CargaComprobanteCfdiAsync(xdoc, ns_cfdi, ns_tfd, comprobante.ArchivoYCarpetaDestino, Helper.Izquierda(resumenP, 100), timbreP.UUID, Convert.ToInt16(comprobante.Valida));
-                                comprobante.Uuid = timbreP.UUID;
-                                argsOK.Archivo = comprobante.ArchivoYCarpeta;
-                                argsOK.Msg = "CFDI de Pago guardado en log.";
-                                OnProcesoOkImportarPM(argsOK);
+                                if (receptor.rfc.ToUpper().Equals(rfcCompania))
+                                {
+                                    await CargaComprobanteCfdiAsync(xdoc, ns_cfdi, ns_tfd, comprobante.ArchivoYCarpetaDestino, Helper.Izquierda(resumenP, 100), timbreP.UUID, Convert.ToInt16(comprobante.Valida));
+                                    comprobante.Uuid = timbreP.UUID;
+                                    argsOK.Archivo = comprobante.ArchivoYCarpeta;
+                                    argsOK.Msg = "CFDI de Pago guardado en log.";
+                                    OnProcesoOkImportarPM(argsOK);
+                                }
+                                else
+                                    throw new InvalidOperationException("No corresponde cargar el comprobante en la compañía actual. Debería cargarse en " + receptor.nombre);
 
                                 break;
                             default:

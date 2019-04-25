@@ -60,7 +60,6 @@ namespace CE.Business
                 {
                     DataTable dt = new DataTable();
                     adapter.Fill(dt);
-
                     return dt.Rows[0]["CMPNYNAM"].ToString();
                 }
             }

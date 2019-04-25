@@ -5,7 +5,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="366798d381454db9905ee317fa0c8366" Name="Diagram1">
-        <EntityTypeShape EntityType="MEXModel.vwComprobanteCFDI" Width="2.125" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MEXModel.vwComprobanteCFDI" Width="1.5" PointX="0.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

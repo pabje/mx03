@@ -24,9 +24,11 @@ alter VIEW dace.vwComprobanteCFDI  AS
 	isnull(cfdi.VALIDADO, 0) VALIDADO,
 	isnull(asig.VCHRNMBR, '') VCHRNMBR,
 	isnull(asig.DOCTYPE, 0) DOCTYPE
+	--'' TAXREGTN
   from dace.ComprobanteCFDI cfdi
   left join dbo.ACA_IETU00400 asig
 	on rtrim(asig.MexFolioFiscal) = cfdi.UUID
+--  outer apply dbo.dcemFnParametros('na', 'na', 'na', 'na', 'na', 'na') cia
 
 GO
 

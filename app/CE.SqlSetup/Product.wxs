@@ -46,6 +46,7 @@
           
           <sql:SqlScript Id="CreateObj010" BinaryKey="CreateObj010" ExecuteOnInstall="yes" Sequence="010" ExecuteOnReinstall="yes"/>
           <sql:SqlScript Id="CreateObj013" BinaryKey="CreateObj013" ExecuteOnInstall="yes" Sequence="013" ExecuteOnReinstall="yes"/>
+          <sql:SqlScript Id="CreateObj015" BinaryKey="CreateObj015" ExecuteOnInstall="yes" Sequence="015" ExecuteOnReinstall="yes"/>
           <sql:SqlScript Id="CreateObj016" BinaryKey="CreateObj016" ExecuteOnInstall="yes" Sequence="016" ExecuteOnReinstall="yes"/>
           <sql:SqlScript Id="CreateObj019" BinaryKey="CreateObj019" ExecuteOnInstall="yes" Sequence="019" ExecuteOnReinstall="yes"/>
           <sql:SqlScript Id="CreateObj022" BinaryKey="CreateObj022" ExecuteOnInstall="yes" Sequence="022" ExecuteOnReinstall="yes"/>
@@ -167,6 +168,8 @@
 
     <Binary Id="CreateObj010" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\01_dcemPoliza.table.sql"/>
     <Binary Id="CreateObj013" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\02_dcemFnParametros.function.sql"/>
+    <Binary Id="CreateObj015" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\05_vwPmTransaccionesContabYSusAplicaciones.view.sql"/>
+    
     <Binary Id="CreateObj016" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\07_dcemFnGetSegmento2.sql"/>
     <Binary Id="CreateObj019" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\08_dcemFnGetDatosBancoDelProveedor.function.sql"/>
     <Binary Id="CreateObj022" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\09_dcemFnGetDatosBancarios.function.sql"/>

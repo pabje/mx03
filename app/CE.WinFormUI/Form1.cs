@@ -134,29 +134,15 @@ namespace CE.WinFormUI
             
             var l = oL.GetAll(ano, tipo);
 
-            //string empresa = oL.GetCompany();
-            //lblEmpresa.Text = empresa;
-
             bindingSource2.DataSource = l;
             gridVista.AutoGenerateColumns = false;
             gridVista.DataSource = bindingSource2;
             gridVista.ClearSelection();
-            //InicializaCheckBoxDelGrid(gridVista, 0, false);
-
             gridVista.AutoResizeColumns();
-//            gridVista.RowHeadersVisible = false;
         }
 
         void InicializaCheckBoxDelGrid(DataGridView dataGrid, short idxChkBox, bool marca)
         {
-            //for (int r = 0; r < dataGrid.RowCount; r++)
-            //{
-            //    dataGrid[idxChkBox, r].Value = !LNoSeleccionados.Exists(x => x.TIPOCOMPROBANTE.Equals(dataGrid[idxTipo, r].Value.ToString())
-            //                                                                && x.UUID.Equals(dataGrid[idxUuid, r].Value.ToString()));
-            //}
-            //dataGrid.EndEdit();
-            //dataGrid.Refresh();
-
             for (int r = 0; r < dataGrid.RowCount; r++)
             {
                 dataGrid[idxChkBox, r].Value = marca;
@@ -383,7 +369,7 @@ namespace CE.WinFormUI
 
         }
 
-        private void gridFiles_SelectionChanged(object sender, EventArgs e)
+        private void MuestraContenidoCfdiXml()
         {
             if (gridFiles.SelectedRows.Count != 0)
             {
@@ -578,6 +564,11 @@ namespace CE.WinFormUI
                     }
                 }
             }
+        }
+        private void gridFiles_SelectionChanged(object sender, EventArgs e)
+        {
+
+                MuestraContenidoCfdiXml();
 
         }
 
@@ -654,13 +645,7 @@ namespace CE.WinFormUI
 
             lblError.Text = "";
             lblProcesos.Text = "";
-            dataGridView1.DataSource = null;
-            dataGridView2.DataSource = null;
-            dataGridView3.DataSource = null;
-            dataGridView4.DataSource = null;
-            dataGridView5.DataSource = null;
-            dataGridView6.DataSource = null;
-            dataGridView7.DataSource = null;
+            ReiniciarLaSeccionDelContenidoXml();
             tsProgressBar.Value = 0;
 
             openFileDialog1.Filter = "XML Files|*.xml";
@@ -675,26 +660,6 @@ namespace CE.WinFormUI
                         select new { archivo = System.IO.Path.GetFileName(ff),
                                      directorio = System.IO.Path.GetDirectoryName(ff),
                                      };
-
-                //gridFiles.Columns.Clear();
-
-                //DataGridViewColumn col = new DataGridViewTextBoxColumn();
-                //col.DataPropertyName = "archivo";
-                //col.HeaderText = "Archivo";
-                //col.Name = "col1";
-                //gridFiles.Columns.Add(col);
-
-                //col = new DataGridViewTextBoxColumn();
-                //col.DataPropertyName = "selloValido";
-                //col.HeaderText = "Sello";
-                //col.Name = "selloValido";
-                //gridFiles.Columns.Add(col);
-
-                //bindingSource3.DataSource = archivosSeleccionados.ToList();
-                //gridFiles.AutoGenerateColumns = false;
-                //gridFiles.DataSource = bindingSource3;
-                //gridFiles.AutoResizeColumns();
-                //gridFiles.Refresh();
                 string carpetaDestino = System.Configuration.ConfigurationManager.AppSettings[companySelected() + "_directorioDestino"].ToString();
 
                 var cfdisSeleccionados = archivosSeleccionados.Select(a => new Cfdi(utileria.Nscfdi, utileria.PlantillaXslt)
@@ -814,7 +779,7 @@ namespace CE.WinFormUI
 
 
         /// <summary>
-        /// Filtra las facturas marcadas en el grid y memoriza las filas no marcadas.
+        /// Filtra las facturas marcadas en el grid.
         /// </summary>
         /// <param name=""></param>
         /// <returns>bool: True indica que la lista ha sido filtrada exitosamente</returns>
@@ -861,7 +826,9 @@ namespace CE.WinFormUI
             if (radPOP.Checked)
                 metodo = 2;
 
-            gpCompras.IntegrarDocumentosGP(archivos, metodo);
+            int lenUsuario = Environment.UserName.PadLeft(5).Length;
+            string usuario = Environment.UserName.Substring(0, 1) + Environment.UserName.PadLeft(5).Substring(lenUsuario - 4, 4);
+            gpCompras.IntegrarDocumentosGP(archivos, metodo, usuario);
 
             if (archivos.Count == 0)
                 MessageBox.Show("Debe seleccionar archivos");
@@ -890,233 +857,6 @@ namespace CE.WinFormUI
             return archivos;
         }
 
-
-        #endregion
-
-        #region Deprecated Importar Facturas Electronicas
-        //deprecated
-        private void bntSeleccionarArchivos_Click(object sender, EventArgs e)
-        {
-            lblError.Text = "";
-            lblProcesos.Text = "";
-
-            openFileDialog1.Filter = "XML Files|*.xml";
-            openFileDialog1.Multiselect = true;
-            DialogResult dr = openFileDialog1.ShowDialog();
-
-            if (dr == DialogResult.OK)
-            {
-                string[] filenames = openFileDialog1.FileNames;
-
-                var f = from ff in filenames
-                        select new { archivo = System.IO.Path.GetFileName(ff), directorio = System.IO.Path.GetDirectoryName(ff) };
-
-                gridFiles.Columns.Clear();
-
-                DataGridViewColumn col = new DataGridViewTextBoxColumn();
-                col.DataPropertyName = "archivo";
-                col.HeaderText = "Archivo";
-                col.Name = "col1";
-                gridFiles.Columns.Add(col);
-
-                bindingSource3.DataSource = f.ToList();
-                gridFiles.AutoGenerateColumns = false;
-                gridFiles.DataSource = bindingSource3;
-                gridFiles.AutoResizeColumns();
-            }
-        }
-
-        /// <summary>
-        /// deprecated
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnProcesarFacturas_Click(object sender, EventArgs e)
-        {
-            lblError.Text = "";
-            lblProcesos.Text = "";
-
-            LecturaContabilidadFactory oL = new LecturaContabilidadFactory(companySelected());
-
-            List<string> archivos = new List<string>();
-
-            foreach (DataGridViewRow row in gridFiles.Rows)
-            {
-                var item = row.DataBoundItem;
-                if (item != null)
-                {
-                    System.Type type = item.GetType();
-                    string archivo = (string)type.GetProperty("archivo").GetValue(item, null);
-                    string directorio = (string)type.GetProperty("directorio").GetValue(item, null);
-
-                    archivos.Add(directorio + "\\" + archivo);
-                }
-            }
-
-            //oL.ErrorImportarPM += new EventHandler<LecturaContabilidadFactory.ErrorImportarPMEventArgs>(oL_ErrorImportarPM);
-            //oL.ProcesoOkImportarPM += new EventHandler<LecturaContabilidadFactory.ProcesoOkImportarPMEventArgs>(oL_ProcesoOkImportarPM);
-
-            //int metodo = 1;
-            //if (radPOP.Checked)
-            //    metodo = 2;
-
-            //oL.ImportarGPPM(archivos, metodo);
-
-            //if (archivos.Count == 0)
-            //    MessageBox.Show("Debe seleccionar archivos");
-
-            gridFiles.DataSource = null;
-        }
-
-        #endregion
-
-        #region Deprecated Conta Electrónica
-        //deprecated
-        private void btnMostrarContenido_Click(object sender, EventArgs e)
-        {
-            if (gridVista.SelectedRows.Count != 0)
-            {
-                try
-                {
-                    DcemVwContabilidad item = (DcemVwContabilidad)gridVista.SelectedRows[0].DataBoundItem;
-                    if (item != null)
-                        mostrarContenido(item.year1, item.periodid, item.tipodoc);
-                }
-                catch
-                {
-                    grid.DataSource = null;
-                }
-            }
-
-        }
-        //deprecated
-        private void btnProcesar_Click(object sender, EventArgs e)
-        {
-            lblError.Text = "";
-            lblProcesos.Text = "";
-
-            LecturaContabilidadFactory oL = new LecturaContabilidadFactory(companySelected());
-            oL.LParametros = lParametros;
-
-            string directorio = System.Configuration.ConfigurationManager.AppSettings[companySelected() + "_directorio"].ToString();
-            //string archivo1 = System.Configuration.ConfigurationManager.AppSettings[companySelected() + "_archivo1"].ToString();
-            //string archivo2 = System.Configuration.ConfigurationManager.AppSettings[companySelected() + "_archivo2"].ToString();
-            //string archivo3 = System.Configuration.ConfigurationManager.AppSettings[companySelected() + "_archivo3"].ToString();
-            //string archivo4 = System.Configuration.ConfigurationManager.AppSettings[companySelected() + "_archivo4"].ToString();
-            //string archivo5 = System.Configuration.ConfigurationManager.AppSettings[companySelected() + "_archivo5"].ToString();
-
-            List<DcemVwContabilidad> l = new List<DcemVwContabilidad>();
-
-            foreach (DataGridViewRow row in gridVista.Rows)
-            {
-                if (row.Cells[0].Value != null && (bool)row.Cells[0].Value)
-                {
-                    var item = (DcemVwContabilidad)row.DataBoundItem;
-
-
-                    if (item.tipodoc == "Pólizas" || item.tipodoc == "Auxiliar Cuentas" || item.tipodoc == "Auxiliar folios")
-                    {
-                        if (row.Cells[4].Value == null)
-                        {
-                            MessageBox.Show("Debe completar Tipo de Solicitud para periodo: " + item.periodid.ToString() + " año: " + item.year1.ToString() + " tipo doc: " + item.tipodoc);
-                            return;
-                        }
-                        else
-                        {
-                            item.TipoSolicitud = row.Cells[4].Value.ToString();
-
-                            string tipoSolicitud = row.Cells[4].Value.ToString().Substring(0, 2);
-                            if (tipoSolicitud == "AF" || tipoSolicitud == "FC")
-                            {
-                                if (row.Cells[5].Value == null || row.Cells[5].Value.ToString() == "")
-                                {
-                                    MessageBox.Show("Debe completar N. Orden para periodo: " + item.periodid.ToString() + " año: " + item.year1.ToString() + " tipo doc: " + item.tipodoc);
-                                    return;
-                                }
-                                else
-                                {
-                                    //Regex rgx = new Regex(@"^[A-Z]{3}[0-6][0-9][0-9]{5}(/)[0-9]{2}$");
-                                    Regex rgx = new Regex(@"^[A-Z]{3}[0-9]{7}(/)[0-9]{2}$");
-
-                                    if (!rgx.IsMatch(row.Cells[5].Value.ToString()))
-                                    {
-                                        MessageBox.Show("Debe completar N. Orden correctamente para periodo: " + item.periodid.ToString() + " año: " + item.year1.ToString() + " tipo doc: " + item.tipodoc);
-                                        return;
-                                    }
-                                    else
-                                    {
-                                        item.NumOrden = row.Cells[5].Value.ToString();
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                if (tipoSolicitud == "DE" || tipoSolicitud == "CO")
-                                {
-                                    if (row.Cells[6].Value == null || row.Cells[6].Value.ToString() == "")
-                                    {
-                                        MessageBox.Show("Debe completar N. Trámite para periodo: " + item.periodid.ToString() + " año: " + item.year1.ToString() + " tipo doc: " + item.tipodoc);
-                                        return;
-                                    }
-                                    else
-                                    {
-                                        //Regex rgx = new Regex(@"^[0-9]{10}$");
-                                        Regex rgx = new Regex(@"^[A-Z]{2}[0-9]{12}$");
-
-                                        if (!rgx.IsMatch(row.Cells[6].Value.ToString()))
-                                        {
-                                            MessageBox.Show("Debe completar N. Trámite correctamente para periodo: " + item.periodid.ToString() + " año: " + item.year1.ToString() + " tipo doc: " + item.tipodoc);
-                                            return;
-                                        }
-                                        else
-                                        {
-                                            item.NumTramite = row.Cells[6].Value.ToString();
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    l.Add(item);
-                }
-            }
-
-            try
-            {
-                List<XmlExportado> xmls = oL.ProcesarArchivos(l, directorio, Application.StartupPath + "\\xsd\\");  //archivo1, archivo2, archivo3, archivo4, archivo5, 
-
-                string errores = "";
-                foreach (var xmle in xmls.Where(x => x.error))
-                {
-                    errores += " Año: " + xmle.DcemVwContabilidad.year1.ToString() + " Mes: " + xmle.DcemVwContabilidad.periodid.ToString() + " Tipo: " + xmle.DcemVwContabilidad.tipodoc + Environment.NewLine + xmle.mensaje + Environment.NewLine;
-                    errores += "-----------------------------------------------------------------------" + Environment.NewLine;
-                }
-                lblError.Text = errores;
-
-                lblProcesos.Text = "Carpeta de trabajo: " + directorio + Environment.NewLine;
-                foreach (var xmle in xmls)
-                {
-                    lblProcesos.Text += " Año: " + xmle.DcemVwContabilidad.year1.ToString() + "Mes:" + xmle.DcemVwContabilidad.periodid.ToString() + " Tipo: " + xmle.DcemVwContabilidad.tipodoc + " Archivo: " + xmle.archivo + Environment.NewLine;
-                    lblProcesos.Refresh();
-                }
-
-                foreach (DataGridViewRow row in gridVista.Rows)
-                {
-                    if (row.Cells[0].Value != null && (bool)row.Cells[0].Value)
-                    {
-                        row.DefaultCellStyle.BackColor = Color.Yellow;
-                    }
-                }
-
-            }
-            catch (Exception ex)
-            {
-                lblError.Text += ex.Message + Environment.NewLine;
-            }
-
-
-        }
 
         #endregion
 
@@ -1184,6 +924,13 @@ namespace CE.WinFormUI
                 }
                 else
                     lblProcesos.Text = errores;
+
+                ReiniciarLaSeccionDelContenidoXml();
+                if (gridFiles.RowCount != 0)
+                {
+                    gridFiles.Rows[0].Selected = true;
+                    MuestraContenidoCfdiXml();
+                }
             }
             catch (Exception exc)
             {
@@ -1222,6 +969,19 @@ namespace CE.WinFormUI
 
         private void cmbEmpresas_SelectedIndexChanged_1(object sender, EventArgs e)
         {
+            ReiniciarLaSeccionDelContenidoXml();
+            gridFiles.DataSource = null;
+
+            string defaultpmpop = System.Configuration.ConfigurationManager.AppSettings[companySelected() + "_defaultPMoPOP"].ToString();
+            if (defaultpmpop.Equals("PM"))
+                radPM.Checked = true;
+
+            if (defaultpmpop.Equals("POP"))
+                radPOP.Checked = true;
+        }
+
+        private void ReiniciarLaSeccionDelContenidoXml()
+        {
             dataGridView1.DataSource = null;
             dataGridView2.DataSource = null;
             dataGridView3.DataSource = null;
@@ -1229,8 +989,6 @@ namespace CE.WinFormUI
             dataGridView5.DataSource = null;
             dataGridView6.DataSource = null;
             dataGridView7.DataSource = null;
-            gridFiles.DataSource = null;
-
         }
     }
 }

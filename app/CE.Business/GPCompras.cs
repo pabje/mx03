@@ -190,11 +190,11 @@ namespace CE.Business
 
         #region Importar Facturas Electronicas
 
-        public void IntegrarDocumentosGP(IList<vwComprobanteCFDI> archivos, int metodo)
+        public void IntegrarDocumentosGP(IList<vwComprobanteCFDI> archivos, int metodo, string usuario)
         {
             Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
 
-            string BACHNUMB = DateTime.Now.ToString("yyyyMMddHHmmss");
+            string BACHNUMB = usuario.Substring(0, 5) + DateTime.Now.ToString("MMddHHmmss");
             string formatoFecha = System.Configuration.ConfigurationManager.AppSettings[_pre + "_FormatoFecha"].ToString();
 
             foreach (vwComprobanteCFDI archivo in archivos)

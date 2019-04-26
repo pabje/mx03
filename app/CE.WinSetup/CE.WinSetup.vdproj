@@ -57,6 +57,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_30BE5971B41C949EF074787376AFE318"
+        "OwnerKey" = "8:_1FFB5008D2C646B6836F4F2228376766"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_56196F06C71B4F71AF56BE7C77062263"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -88,7 +94,19 @@
         "Entry"
         {
         "MsmKey" = "8:_8437867AC51F126260FEA9BB1771BA0E"
+        "OwnerKey" = "8:_30BE5971B41C949EF074787376AFE318"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_8437867AC51F126260FEA9BB1771BA0E"
         "OwnerKey" = "8:_1FFB5008D2C646B6836F4F2228376766"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_86DC69198B8F44BAB2F9171725755F46"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -154,6 +172,12 @@
         "Entry"
         {
         "MsmKey" = "8:_CB74883FAE0D9D3191791E544F733968"
+        "OwnerKey" = "8:_30BE5971B41C949EF074787376AFE318"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_CB74883FAE0D9D3191791E544F733968"
         "OwnerKey" = "8:_1FFB5008D2C646B6836F4F2228376766"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -196,6 +220,12 @@
         "Entry"
         {
         "MsmKey" = "8:_DC91EF38EE352F29B946554C80F85589"
+        "OwnerKey" = "8:_30BE5971B41C949EF074787376AFE318"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_DC91EF38EE352F29B946554C80F85589"
         "OwnerKey" = "8:_1FFB5008D2C646B6836F4F2228376766"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -220,13 +250,19 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_AC623F1C631ADF487FAF7A2954D4F26B"
+        "OwnerKey" = "8:_56196F06C71B4F71AF56BE7C77062263"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_1FFB5008D2C646B6836F4F2228376766"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_30BE5971B41C949EF074787376AFE318"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -245,18 +281,6 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_DC91EF38EE352F29B946554C80F85589"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_56196F06C71B4F71AF56BE7C77062263"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_1FFB5008D2C646B6836F4F2228376766"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -299,6 +323,12 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_AC617B61DA30A90BAAE01A3701D48FED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_AC623F1C631ADF487FAF7A2954D4F26B"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -507,6 +537,37 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_30BE5971B41C949EF074787376AFE318"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:ClosedXML, Version=0.92.1.0, Culture=neutral, PublicKeyToken=fd1eb21b62ae805b, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_30BE5971B41C949EF074787376AFE318"
+                    {
+                    "Name" = "8:ClosedXML.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:ClosedXML.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_F143242872F14F408BC45593C1DD90FD"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_56196F06C71B4F71AF56BE7C77062263"
             {
             "AssemblyRegister" = "3:1"
@@ -658,6 +719,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_86DC69198B8F44BAB2F9171725755F46"
+            {
+            "SourcePath" = "8:..\\..\\Smartlist\\ControlCFDIsDeFacturasPagosProveedores.slbgp2015.xml"
+            "TargetName" = "8:ControlCFDIsDeFacturasPagosProveedores.slbgp2015.xml"
+            "Tag" = "8:"
+            "Folder" = "8:_87DCFEAB723B4D869C1584B8F137EBAB"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_93ACF95913B844A8A015B09C81942E82"
@@ -1109,7 +1190,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:GP MEX Contabilidad Electrónica 1.3"
         "ProductCode" = "8:{2A82DCAA-32FA-4BA2-84CB-6D3CB00E1ADD}"
-        "PackageCode" = "8:{E683CE1A-9121-40E7-9FB1-A475B8FBD18D}"
+        "PackageCode" = "8:{1E2E58E7-3203-421D-8695-3CDFB5622AFF}"
         "UpgradeCode" = "8:{862532C7-C312-45D1-8E48-75CFA1C48A8A}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

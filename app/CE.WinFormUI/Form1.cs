@@ -754,7 +754,7 @@ namespace CE.WinFormUI
                 uuid = ObtieneUuidDeCadenaQR(cadenaQR);
             }
 
-            if (cadenaQR.Contains("https") && cadenaQR.Contains("id¿") && cadenaQR.Contains("/re¿"))
+            if (cadenaQR.Contains("https") && cadenaQR.Contains("id¿") && cadenaQR.Contains("re¿"))
             {
                 cadenaQR = cadenaQR.Replace('¿', '=').Replace('/', '&').Replace('_', '?').Replace('\'', '-');
                 cadenaQR = cadenaQR.Remove(0, 8);
@@ -769,8 +769,8 @@ namespace CE.WinFormUI
         private static string ObtieneUuidDeCadenaQR(string cadenaQR)
         {
             int ini = cadenaQR.IndexOf("id=") + 3;
-            int fin = cadenaQR.IndexOf("&re=");
-            int len = fin - ini;
+            int fin = cadenaQR.IndexOf("re=");
+            int len = fin - ini -1;
             if (len > 20 && ini > 0)
                 return cadenaQR.Substring(ini, len);
             else

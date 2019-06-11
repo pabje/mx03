@@ -38,9 +38,9 @@ namespace CE.Business
         }
 
         /// <summary>
-        /// Carga los cfdis de pago e ingreso en una tabla
+        /// Carga los cfdis de pago e ingreso en una tabla Log
         /// </summary>
-        /// <param name="comprobantes"></param>
+        /// <param name="comprobantes">Lista de comprobantes cfdi a cargar en el log</param>
         /// <returns></returns>
         public async Task<List<Cfdi>> CargarCfdisEnLogAsync(List<Cfdi> comprobantes, string rfcCompania)
         {
@@ -129,20 +129,40 @@ namespace CE.Business
 
                                 break;
                             default:
-                                ErrorImportarPMEventArgs args = new ErrorImportarPMEventArgs();
-                                args.Archivo = comprobante.ArchivoYCarpeta;
-                                args.Error = "Este comprobante no se puede integrar a GP porque no es un comprobante de Ingreso ni de Pago";
-                                OnErrorImportarPM(args);
+                                var timbreOtro = (from c in xdoc.Descendants(ns_tfd + "TimbreFiscalDigital")
+                                               select new
+                                               {
+                                                   UUID = c.Attribute("UUID").Value
+                                               }).FirstOrDefault();
+
+                                if (receptor.rfc.ToUpper().Equals(rfcCompania))
+                                {
+                                    await CargaComprobanteCfdiAsync(xdoc, ns_cfdi, ns_tfd, comprobante.ArchivoYCarpetaDestino, string.Empty, timbreOtro.UUID, Convert.ToInt16(comprobante.Valida));
+                                    comprobante.Uuid = timbreOtro.UUID;
+                                    argsOK.Archivo = comprobante.ArchivoYCarpeta;
+                                    argsOK.Msg = $"CFDI de tipo {tipoComprobante} guardado en el log.";
+                                    OnProcesoOkImportarPM(argsOK);
+                                }
+                                else
+                                    throw new InvalidOperationException("No corresponde cargar el comprobante en la compañía actual. Debería cargarse en " + receptor.nombre);
+
                                 break;
 
                         }
                     }
                 }
+                catch (System.IO.IOException io)
+                {
+                    ErrorImportarPMEventArgs args = new ErrorImportarPMEventArgs();
+                    args.Archivo = comprobante.ArchivoYCarpeta;
+                    args.Error = "Es probable que no tenga permisos en esta carpeta o el archivo está abierto. " + io.Message;
+                    OnErrorImportarPM(args);
+                }
                 catch (Exception ex)
                 {
                     ErrorImportarPMEventArgs args = new ErrorImportarPMEventArgs();
                     args.Archivo = comprobante.ArchivoYCarpeta;
-                    args.Error = ex.Message + " - " + ex.StackTrace + " - " + ex.Source;
+                    args.Error = ex.Message + " - " + ex.StackTrace + " - " + ex.TargetSite;
                     OnErrorImportarPM(args);
                 }
             }

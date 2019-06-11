@@ -35,6 +35,8 @@ grant execute on dcem.dcemCorrigePoliza to rol_contaelectr;
 grant execute on dace.spComprobanteCFDIInsDel to rol_contaelectr;
 GRANT  SELECT ON [dbo].[vw_dace_smartlist1] TO rol_contaelectr, DYNGRP;
 GRANT  SELECT ON dace.vwComprobanteCFDI to rol_contaelectr;
+grant select on dace.ComprobanteCFDIRelacionado to DYNGRP;
+grant select on dace.ComprobanteCFDI to DYNGRP;
 
 ----------------------------------------------------------------------------
 use dynamics;

@@ -934,7 +934,7 @@ namespace CE.WinFormUI
             }
             catch (Exception exc)
             {
-                lblProcesos.Text = string.Concat(exc.Message, Environment.NewLine, exc?.InnerException.ToString(), Environment.NewLine);
+                lblProcesos.Text = string.Concat(exc.Message, Environment.NewLine, exc.StackTrace, Environment.NewLine);
             }
 
         }

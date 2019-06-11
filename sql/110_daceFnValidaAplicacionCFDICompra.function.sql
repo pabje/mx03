@@ -7,6 +7,7 @@ GO
 --			Pero no puede haber un pago aplicado a varias facturas porque no se sabría el folio fiscal del pago.
 --05/02/19 jcf Creación
 --26/04/19 jcf Agrega CfdiXml_Total, CfdiXml_Moneda y mejora las observaciones
+--11/06/19 jcf Agrega validaciones.CfdiXml_Folio
 --
 CREATE FUNCTION [dbo].[daceFnValidaAplicacionCFDICompra](@CNTRLNUM char(21), @DOCTYPE smallint)  
 RETURNS table
@@ -14,7 +15,7 @@ AS
 return(
 
 SELECT validaciones.VCHRNMBR, validaciones.DOCTYPE, validaciones.VENDORID, validaciones.DOCDATE, validaciones.DOCNUMBR, validaciones.DOCAMNT, validaciones.CURNCYID, validaciones.TRXDSCRN, validaciones.UUID, 
-	validaciones.CfdiXml_MetodoPago, validaciones.CfdiXml_Moneda, validaciones.CfdiXml_Total,
+	validaciones.CfdiXml_Folio, validaciones.CfdiXml_MetodoPago, validaciones.CfdiXml_Moneda, validaciones.CfdiXml_Total,
 	case when min(validaciones.OBSERVACIONES) = max(validaciones.OBSERVACIONES) 
 			and min(validaciones.OBSERVACIONES) not like 'Error%' 
 			and max(validaciones.OBSERVACIONES) not like 'Error%' then 
@@ -34,6 +35,7 @@ FROM (
 				ELSE 
 					asoc.MexFolioFiscal
 			END AS UUID, 
+			isnull(CFDI.FOLIO, '')			CfdiXml_Folio,
 			isnull(CFDI.MONEDA, '')			CfdiXml_Moneda,
 			isnull(CFDI.TOTAL, 0)			CfdiXml_Total,
 			ISNULL(CFDI.METODOPAGO, '')		CfdiXml_MetodoPago, 
@@ -80,7 +82,7 @@ FROM (
 	--a.VOIDED = 0
 	) validaciones
 GROUP BY validaciones.VCHRNMBR, validaciones.DOCTYPE, validaciones.VENDORID, validaciones.DOCDATE, validaciones.DOCNUMBR, validaciones.DOCAMNT, validaciones.CURNCYID, validaciones.TRXDSCRN, validaciones.UUID, 
-	validaciones.CfdiXml_MetodoPago, validaciones.CfdiXml_Moneda, validaciones.CfdiXml_Total
+	validaciones.CfdiXml_Folio, validaciones.CfdiXml_MetodoPago, validaciones.CfdiXml_Moneda, validaciones.CfdiXml_Total
 )
 -------------------------------------------
 

@@ -812,28 +812,35 @@ namespace CE.WinFormUI
 
         private void tsButtonImportarArchivos_Click(object sender, EventArgs e)
         {
-            lblError.Text = "";
-            lblProcesos.Text = "";
+            try
+            {
+                lblError.Text = "";
+                lblProcesos.Text = "";
 
-            GPCompras gpCompras = new GPCompras(companySelected());
+                GPCompras gpCompras = new GPCompras(companySelected());
 
-            IList<vwComprobanteCFDI> archivos = filtraListaSeleccionada(gridFiles, tsProgressBar, idxChkBox, idxTipo, idxUuid, listaDeCfdisFiltrados);
+                IList<vwComprobanteCFDI> archivos = filtraListaSeleccionada(gridFiles, tsProgressBar, idxChkBox, idxTipo, idxUuid, listaDeCfdisFiltrados);
 
-            gpCompras.ErrorImportarPM += new EventHandler<GPCompras.ErrorImportarPMEventArgs>(oL_ErrorImportarPM);
-            gpCompras.ProcesoOkImportarPM += new EventHandler<GPCompras.ProcesoOkImportarPMEventArgs>(oL_ProcesoOkImportarPM);
+                gpCompras.ErrorImportarPM += new EventHandler<GPCompras.ErrorImportarPMEventArgs>(oL_ErrorImportarPM);
+                gpCompras.ProcesoOkImportarPM += new EventHandler<GPCompras.ProcesoOkImportarPMEventArgs>(oL_ProcesoOkImportarPM);
 
-            int metodo = 1;
-            if (radPOP.Checked)
-                metodo = 2;
+                int metodo = 1;
+                if (radPOP.Checked)
+                    metodo = 2;
 
-            int lenUsuario = Environment.UserName.PadLeft(5).Length;
-            string usuario = Environment.UserName.Substring(0, 1) + Environment.UserName.PadLeft(5).Substring(lenUsuario - 4, 4);
-            gpCompras.IntegrarDocumentosGP(archivos, metodo, usuario);
+                int lenUsuario = Environment.UserName.PadLeft(5).Length;
+                string usuario = Environment.UserName.Substring(0, 1) + Environment.UserName.PadLeft(5).Substring(lenUsuario - 4, 4);
+                gpCompras.IntegrarDocumentosGP(archivos, metodo, usuario);
 
-            if (archivos.Count == 0)
-                MessageBox.Show("Debe seleccionar archivos");
+                if (archivos.Count == 0)
+                    MessageBox.Show("Debe seleccionar archivos");
 
-            gridFiles.Refresh();
+                gridFiles.Refresh();
+            }
+            catch (Exception exc)
+            {
+                lblError.Text = string.Concat(exc.Message, Environment.NewLine, exc.StackTrace, Environment.NewLine, exc.TargetSite);
+            }
 
         }
 

@@ -24,8 +24,9 @@ namespace CE.Business
 {
     public class GPCompras
     {
-        private string connectionString = "";
-        private string _pre = "";
+        private string connectionString = string.Empty;
+        private string _pre = string.Empty;
+        private string defaultDate = string.Empty;
         XNamespace ns_cfdi = @"http://www.sat.gob.mx/cfd/3";
         XNamespace ns_tfd = @"http://www.sat.gob.mx/TimbreFiscalDigital";
         XNamespace ns_implocal = @"http://www.sat.gob.mx/implocal";
@@ -34,6 +35,7 @@ namespace CE.Business
         public GPCompras(string pre)
         {
             connectionString = System.Configuration.ConfigurationManager.ConnectionStrings[pre].ToString();
+            defaultDate = System.Configuration.ConfigurationManager.AppSettings[pre + "_defaultFecha"].ToString();
             _pre = pre;
         }
 
@@ -553,6 +555,7 @@ namespace CE.Business
                             if (metodo == 2)
                             VCHRNMBR = this.FacturaPOPExists(vendorid, folio, DateTime.Parse(comprobante.fecha).Date);
 
+                        DateTime hoy = DateTime.Today;
                         if (string.IsNullOrEmpty(VCHRNMBR))
                         {
                             //la factura no existe en GP
@@ -564,7 +567,7 @@ namespace CE.Business
                                 POPHeader.POPRCTNM = VCHRNMBR;
                                 POPHeader.POPTYPE = 1;
                                 POPHeader.VNDDOCNM = folio;
-                                POPHeader.receiptdate = DateTime.Parse(comprobante.fecha).ToString(formatoFecha);
+                                POPHeader.receiptdate = string.IsNullOrEmpty(defaultDate) || defaultDate.ToUpper().Equals("CFDI") ? DateTime.Parse(comprobante.fecha).ToString(formatoFecha) : hoy.ToString(formatoFecha);
                                 POPHeader.BACHNUMB = BACHNUMB;
                                 POPHeader.VENDORID = vendorid;
                                 POPHeader.REFRENCE = conceptos.First().descripcion.Length > 30 ? conceptos.First().descripcion.Substring(0, 30) : conceptos.First().descripcion;
@@ -585,7 +588,7 @@ namespace CE.Business
                                 PMHeader.DOCTYPE = 1;
                                 PMHeader.DOCAMNT = Decimal.Round(decimal.Parse(comprobante.total), 2);
                                 PMHeader.CHRGAMNT = PMHeader.DOCAMNT;
-                                PMHeader.DOCDATE = DateTime.Parse(comprobante.fecha).ToString(formatoFecha);
+                                PMHeader.DOCDATE = string.IsNullOrEmpty(defaultDate) || defaultDate.ToUpper().Equals("CFDI") ? DateTime.Parse(comprobante.fecha).ToString(formatoFecha) : hoy.ToString();
                                 PMHeader.TAXSCHID = System.Configuration.ConfigurationManager.AppSettings[_pre + "_TAXSCHID"].ToString();
                                 PMHeader.PRCHAMNT = Decimal.Round(decimal.Parse(comprobante.subTotal), 2);
                                 PMHeader.TRDISAMT = Decimal.Round(decimal.Parse(comprobante.Descuento), 2);

@@ -213,7 +213,7 @@
             // 
             this.versión10ToolStripMenuItem.Name = "versión10ToolStripMenuItem";
             this.versión10ToolStripMenuItem.Size = new System.Drawing.Size(330, 22);
-            this.versión10ToolStripMenuItem.Text = "Carga CFDIs y Contabilidad Electrónica 1.3 v5.3.0";
+            this.versión10ToolStripMenuItem.Text = "Carga CFDIs y Contabilidad Electrónica 1.3 v5.4.0";
             // 
             // openFileDialog1
             // 

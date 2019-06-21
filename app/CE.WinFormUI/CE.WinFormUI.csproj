@@ -57,7 +57,7 @@
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <DebugType>full</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
@@ -182,6 +182,10 @@
     <ProjectReference Include="..\CE.Business\CE.Business.csproj">
       <Project>{C286CD14-1E68-4117-9217-1E1C2ADAFBD4}</Project>
       <Name>CE.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CE.Data\CE.Data.csproj">
+      <Project>{ec1ece94-787f-4754-aeb8-563f8438068a}</Project>
+      <Name>CE.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\CE.Model\CE.Model.csproj">
       <Project>{9232D5BB-4AE9-42A7-8740-836CF28ECA45}</Project>

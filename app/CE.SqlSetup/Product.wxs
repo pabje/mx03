@@ -46,6 +46,7 @@
           
           <sql:SqlScript Id="CreateObj010" BinaryKey="CreateObj010" ExecuteOnInstall="yes" Sequence="010" ExecuteOnReinstall="yes"/>
           <sql:SqlScript Id="CreateObj013" BinaryKey="CreateObj013" ExecuteOnInstall="yes" Sequence="013" ExecuteOnReinstall="yes"/>
+          <sql:SqlScript Id="CreateObj015" BinaryKey="CreateObj015" ExecuteOnInstall="yes" Sequence="015" ExecuteOnReinstall="yes"/>
           <sql:SqlScript Id="CreateObj016" BinaryKey="CreateObj016" ExecuteOnInstall="yes" Sequence="016" ExecuteOnReinstall="yes"/>
           <sql:SqlScript Id="CreateObj019" BinaryKey="CreateObj019" ExecuteOnInstall="yes" Sequence="019" ExecuteOnReinstall="yes"/>
           <sql:SqlScript Id="CreateObj022" BinaryKey="CreateObj022" ExecuteOnInstall="yes" Sequence="022" ExecuteOnReinstall="yes"/>
@@ -88,6 +89,7 @@
           <sql:SqlScript Id="CreateObj133" BinaryKey="CreateObj133" ExecuteOnInstall="yes" Sequence="133" ExecuteOnReinstall="yes"/>
           <sql:SqlScript Id="CreateObj135" BinaryKey="CreateObj135" ExecuteOnInstall="yes" Sequence="135" ExecuteOnReinstall="yes"/>
           <sql:SqlScript Id="CreateObj138" BinaryKey="CreateObj138" ExecuteOnInstall="yes" Sequence="138" ExecuteOnReinstall="yes"/>
+          <sql:SqlScript Id="CreateObj139" BinaryKey="CreateObj139" ExecuteOnInstall="yes" Sequence="139" ExecuteOnReinstall="yes"/>
           <sql:SqlScript Id="CreateObj141" BinaryKey="CreateObj141" ExecuteOnInstall="yes" Sequence="141" ExecuteOnReinstall="yes"/>
           <sql:SqlScript Id="CreateObj143" BinaryKey="CreateObj143" ExecuteOnInstall="yes" Sequence="143" ExecuteOnReinstall="yes"/>
           <sql:SqlScript Id="CreateObj144" BinaryKey="CreateObj144" ExecuteOnInstall="yes" Sequence="144" ExecuteOnReinstall="yes"/>
@@ -166,6 +168,8 @@
 
     <Binary Id="CreateObj010" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\01_dcemPoliza.table.sql"/>
     <Binary Id="CreateObj013" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\02_dcemFnParametros.function.sql"/>
+    <Binary Id="CreateObj015" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\05_vwPmTransaccionesContabYSusAplicaciones.view.sql"/>
+    
     <Binary Id="CreateObj016" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\07_dcemFnGetSegmento2.sql"/>
     <Binary Id="CreateObj019" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\08_dcemFnGetDatosBancoDelProveedor.function.sql"/>
     <Binary Id="CreateObj022" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\09_dcemFnGetDatosBancarios.function.sql"/>
@@ -208,6 +212,7 @@
     <Binary Id="CreateObj133" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\92_PreprocesaArchivosDeContaElectronica.sprocedure.sql"/>
     <Binary Id="CreateObj135" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\94_dcemContabilidadExportados.table.sql"/>
     <Binary Id="CreateObj138" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\97_daceComprobantesCFDI.table.sql"/>
+    <Binary Id="CreateObj139" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\98_daceComprobantesCfdi.view.sql"/>
     <Binary Id="CreateObj141" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\99_daceSpComprobanteCfdiInsDel.sprocedures.sql"/>
     <Binary Id="CreateObj143" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\110_fun_DACE_ValidarAplica.function.sql"/>
     <Binary Id="CreateObj144" SourceFile="C:\jcTii\Desarrollo\MEX_ContaMediosElectr\mx03\sql\110_daceFnValidaAplicacionCFDICompra.function.sql"/>

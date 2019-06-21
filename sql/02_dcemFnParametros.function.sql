@@ -8,6 +8,7 @@ as
 --Propósito. Devuelve los parámetros de la compañía para localización México. 
 --Requisitos. Los @tagx deben configurarse en la ventana Información de internet del id de dirección LECU de la compañía.
 --25/3/15 jcf Creación 
+--25/4/19 jcf Agrega taxregtn
 --
 return
 (
@@ -29,7 +30,8 @@ return
 		else 'no existe tag: '+@tag5 end param5,
 		CASE when charindex(@tag6+'=', ia.inetinfo) > 0 and  charindex(char(13), ia.inetinfo) > 0 then
 			substring(ia.inetinfo, charindex(@tag6+'=', ia.inetinfo)+ len(@tag6)+1, charindex(char(13), ia.inetinfo, charindex(@tag6+'=', ia.inetinfo)) - charindex(@tag6+'=', ia.inetinfo) - len(@tag6)-1)
-		else 'no existe tag: '+@tag6 end param6
+		else 'no existe tag: '+@tag6 end param6,
+		ci.TAXREGTN
 	from SY01200 ia						--coInetAddress Dirección de la compañía
 		CROSS join DYNAMICS..SY01500 ci	--sy_company_mstr 
 		inner join sy00600 lm			--sy_location_mstr

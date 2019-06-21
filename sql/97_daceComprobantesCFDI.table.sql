@@ -8,26 +8,45 @@ BEGIN
 END
 go
 
+--Agregar el campo validado si no existe
+IF OBJECT_ID('dace.ComprobanteCFDI', 'U') IS not NULL
+begin
+	IF not exists (
+		SELECT TABLE_CATALOG, TABLE_SCHEMA, TABLE_NAME, COLUMN_NAME, COLUMN_DEFAULT 
+		FROM INFORMATION_SCHEMA.COLUMNS  
+		WHERE TABLE_NAME = N'ComprobanteCFDI'
+		and TABLE_SCHEMA = 'dace'
+		and COLUMN_NAME = 'VALIDADO')
+	begin
+		alter table dace.ComprobanteCFDI add VALIDADO SMALLINT DEFAULT 0;
+	end
+
+	--declare @id varchar(50), @sql varchar(250)
+	--select @id = left(replace(replace(convert(varchar(50), getdate(), 127), ':', ''), '-', ''), 15);
+	--select @sql = 'select * into _ComprobanteCFDI_' + @id + ' from dace.ComprobanteCFDI;';
+	--exec (@sql);
+end
+
 -- ------------------------------------------------------------
 -- Guarda datos relevantes de los CFDIs recibidos del proveedor
 -- ------------------------------------------------------------
---IF not EXISTS (SELECT 1 FROM dbo.sysobjects WHERE id = OBJECT_ID(N'dace.daceComprobanteCFDI') AND OBJECTPROPERTY(id,N'IsTable') = 1)
 IF OBJECT_ID('dace.ComprobanteCFDI', 'U') IS NULL
 begin
 
-CREATE TABLE dace.ComprobanteCFDI (
-  UUID VARCHAR(50)  NOT NULL  ,
-  TIPOCOMPROBANTE VARCHAR(1)  NOT NULL  ,
-  FOLIO VARCHAR(35)    ,
-  FECHA VARCHAR(20)  NOT NULL  ,
-  TOTAL NUMERIC(19,5)  NOT NULL DEFAULT 0 ,
-  MONEDA VARCHAR(15)  NOT NULL  ,
-  METODOPAGO VARCHAR(5)    ,
-  EMISOR_RFC VARCHAR(30)  NOT NULL  ,
-  RESUMENCFDI VARCHAR(100)    ,
-  NOMBREARCHIVO VARCHAR(255)  NOT NULL  ,
-  CARPETAARCHIVO VARCHAR(255)  NOT NULL    ,
-PRIMARY KEY(UUID, TIPOCOMPROBANTE));
+	CREATE TABLE dace.ComprobanteCFDI (
+	  UUID VARCHAR(50)  NOT NULL  ,
+	  TIPOCOMPROBANTE VARCHAR(1)  NOT NULL  ,
+	  FOLIO VARCHAR(35)    ,
+	  FECHA VARCHAR(20)  NOT NULL  ,
+	  TOTAL NUMERIC(19,5)  NOT NULL DEFAULT 0 ,
+	  MONEDA VARCHAR(15)  NOT NULL  ,
+	  METODOPAGO VARCHAR(5)    ,
+	  EMISOR_RFC VARCHAR(30)  NOT NULL  ,
+	  RESUMENCFDI VARCHAR(100)    ,
+	  NOMBREARCHIVO VARCHAR(255)  NOT NULL  ,
+	  CARPETAARCHIVO VARCHAR(255)  NOT NULL    ,
+	  VALIDADO SMALLINT DEFAULT 0,
+	PRIMARY KEY(UUID, TIPOCOMPROBANTE));
 end
 GO
 

@@ -588,7 +588,7 @@ namespace CE.Business
                                 PMHeader.DOCTYPE = 1;
                                 PMHeader.DOCAMNT = Decimal.Round(decimal.Parse(comprobante.total), 2);
                                 PMHeader.CHRGAMNT = PMHeader.DOCAMNT;
-                                PMHeader.DOCDATE = string.IsNullOrEmpty(defaultDate) || defaultDate.ToUpper().Equals("CFDI") ? DateTime.Parse(comprobante.fecha).ToString(formatoFecha) : hoy.ToString();
+                                PMHeader.DOCDATE = string.IsNullOrEmpty(defaultDate) || defaultDate.ToUpper().Equals("CFDI") ? DateTime.Parse(comprobante.fecha).ToString(formatoFecha) : hoy.ToString(formatoFecha);
                                 PMHeader.TAXSCHID = System.Configuration.ConfigurationManager.AppSettings[_pre + "_TAXSCHID"].ToString();
                                 PMHeader.PRCHAMNT = Decimal.Round(decimal.Parse(comprobante.subTotal), 2);
                                 PMHeader.TRDISAMT = Decimal.Round(decimal.Parse(comprobante.Descuento), 2);

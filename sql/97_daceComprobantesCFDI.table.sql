@@ -21,6 +21,15 @@ begin
 		alter table dace.ComprobanteCFDI add VALIDADO SMALLINT DEFAULT 0;
 	end
 
+	IF not exists (
+		SELECT TABLE_CATALOG, TABLE_SCHEMA, TABLE_NAME, COLUMN_NAME, COLUMN_DEFAULT 
+		FROM INFORMATION_SCHEMA.COLUMNS  
+		WHERE TABLE_NAME = N'ComprobanteCFDI'
+		and TABLE_SCHEMA = 'dace'
+		and COLUMN_NAME = 'archivoXML')
+	begin
+		alter table dace.ComprobanteCFDI add archivoXML xml default ''
+	end
 	--declare @id varchar(50), @sql varchar(250)
 	--select @id = left(replace(replace(convert(varchar(50), getdate(), 127), ':', ''), '-', ''), 15);
 	--select @sql = 'select * into _ComprobanteCFDI_' + @id + ' from dace.ComprobanteCFDI;';
@@ -46,8 +55,10 @@ begin
 	  NOMBREARCHIVO VARCHAR(255)  NOT NULL  ,
 	  CARPETAARCHIVO VARCHAR(255)  NOT NULL    ,
 	  VALIDADO SMALLINT DEFAULT 0,
+	  archivoXML xml default '',
 	PRIMARY KEY(UUID, TIPOCOMPROBANTE));
 end
+
 GO
 
 -- ------------------------------------------------------------

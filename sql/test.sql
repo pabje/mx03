@@ -67,11 +67,3 @@ where actindx = 18
 --gl.userdef1 != ''
 ------------------------------------------------------------------
 
---carga de comprobantes cfdi
-select *
-from dace.ComprobanteCFDI
-
-select *
-from dace.ComprobanteCFDIRelacionado
-
-

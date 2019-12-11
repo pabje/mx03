@@ -389,8 +389,8 @@ namespace CE.WinFormUI
                         string text = System.IO.File.ReadAllText(directorio + "\\" + archivo);
 
                         XDocument xdoc = XDocument.Parse(text);
-                        string tipoComprobante = GPCompras.AveriguarElTipoDeCfdi(xdoc, cfdi);
-                        switch (tipoComprobante)
+                        var comprobantePropiedades = GPCompras.AveriguaPropiedadesDelComprobante(xdoc, cfdi);
+                        switch (comprobantePropiedades.Item1)
                         {
                             case "I":
                                 var comprobante = (from c in xdoc.Descendants(cfdi + "Comprobante")

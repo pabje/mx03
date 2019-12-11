@@ -56,100 +56,15 @@ namespace CE.Business
                     {
                         string xml = comprobante.Sxml;
                         XDocument xdoc = XDocument.Parse(xml);
-                        var receptor = (from c in xdoc.Descendants(ns_cfdi + "Receptor")
-                                        select new
-                                        {
-                                            rfc = c.Attribute("Rfc").Value,
-                                            nombre = c.Attribute("Nombre") == null ? "" : c.Attribute("Nombre").Value
-                                        }).FirstOrDefault();
-
-                        string tipoComprobante = AveriguarElTipoDeCfdi(xdoc, ns_cfdi);
-                        ProcesoOkImportarPMEventArgs argsOK = new ProcesoOkImportarPMEventArgs();
-                        switch (tipoComprobante)
+                        var comprobantePropiedades = AveriguaPropiedadesDelComprobante(xdoc, ns_cfdi);
+                        if (comprobantePropiedades?.Item2 == "3.3")
+                            await CargaCfdiDeCompraV33(rfcCompania, comprobante, xdoc, comprobantePropiedades.Item1);
+                        else
                         {
-                            case "I":
-                                var concepto = (from c in xdoc.Descendants(ns_cfdi + "Concepto")
-                                                select new
-                                                {
-                                                    Cantidad = c.Attribute("Cantidad").Value,
-                                                    Unidad = c.Attribute("ClaveUnidad").Value,
-                                                    Descripcion = c.Attribute("Descripcion").Value,
-                                                }).First();
-                                string resumenI = $"{concepto.Descripcion} {concepto.Cantidad} {concepto.Unidad}";
-                                var timbreI = (from c in xdoc.Descendants(ns_tfd + "TimbreFiscalDigital")
-                                              select new
-                                              {
-                                                  UUID = c.Attribute("UUID").Value
-                                              }).FirstOrDefault();
-
-                                if (receptor.rfc.ToUpper().Equals(rfcCompania))
-                                {
-                                    await CargaComprobanteCfdiAsync(xdoc, ns_cfdi, ns_tfd, comprobante.ArchivoYCarpetaDestino, Helper.Izquierda(resumenI, 100), timbreI.UUID, Convert.ToInt16(comprobante.Valida));
-                                    comprobante.Uuid = timbreI.UUID;
-                                    argsOK.Archivo = comprobante.ArchivoYCarpeta;
-                                    argsOK.Msg = "CFDI de Ingreso guardado en log.";
-                                    OnProcesoOkImportarPM(argsOK);
-                                }
-                                else
-                                    throw new InvalidOperationException("No corresponde cargar el comprobante en la compañía actual. Debería cargarse en " + receptor.nombre);
-                                break;
-
-                            case "P":
-                                var pagoP = (from c in xdoc.Descendants(ns_pago10 + "Pago")
-                                             select new
-                                             {
-                                                 Monto = c.Attribute("Monto").Value,
-                                                 MonedaDelPago = c.Attribute("MonedaP").Value,
-                                                 FechaDelPago = c.Attribute("FechaPago").Value,
-                                             }).First();
-
-                                var docRelacionadoP = (from c in xdoc.Descendants(ns_pago10 + "DoctoRelacionado")
-                                                       select new
-                                                       {
-                                                           Pagado = c.Attribute("ImpPagado") == null ? "" : c.Attribute("ImpPagado").Value,
-                                                           Parcialidad = c.Attribute("NumParcialidad").Value,
-                                                           Moneda = c.Attribute("MonedaDR").Value,
-                                                           UUID = c.Attribute("IdDocumento").Value,
-                                                       }).First();
-                                string resumenP = $"#{docRelacionadoP.Parcialidad} De {pagoP.MonedaDelPago}{pagoP.Monto} aplica {docRelacionadoP.Moneda}{docRelacionadoP.Pagado} a {docRelacionadoP.UUID} el {pagoP.FechaDelPago.Substring(0, 10)}";
-                                var timbreP = (from c in xdoc.Descendants(ns_tfd + "TimbreFiscalDigital")
-                                              select new
-                                              {
-                                                  UUID = c.Attribute("UUID").Value
-                                              }).FirstOrDefault();
-
-                                if (receptor.rfc.ToUpper().Equals(rfcCompania))
-                                {
-                                    await CargaComprobanteCfdiAsync(xdoc, ns_cfdi, ns_tfd, comprobante.ArchivoYCarpetaDestino, Helper.Izquierda(resumenP, 100), timbreP.UUID, Convert.ToInt16(comprobante.Valida));
-                                    comprobante.Uuid = timbreP.UUID;
-                                    argsOK.Archivo = comprobante.ArchivoYCarpeta;
-                                    argsOK.Msg = "CFDI de Pago guardado en log.";
-                                    OnProcesoOkImportarPM(argsOK);
-                                }
-                                else
-                                    throw new InvalidOperationException("No corresponde cargar el comprobante en la compañía actual. Debería cargarse en " + receptor.nombre);
-
-                                break;
-                            default:
-                                var timbreOtro = (from c in xdoc.Descendants(ns_tfd + "TimbreFiscalDigital")
-                                               select new
-                                               {
-                                                   UUID = c.Attribute("UUID").Value
-                                               }).FirstOrDefault();
-
-                                if (receptor.rfc.ToUpper().Equals(rfcCompania))
-                                {
-                                    await CargaComprobanteCfdiAsync(xdoc, ns_cfdi, ns_tfd, comprobante.ArchivoYCarpetaDestino, string.Empty, timbreOtro.UUID, Convert.ToInt16(comprobante.Valida));
-                                    comprobante.Uuid = timbreOtro.UUID;
-                                    argsOK.Archivo = comprobante.ArchivoYCarpeta;
-                                    argsOK.Msg = $"CFDI de tipo {tipoComprobante} guardado en el log.";
-                                    OnProcesoOkImportarPM(argsOK);
-                                }
-                                else
-                                    throw new InvalidOperationException("No corresponde cargar el comprobante en la compañía actual. Debería cargarse en " + receptor.nombre);
-
-                                break;
-
+                            ErrorImportarPMEventArgs args = new ErrorImportarPMEventArgs();
+                            args.Archivo = comprobante.ArchivoYCarpeta;
+                            args.Error = string.Concat( "Este CFDI es de la versión ", comprobantePropiedades?.Item2 , ". Esta versión no es soportada. [CargarCfdisEnLogAsync]");
+                            OnErrorImportarPM(args);
                         }
                     }
                 }
@@ -170,6 +85,106 @@ namespace CE.Business
             }
             return comprobantes;
         }
+
+        private async Task<string> CargaCfdiDeCompraV33(string rfcCompania, Cfdi comprobante, XDocument xdoc, string tipoComprobante)
+        {
+            var receptor = (from c in xdoc.Descendants(ns_cfdi + "Receptor")
+                            select new
+                            {
+                                rfc = c.Attribute("Rfc").Value,
+                                nombre = c.Attribute("Nombre") == null ? "" : c.Attribute("Nombre").Value
+                            }).FirstOrDefault();
+
+            ProcesoOkImportarPMEventArgs argsOK = new ProcesoOkImportarPMEventArgs();
+            switch (tipoComprobante)
+            {
+                case "I":
+                    var concepto = (from c in xdoc.Descendants(ns_cfdi + "Concepto")
+                                    select new
+                                    {
+                                        Cantidad = c.Attribute("Cantidad").Value,
+                                        Unidad = c.Attribute("ClaveUnidad").Value,
+                                        Descripcion = c.Attribute("Descripcion").Value,
+                                    }).First();
+                    string resumenI = $"{concepto.Descripcion} {concepto.Cantidad} {concepto.Unidad}";
+                    var timbreI = (from c in xdoc.Descendants(ns_tfd + "TimbreFiscalDigital")
+                                   select new
+                                   {
+                                       UUID = c.Attribute("UUID").Value
+                                   }).FirstOrDefault();
+
+                    if (receptor.rfc.ToUpper().Equals(rfcCompania))
+                    {
+                        await CargaComprobanteCfdiAsync(xdoc, ns_cfdi, ns_tfd, comprobante.ArchivoYCarpetaDestino, Helper.Izquierda(resumenI, 100), timbreI.UUID, Convert.ToInt16(comprobante.Valida));
+                        comprobante.Uuid = timbreI.UUID;
+                        argsOK.Archivo = comprobante.ArchivoYCarpeta;
+                        argsOK.Msg = "CFDI de Ingreso guardado en log.";
+                        OnProcesoOkImportarPM(argsOK);
+                    }
+                    else
+                        throw new InvalidOperationException("No corresponde cargar el comprobante en la compañía actual. Debería cargarse en " + receptor.nombre);
+                    break;
+
+                case "P":
+                    var pagoP = (from c in xdoc.Descendants(ns_pago10 + "Pago")
+                                 select new
+                                 {
+                                     Monto = c.Attribute("Monto").Value,
+                                     MonedaDelPago = c.Attribute("MonedaP").Value,
+                                     FechaDelPago = c.Attribute("FechaPago").Value,
+                                 }).First();
+
+                    var docRelacionadoP = (from c in xdoc.Descendants(ns_pago10 + "DoctoRelacionado")
+                                           select new
+                                           {
+                                               Pagado = c.Attribute("ImpPagado") == null ? "" : c.Attribute("ImpPagado").Value,
+                                               Parcialidad = c.Attribute("NumParcialidad").Value,
+                                               Moneda = c.Attribute("MonedaDR").Value,
+                                               UUID = c.Attribute("IdDocumento").Value,
+                                           }).First();
+                    string resumenP = $"#{docRelacionadoP.Parcialidad} De {pagoP.MonedaDelPago}{pagoP.Monto} aplica {docRelacionadoP.Moneda}{docRelacionadoP.Pagado} a {docRelacionadoP.UUID} el {pagoP.FechaDelPago.Substring(0, 10)}";
+                    var timbreP = (from c in xdoc.Descendants(ns_tfd + "TimbreFiscalDigital")
+                                   select new
+                                   {
+                                       UUID = c.Attribute("UUID").Value
+                                   }).FirstOrDefault();
+
+                    if (receptor.rfc.ToUpper().Equals(rfcCompania))
+                    {
+                        await CargaComprobanteCfdiAsync(xdoc, ns_cfdi, ns_tfd, comprobante.ArchivoYCarpetaDestino, Helper.Izquierda(resumenP, 100), timbreP.UUID, Convert.ToInt16(comprobante.Valida));
+                        comprobante.Uuid = timbreP.UUID;
+                        argsOK.Archivo = comprobante.ArchivoYCarpeta;
+                        argsOK.Msg = "CFDI de Pago guardado en log.";
+                        OnProcesoOkImportarPM(argsOK);
+                    }
+                    else
+                        throw new InvalidOperationException("No corresponde cargar el comprobante en la compañía actual. Debería cargarse en " + receptor.nombre);
+
+                    break;
+                default:
+                    var timbreOtro = (from c in xdoc.Descendants(ns_tfd + "TimbreFiscalDigital")
+                                      select new
+                                      {
+                                          UUID = c.Attribute("UUID").Value
+                                      }).FirstOrDefault();
+
+                    if (receptor.rfc.ToUpper().Equals(rfcCompania))
+                    {
+                        await CargaComprobanteCfdiAsync(xdoc, ns_cfdi, ns_tfd, comprobante.ArchivoYCarpetaDestino, string.Empty, timbreOtro.UUID, Convert.ToInt16(comprobante.Valida));
+                        comprobante.Uuid = timbreOtro.UUID;
+                        argsOK.Archivo = comprobante.ArchivoYCarpeta;
+                        argsOK.Msg = $"CFDI de tipo {tipoComprobante} guardado en el log.";
+                        OnProcesoOkImportarPM(argsOK);
+                    }
+                    else
+                        throw new InvalidOperationException("No corresponde cargar el comprobante en la compañía actual. Debería cargarse en " + receptor.nombre);
+
+                    break;
+
+            }
+            return argsOK.Msg;
+        }
+
         /// <summary>
         /// Valida el sello de los cfdis
         /// </summary>
@@ -190,7 +205,19 @@ namespace CE.Business
                 {
                     var cmp = await utileria.CargarArchivoAsync(row.ArchivoYCarpeta);
                     row.Sxml = cmp.Sxml;
-                    row.Valida = cmp.ValidaSelloAsync();
+                    XDocument xdoc = XDocument.Parse(cmp.Sxml);
+                    var comPropiedades = AveriguaPropiedadesDelComprobante(xdoc, ns_cfdi);
+                    if (comPropiedades?.Item2 == "3.3")
+                    {
+                        row.Valida = cmp.ValidaSelloAsync();
+                    }
+                    else
+                    {
+                        ErrorImportarPMEventArgs args = new ErrorImportarPMEventArgs();
+                        args.Archivo = row.ArchivoYCarpeta;
+                        args.Error = string.Concat("Este CFDI es de la versión ", comPropiedades?.Item2, ". Esta versión no es soportada para validación. [validaArchivosAsync]");
+                        OnErrorImportarPM(args);
+                    }
 
                     if (prbar != null)
                     {
@@ -260,54 +287,54 @@ namespace CE.Business
         /// <param name="archivos">Path de los archivos</param>
         /// <param name="metodo">1: PM - 2: POP</param>
         /// 
-        public void Importar(List<string> archivos, int metodo)
-        {
-            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
+        //public void Importar(List<string> archivos, int metodo)
+        //{
+        //    Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
 
-            XNamespace cfdi = @"http://www.sat.gob.mx/cfd/3";
-            XNamespace tfd = @"http://www.sat.gob.mx/TimbreFiscalDigital";
-            XNamespace implocal = @"http://www.sat.gob.mx/implocal";
+        //    XNamespace cfdi = @"http://www.sat.gob.mx/cfd/3";
+        //    XNamespace tfd = @"http://www.sat.gob.mx/TimbreFiscalDigital";
+        //    XNamespace implocal = @"http://www.sat.gob.mx/implocal";
 
-            string BACHNUMB = DateTime.Now.ToString("yyyyMMddHHmmss");
-            string formatoFecha = System.Configuration.ConfigurationManager.AppSettings[_pre + "_FormatoFecha"].ToString();
+        //    string BACHNUMB = DateTime.Now.ToString("yyyyMMddHHmmss");
+        //    string formatoFecha = System.Configuration.ConfigurationManager.AppSettings[_pre + "_FormatoFecha"].ToString();
 
-            foreach (string archivo in archivos)
-            {
-                try
-                {
-                    if (System.IO.File.Exists(archivo))
-                    {
-                        string xml = System.IO.File.ReadAllText(archivo);
-                        XDocument xdoc = XDocument.Parse(xml);
+        //    foreach (string archivo in archivos)
+        //    {
+        //        try
+        //        {
+        //            if (System.IO.File.Exists(archivo))
+        //            {
+        //                string xml = System.IO.File.ReadAllText(archivo);
+        //                XDocument xdoc = XDocument.Parse(xml);
 
-                        string tipoComprobante = AveriguarElTipoDeCfdi(xdoc, cfdi);
-                        switch (tipoComprobante)
-                        {
-                            case "I":
-                                IntegraFacturaPmPop(xdoc, cfdi, tfd, implocal, archivo, metodo, formatoFecha, BACHNUMB);
-                                break;
-                            case "P":
-                                CargaComprobanteCfdi(xdoc, cfdi, tfd, archivo);
-                                break;
-                            default:
-                                ErrorImportarPMEventArgs args = new ErrorImportarPMEventArgs();
-                                args.Archivo = archivo;
-                                args.Error = "Este comprobante no se puede integrar a GP porque no es un comprobante de Ingreso ni de Pago";
-                                OnErrorImportarPM(args);
-                                break;
-                        }
+        //                string tipoComprobante = AveriguaPropiedadesDelComprobante(xdoc, cfdi);
+        //                switch (tipoComprobante)
+        //                {
+        //                    case "I":
+        //                        IntegraFacturaPmPop(xdoc, cfdi, tfd, implocal, archivo, metodo, formatoFecha, BACHNUMB);
+        //                        break;
+        //                    case "P":
+        //                        CargaComprobanteCfdi(xdoc, cfdi, tfd, archivo);
+        //                        break;
+        //                    default:
+        //                        ErrorImportarPMEventArgs args = new ErrorImportarPMEventArgs();
+        //                        args.Archivo = archivo;
+        //                        args.Error = "Este comprobante no se puede integrar a GP porque no es un comprobante de Ingreso ni de Pago";
+        //                        OnErrorImportarPM(args);
+        //                        break;
+        //                }
 
-                    }
-                }
-                catch (Exception ex)
-                {
-                    ErrorImportarPMEventArgs args = new ErrorImportarPMEventArgs();
-                    args.Archivo = archivo;
-                    args.Error = ex.Message + " - " + ex.StackTrace + " - " + ex.Source;
-                    OnErrorImportarPM(args);
-                }
-            }
-        }
+        //            }
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            ErrorImportarPMEventArgs args = new ErrorImportarPMEventArgs();
+        //            args.Archivo = archivo;
+        //            args.Error = ex.Message + " - " + ex.StackTrace + " - " + ex.Source;
+        //            OnErrorImportarPM(args);
+        //        }
+        //    }
+        //}
 
         private async Task<int> CargaComprobanteCfdiAsync(XDocument xdoc, XNamespace cfdi, XNamespace tfd, string carpetaYArchivo, string resumen, string timbre, short validado)
         {
@@ -364,58 +391,58 @@ namespace CE.Business
             }
         }
 
-        private void CargaComprobanteCfdi(XDocument xdoc, XNamespace cfdi, XNamespace tfd, string carpetaYArchivo)
-        {
-            string carpeta = Path.GetDirectoryName(carpetaYArchivo);
-            string archivo = Path.GetFileName(carpetaYArchivo);
-            var comprobante = (from c in xdoc.Descendants(cfdi + "Comprobante")
-                                select new
-                                {
-                                    folio = c.Attribute("Folio") == null ? "" : c.Attribute("Folio").Value,
-                                    fecha = c.Attribute("Fecha").Value,
-                                    metodoDePago = c.Attribute("MetodoPago") == null ? string.Empty : c.Attribute("MetodoPago").Value,
-                                    Moneda = c.Attribute("Moneda") == null ? "" : c.Attribute("Moneda").Value,
-                                    total = c.Attribute("Total").Value,
-                                    tipoDeComprobante = c.Attribute("TipoDeComprobante").Value,
-                                }).FirstOrDefault();
+        //private void CargaComprobanteCfdi(XDocument xdoc, XNamespace cfdi, XNamespace tfd, string carpetaYArchivo)
+        //{
+        //    string carpeta = Path.GetDirectoryName(carpetaYArchivo);
+        //    string archivo = Path.GetFileName(carpetaYArchivo);
+        //    var comprobante = (from c in xdoc.Descendants(cfdi + "Comprobante")
+        //                        select new
+        //                        {
+        //                            folio = c.Attribute("Folio") == null ? "" : c.Attribute("Folio").Value,
+        //                            fecha = c.Attribute("Fecha").Value,
+        //                            metodoDePago = c.Attribute("MetodoPago") == null ? string.Empty : c.Attribute("MetodoPago").Value,
+        //                            Moneda = c.Attribute("Moneda") == null ? "" : c.Attribute("Moneda").Value,
+        //                            total = c.Attribute("Total").Value,
+        //                            tipoDeComprobante = c.Attribute("TipoDeComprobante").Value,
+        //                        }).FirstOrDefault();
 
-            var emisor = (from c in xdoc.Descendants(cfdi + "Emisor")
-                            select new
-                            {
-                                rfc = c.Attribute("Rfc").Value,
-                                nombre = c.Attribute("Nombre") == null ? "" : c.Attribute("Nombre").Value
-                            }).FirstOrDefault();
+        //    var emisor = (from c in xdoc.Descendants(cfdi + "Emisor")
+        //                    select new
+        //                    {
+        //                        rfc = c.Attribute("Rfc").Value,
+        //                        nombre = c.Attribute("Nombre") == null ? "" : c.Attribute("Nombre").Value
+        //                    }).FirstOrDefault();
 
-            var timbre = (from c in xdoc.Descendants(tfd + "TimbreFiscalDigital")
-                                  select new
-                                  {
-                                      UUID = c.Attribute("UUID").Value
-                                  }).FirstOrDefault();
+        //    var timbre = (from c in xdoc.Descendants(tfd + "TimbreFiscalDigital")
+        //                          select new
+        //                          {
+        //                              UUID = c.Attribute("UUID").Value
+        //                          }).FirstOrDefault();
 
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                conn.Open();
-                using (SqlCommand cmd = new SqlCommand("dace.spComprobanteCFDIInsDel", conn))
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add(new SqlParameter("@UUID", timbre.UUID));
-                    cmd.Parameters.Add(new SqlParameter("@TIPOCOMPROBANTE", comprobante.tipoDeComprobante));
-                    cmd.Parameters.Add(new SqlParameter("@FOLIO", comprobante.folio));
-                    cmd.Parameters.Add(new SqlParameter("@FECHA", comprobante.fecha));
-                    cmd.Parameters.Add(new SqlParameter("@TOTAL", decimal.Parse(comprobante.total)));
-                    cmd.Parameters.Add(new SqlParameter("@MONEDA", comprobante.Moneda));
-                    cmd.Parameters.Add(new SqlParameter("@METODOPAGO", comprobante.metodoDePago));
-                    cmd.Parameters.Add(new SqlParameter("@EMISOR_RFC", emisor.rfc));
-                    cmd.Parameters.Add(new SqlParameter("@RESUMENCFDI", string.Empty));
-                    cmd.Parameters.Add(new SqlParameter("@NOMBREARCHIVO", archivo));
-                    cmd.Parameters.Add(new SqlParameter("@CARPETAARCHIVO", carpeta));
-                    cmd.Parameters.Add(new SqlParameter("@comprobanteXml", xdoc.ToString()));
-                    cmd.CommandTimeout = 0;
-                    cmd.ExecuteNonQuery();
+        //    using (SqlConnection conn = new SqlConnection(connectionString))
+        //    {
+        //        conn.Open();
+        //        using (SqlCommand cmd = new SqlCommand("dace.spComprobanteCFDIInsDel", conn))
+        //        {
+        //            cmd.CommandType = CommandType.StoredProcedure;
+        //            cmd.Parameters.Add(new SqlParameter("@UUID", timbre.UUID));
+        //            cmd.Parameters.Add(new SqlParameter("@TIPOCOMPROBANTE", comprobante.tipoDeComprobante));
+        //            cmd.Parameters.Add(new SqlParameter("@FOLIO", comprobante.folio));
+        //            cmd.Parameters.Add(new SqlParameter("@FECHA", comprobante.fecha));
+        //            cmd.Parameters.Add(new SqlParameter("@TOTAL", decimal.Parse(comprobante.total)));
+        //            cmd.Parameters.Add(new SqlParameter("@MONEDA", comprobante.Moneda));
+        //            cmd.Parameters.Add(new SqlParameter("@METODOPAGO", comprobante.metodoDePago));
+        //            cmd.Parameters.Add(new SqlParameter("@EMISOR_RFC", emisor.rfc));
+        //            cmd.Parameters.Add(new SqlParameter("@RESUMENCFDI", string.Empty));
+        //            cmd.Parameters.Add(new SqlParameter("@NOMBREARCHIVO", archivo));
+        //            cmd.Parameters.Add(new SqlParameter("@CARPETAARCHIVO", carpeta));
+        //            cmd.Parameters.Add(new SqlParameter("@comprobanteXml", xdoc.ToString()));
+        //            cmd.CommandTimeout = 0;
+        //            cmd.ExecuteNonQuery();
 
-                }
-            }
-        }
+        //        }
+        //    }
+        //}
 
         /// <summary>
         /// Integra una factura pm o pop a partir de un archivo xml (xdoc)
@@ -884,14 +911,15 @@ namespace CE.Business
 
         }
 
-        static public string AveriguarElTipoDeCfdi(XDocument xdoc, XNamespace cfdi)
+        static public Tuple<string, string> AveriguaPropiedadesDelComprobante(XDocument xdoc, XNamespace cfdi)
         {
             var comprobantes = (from c in xdoc.Descendants(cfdi + "Comprobante")
                                 select new
                                 {
                                     tipoDeComprobante = c.Attribute("TipoDeComprobante").Value,
+                                    version = c.Attribute("Version").Value,
                                 }).FirstOrDefault();
-            return(comprobantes.tipoDeComprobante);
+            return new Tuple<string, string>(comprobantes.tipoDeComprobante, comprobantes.version);
         }
 
         /// <summary>

@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.168
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "Sierra-Mex-Comprar-gp15-vs17-sq-v2", "Sierra-Mex-Comprar-gp15-vs17-sq-v2\Sierra-Mex-Comprar-gp15-vs17-sq-v2.rptproj", "{FBEEE5A7-3C7F-4EEA-A84C-70BF9B77E7F8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Default = Debug|Default
+		DebugLocal|Default = DebugLocal|Default
+		Release|Default = Release|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FBEEE5A7-3C7F-4EEA-A84C-70BF9B77E7F8}.Debug|Default.ActiveCfg = Debug
+		{FBEEE5A7-3C7F-4EEA-A84C-70BF9B77E7F8}.Debug|Default.Build.0 = Debug
+		{FBEEE5A7-3C7F-4EEA-A84C-70BF9B77E7F8}.Debug|Default.Deploy.0 = Debug
+		{FBEEE5A7-3C7F-4EEA-A84C-70BF9B77E7F8}.DebugLocal|Default.ActiveCfg = DebugLocal
+		{FBEEE5A7-3C7F-4EEA-A84C-70BF9B77E7F8}.DebugLocal|Default.Build.0 = DebugLocal
+		{FBEEE5A7-3C7F-4EEA-A84C-70BF9B77E7F8}.Release|Default.ActiveCfg = Release
+		{FBEEE5A7-3C7F-4EEA-A84C-70BF9B77E7F8}.Release|Default.Build.0 = Release
+		{FBEEE5A7-3C7F-4EEA-A84C-70BF9B77E7F8}.Release|Default.Deploy.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0C9119BB-1172-4242-BB07-C2AF67D115CF}
+	EndGlobalSection
+EndGlobal
